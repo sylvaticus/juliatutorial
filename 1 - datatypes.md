@@ -53,9 +53,10 @@ Initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 Look up values: `mydict['a']`
 
 Get all keys: `keys(mydict)` (the result is an iterator, not a list)
+Get all values: `values(mydict)` (result is again an iterator)
 
-
-
+Check if a key exists: `haskey(mydict, 'a')`
+Check if a given key/value pair exists (that it, if the key exists and has that specific value): `in(('a' => 1), mydict)`
 
 ## Sets ##
 Use Sets to represent collections of unordered, unique values

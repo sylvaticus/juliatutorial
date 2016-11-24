@@ -50,13 +50,20 @@ Empty (zero-elements) dictionary: `mydict = Dict()`
 
 Initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 
-Look up values: `mydict['a']`
+Look up values: `mydict['a']` (raise an error if looked-up value doesn't exist)
+Look up value with a default value for non-existing key: `get(mydict,'a',0)`
 
 Get all keys: `keys(mydict)` (the result is an iterator, not a list)
 Get all values: `values(mydict)` (result is again an iterator)
 
 Check if a key exists: `haskey(mydict, 'a')`
 Check if a given key/value pair exists (that it, if the key exists and has that specific value): `in(('a' => 1), mydict)`
+
+Iterate trough a dictionary:
+
+    for (k,v) in mydict
+       println("$k is $v")
+    end
 
 ## Sets ##
 Use Sets to represent collections of unordered, unique values

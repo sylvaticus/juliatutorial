@@ -20,6 +20,12 @@ Empty spaces sometimes do, e.g. functions must have the curved parenthesis with 
 `print (x)`  ERROR
 `print(x)`   OK
 
+Functions that modify their inputs (call by reference) have names that end in `!`
+
+One-based indexing (arrays start counting from 1 and not 0)
+
+Containers (arrays, vectors, matrices..) are shadow-copied by default (only a new reference is made, so when you change a value of the new container, also the old container get updated).
+To make a hard copy use the function copy().
 
 ## Packages ##
 Many functions are provided in Julia by external packages. 
@@ -27,7 +33,7 @@ Many functions are provided in Julia by external packages.
 To automatically download, compile and install a package run from a julia console (only once) `Pkg.add("mypackage")`.
 But before you do that, run `Pkg.update()` to be sure your local list of packages and their versions is up to date.
 
-Then, in the concole or at the beginning of the script using the functions provided by the package just inlude a `using mypackage` statement.
+Then, in the console or at the beginning of the script using the functions provided by the package just inlude a `using mypackage` statement.
 
 Packages that you may pretty surelly will need are `Winston` (plotting) and `DataFrames` (R-like tabular data).
 

@@ -9,6 +9,14 @@ Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 The main types of scalar you will use are `Int64`, `Float64`, `Char` (e.g. `x = 'a';`), `String` (e.g. `x="abc";`) and `Bool`.
 The default if you do not specify is `Float64`.
 
+## Strings ##
+### Concatenation ###
+ - Concatenation operator: `*`
+ - function `string(str1,str2,str3)`
+ - combine string variables in a bigger one using the dollar symbol: `a = "$str1 is a string and $int1 is an integer"`
+
+The first method doesn't authomatically cast integer and floats to strings.
+
 ## Arrays (lists) ##
 Empty (zero-elements) arrays: `a = []` (or `a = Int64[]`)
 5-elements zeros array:`a=zeros(5)` (or `a=zeros(Int64,5)`) (same with ones)

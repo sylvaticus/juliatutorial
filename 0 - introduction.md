@@ -1,4 +1,4 @@
-# Ways to run julia #
+# Ways to run Julia #
 4 Different ways to run julia code:
  - 1) julia can be run interactivelly in a console.
  Just run (after having installed it) `julia` in a console and then type your commands there

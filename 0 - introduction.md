@@ -27,6 +27,8 @@ One-based indexing (arrays start counting from 1 and not 0)
 Containers (arrays, vectors, matrices..) are shadow-copied by default (only a new reference is made, so when you change a value of the new container, also the old container get updated).
 To make a hard copy use the function copy().
 
+Using the dollar operator inside a string allows to replace the value of the variable in the string, e.g. `a = "$str1 is a string and $int1 is an integer"`
+
 ## Packages ##
 Many functions are provided in Julia by external packages. 
 

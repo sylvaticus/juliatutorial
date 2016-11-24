@@ -1,4 +1,6 @@
-# Ways to run Julia #
+# Introduction #
+
+## Ways to run Julia ##
 4 Different ways to run julia code:
  - 1) julia can be run interactivelly in a console.
  Just run (after having installed it) `julia` in a console and then type your commands there
@@ -6,15 +8,20 @@
  - 3) Finally, add to the top of the script the location of the julia interpreter preceeded by #! followed by an empty row (e.g. `#!/usr/bin/julia`, you can find it typying `which julia` in a console), be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`
  - 4) Use an Integrated Development Editor (such as Juno), open your Julia script and click the run comand of the editor
 
-# Syntaxt elements #
+## Syntax elements ##
 Single line comments: start with `#` 
 
 Multiline comments: in between `#=` and `=#`(can be nested)
 
-Each command must ends with `;`. Rows and spaces doesn't matter.
+Each command must ends with `;`. Rows and identation don't matter.
+
+Empty spaces sometimes do, e.g. functions must have the curved parenthesis with the inputs striclty attached to them, e.g.:
+
+`print (x)`  ERROR
+`print(x)`   OK
 
 
-# Packages #
+## Packages ##
 Many functions are provided in Julia by external packages. 
 
 To automatically download, compile and install a package run from a julia console (only once) `Pkg.add("mypackage")`.

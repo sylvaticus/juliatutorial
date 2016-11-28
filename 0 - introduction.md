@@ -43,3 +43,13 @@ Then, in the console or at the beginning of the script using the functions provi
 
 Packages that you may pretty surelly will need are `Winston` or \`Plots\` \(plotting\) and `DataFrames` \(R-like tabular data\).
 
+
+
+Documentation
+
+Tipyng \`?\` in the concole lead you to the Julia help system where you can search for function api. In non-interactive environment you can use \`?search\_term\`.
+
+
+
+
+

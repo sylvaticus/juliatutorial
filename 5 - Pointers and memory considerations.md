@@ -10,15 +10,19 @@ Equal sign \(a=b\)
 
 
 copy\(x\)
+
 * simple types are deep copy
 
 * containers of simple types are deep copied
+
 * containers of containers: the content is shadow copied \(the content of the content is only referenced, not copied\)
 
 deepcopy\(x\)
+
 * everything is deepcopy recursively
 
 
+## The \`:\` operator
 
-
+The 
 

@@ -16,7 +16,9 @@ Single line comments: start with `#`
 
 Multiline comments: in between `#=` and `=#`\(can be nested\)
 
-Each command must ends with `;`. Rows and identation don't matter.
+In console mode \`;\` suppress the output \(done automatically in scripting mode\)
+
+Identation don't matter.
 
 Empty spaces sometimes do, e.g. functions must have the curved parenthesis with the inputs striclty attached to them, e.g.:
 
@@ -43,11 +45,20 @@ Then, in the console or at the beginning of the script using the functions provi
 
 Packages that you may pretty surelly will need are `Winston` or \`Plots\` \(plotting\) and `DataFrames` \(R-like tabular data\).
 
-### Documentation
+### Documentation and debug
 
 Tipyng \`?\` in the concole lead you to the Julia help system where you can search for function api. In non-interactive environment you can use \`?search\_term\`.
 
 To retrieve function signatures, type \`method\(myfunction\)\`.
+
+To retrieve object properties: \`fieldnames\(myobject\)\`
+
+To ediscover which specific method is used \(within the several available, as Julia support multiple-dispatch aka polymorfism\): \`@which myfunction\(myargs\)\`
+
+To discover which type aka class an object istance is: \`typeof\(a\)\`
+
+
+ 
 
 
 

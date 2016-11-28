@@ -1,4 +1,12 @@
-# Introduction
+
+
+https:\/\/help.github.com\/articles\/basic-writing-and-formatting-syntax\/Introduction
+
+https:\/\/help.github.com\/articles\/working-with-advanced-formatting\/
+
+https:\/\/guides.github.com\/features\/mastering-markdown\/
+
+
 
 ## Ways to run Julia
 
@@ -56,9 +64,4 @@ To retrieve object properties: \`fieldnames\(myobject\)\`
 To ediscover which specific method is used \(within the several available, as Julia support multiple-dispatch aka polymorfism\): \`@which myfunction\(myargs\)\`
 
 To discover which type aka class an object istance is: \`typeof\(a\)\`
-
-
- 
-
-
 

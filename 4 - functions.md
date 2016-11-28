@@ -25,7 +25,6 @@ Functions can be further specified with which type they works using templates:
 
 `myfunction{T<:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z`
 
-
 The above function first defines two types, T (a subset of Number) and T2, and then specify each parameter of which of these two types must be.
 
 

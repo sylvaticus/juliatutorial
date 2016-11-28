@@ -12,11 +12,13 @@ end
 
 Return value is optional: by default is returned the last computed value
 
-## Multiple-dispatch (aka polymorphism) ##
+## Multiple-dispatch (aka polymorphism)
 
 The same function can be defined with different number and type of parameters (useful when the same kind of logical operation must be performed on different types).
-When calling such functions, Julia will pick it up the correct one depending from the parameters in the call.
 
+When calling such functions, Julia will pick it up the correct one depending from the parameters in the call (by default the stricter version).
+
+These different versions are named "methods" in Julia.
 
 
 

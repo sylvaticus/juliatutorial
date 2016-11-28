@@ -4,10 +4,10 @@
 
 An unusual feature of Julia is that it allows variable names to include a subset of Unicode symbols, allowing a variable to be represented e.g. by a greek letter.
 
-In most Julia development environments \(including the console\), to input in the script the greek letter you can use a LaTeX-like syntax, typing `\` and then the LaTeX name for the symbol, e.g. `\alpha` for α.
+In most Julia development environments (including the consol\), to input in the script the greek letter you can use a LaTeX-like syntax, typing `\` and then the LaTeX name for the symbol, e.g. `\alpha` for α.
 Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 
-The main types of scalar you will use are `Int64`, `Float64`, `Char` \(e.g. `x = 'a'`\), `String` \(e.g. `x="abc"`\) and `Bool`.
+The main types of scalar you will use are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String` \(e.g. `x="abc"`\) and `Bool`.
 The default if you do not specify is `Float64`.
 
 ## Strings
@@ -20,10 +20,10 @@ The default if you do not specify is `Float64`.
 
 The first method doesn't authomatically cast integer and floats to strings.
 
-## Arrays \(lists\)
+## Arrays (lists)
 
-Empty \(zero-elements\) arrays: `a = []` \(or `a = Int64[]`\)
-5-elements zeros array:`a=zeros(5)` \(or `a=zeros(Int64,5)`\) \(same with ones\)
+Empty (zero-elements) arrays: `a = []` (or `a = Int64[]`)
+5-elements zeros array:`a=zeros(5)` (or `a=zeros(Int64,5)`) (same with ones)
 
 Column vector \('Vector' container\) : `a = [1;2;3]` or `a=[1,2,3]` \(common\)
 Row vector \('Matrix' container\) : `a = [1 2 3]`

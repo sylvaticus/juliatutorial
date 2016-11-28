@@ -5,7 +5,9 @@ Functions can be defined inline or trought the `function` keyword, e.g.:
 `f(x,y) = 2x+y`
 
 ```
-function f(x) x+2 end
+function f(x)
+  x+2
+end
 ```
 
 Parameters gived to functions are normally by value.

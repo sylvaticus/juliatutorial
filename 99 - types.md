@@ -9,7 +9,9 @@ This is the complete type hierarchy of `Number` in Julia (credits to Wikipedia):
 ![](/imgs/type_hierarchy_for_julia_numbers.png)
 
 
-`<:` means "a subtype of".
+`A<:B` means "A must be a subtype of B".
+
+`a::B` means "a must be of type B"
 
 
 

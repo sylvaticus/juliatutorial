@@ -62,7 +62,10 @@ To retrieve function signatures, type \`method\(myfunction\)\`.
 
 To retrieve object properties: \`fieldnames\(myobject\)\`
 
-To ediscover which specific method is used \(within the several available, as Julia support multiple-dispatch aka polymorfism\): \`@which myfunction\(myargs\)\`
+To discover which specific method is used \(within the several available, as Julia support multiple-dispatch aka polymorfism\): \`@which myfunction\(myargs\)\`
 
 To discover which type aka class an object istance is: \`typeof\(a\)\`
+
+To profile a specific part of code: `@time myCode`
+
 

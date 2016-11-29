@@ -47,6 +47,8 @@ The last argument(s) can be specified together with a default value. Default par
 At call time default argumens must be specified by name, while normal argument by position.
 
 
+## Functions as objects
+Functions themselves are 
 
 
 

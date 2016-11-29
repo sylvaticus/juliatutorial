@@ -48,8 +48,12 @@ At call time default argumens must be specified by name, while normal argument b
 
 
 ## Functions as objects
-Functions themselves are 
+Functions themselves are objects and can be assigned to new variables, returned, or nested. E.g.:
 
+```
+f(x) = 2x # define a function f inlinea = f(2)  # call f and assign the return value to a
+a = f     # bind f to a new variable name (it's not a deep copy)a(5)      # call again the function
+```
 
 
 

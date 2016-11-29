@@ -10,6 +10,8 @@ Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 The main types of scalar you will use are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String` \(e.g. `x="abc"`\) and `Bool`.
 The default if you do not specify is `Float64`.
 
+
+
 ## Strings
 
 ### Concatenation

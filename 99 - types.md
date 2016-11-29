@@ -43,9 +43,12 @@ type AConcreteType <: MyOwnAbstractType
 end
 ```
 
+## Initialising an object and accessing its fields
 
-
-
+```
+myObject = MyOwnType("something","something",10)
+a = myObject.property3 # 10
+```
 
 ## More on types
 

@@ -60,9 +60,9 @@ a = f     # bind f to a new variable name (it's not a deep copy)a(5)      # call
 
 ## Call by reference / call by value
 
-Parameters gived to functions are normally by value.
+Parameters gived to functions are normally passed by reference.
 
-Functions that accept parameters by reference have their name, BY CONVENCTION, postponed by a `!, e.g.:`
+Functions that do change their arguments have their name, BY CONVENCTION, postponed by a `!, e.g.:`
 
-`myfunction!(ref_par, other_pars) (the parameter given by reference is usually the first one)`
+`myfunction!(ref_par, other_pars) (the parameter that will be changed is by convention the first one)`
 

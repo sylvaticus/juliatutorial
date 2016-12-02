@@ -55,14 +55,15 @@ Functions themselves are objects and can be assigned to new variables, returned,
 
 ```
 f(x) = 2x # define a function f inlinea = f(2)  # call f and assign the return value to a
-a = f     # bind f to a new variable name (it's not a deep copy)a(5)      # call again the function
+a = f     # bind f to a new variable name (it's not a deep copy)
+a(5)      # call again the function
 ```
 
 ## Call by reference / call by value
 
 Parameters gived to functions are normally passed by reference.
 
-Functions that do change their arguments have their name, BY CONVENCTION, postponed by a `!, e.g.:`
+Functions that do change their arguments have their name, BY CONVENCTION, postponed by a `!`, e.g.:
 
-`myfunction!(ref_par, other_pars) (the parameter that will be changed is by convention the first one)`
+`myfunction!(ref_par, other_pars)` (the parameter that will be changed is by convention the first one)
 

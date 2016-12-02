@@ -97,8 +97,8 @@ printMyActivity(MrBrown)
 
 There are two big elements that distinguish Julia implementation of OO paradigm from the mainstream one.
 
-1. Firstly, you do not associate functions to a type. So you do not call a function over a method (`foo.bar(x,y)`) but rather you pass the object as a parameter (`bar(foo, x, y)`).
-2. In order to extend the behaiour of any object Julia doesn't use _inheritance_ (only abstract classes can be inheritate) but rather _composition_ (a field of the subtype is of the higher type, allowing access to its properties) 
+1. Firstly, you do not associate functions to a type. So you do not call a function over a method (`foo.bar(x,y)`) but rather you pass the object as a parameter (`bar(foo, x, y)`);
+2. In order to extend the behaiour of any object Julia doesn't use _inheritance_ (only abstract classes can be inheritated) but rather _composition_ (a field of the subtype is of the higher type, allowing access to its fields).
 
 
 ## More on types

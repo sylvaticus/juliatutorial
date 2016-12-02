@@ -30,7 +30,7 @@ Multiline comments: in between `#=` and `=#`(can be nested)
 
 In console mode \`;\` suppress the output (done automatically in scripting mode)
 
-Identation dones't matter.
+Identation doesn't matter.
 
 Empty spaces sometimes do, e.g. functions must have the curved parenthesis with the inputs striclty attached to them, e.g.:
 
@@ -41,8 +41,6 @@ print(x)   OK
 
 One-based indexing (arrays start counting from `1` and not `0`)
 
-
-
 ## Packages
 
 Many functions are provided in Julia by external packages.
@@ -52,21 +50,20 @@ But before you do that, run Pkg.update() to be sure your local list of packages 
 
 Then, in the console or at the beginning of the script using the functions provided by the package just inlude a ``using mypackage statement or, if you want to import the package but keep the namespace clean, use `import mypackage`.``
 
-Packages that you may pretty surelly will need are ``Winston or `Plots` (plotting) and DataFrames (R-like tabular data).``
-
+Packages that you pretty surelly will need are ``Winston or `Plots` (plotting) and DataFrames (R-like tabular data).``
 You can include other files, without changing the current namespace, using `include("MyFile.jl")`
 
 ### Documentation and debug
 
-Tipyng \`?\` in the concole lead you to the Julia help system where you can search for function api. In non-interactive environment you can use \`?search\_term\`.
+Tipyng `?` in the console lead you to the Julia help system where you can search for function api. In non-interactive environment you can use `?search_term`.
 
-To retrieve function signatures, type \`method\(myfunction\)\`.
+To retrieve function signatures, type `method (myfunction)`.
 
-To retrieve object properties: \`fieldnames\(myobject\)\`
+To retrieve object properties: `fieldnames(myobject)`
 
-To discover which specific method is used \(within the several available, as Julia support multiple-dispatch aka polymorfism\): \`@which myfunction\(myargs\)\`
+To discover which specific method is used (within the several available, as Julia supports multiple-dispatch aka polymorfism): `@which myfunction(myargs)`
 
-To discover which type aka class an object istance is: \`typeof\(a\)\`
+To discover which type aka class an object istance is: `typeof(a)`
 
 To profile a specific part of code: `@time myCode`
 

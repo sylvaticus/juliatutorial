@@ -12,6 +12,8 @@ The default if you do not specify is Float64.`
 
 ## Strings
 
+Using the dollar operator inside a string allows to replace the value of the variable in the string ("interpolation"), e.g. `a = "$str1 is a string and $(myobject.int1) is an integer"`
+
 ### Concatenation
 
 * Concatenation operator: `*`
@@ -19,6 +21,7 @@ The default if you do not specify is Float64.`
 * combine string variables in a bigger one using the dollar symbol: `a = "$str1 is a string and $int1 is an integer"`
 
 The first method doesn't authomatically cast integer and floats to strings.
+
 
 ## Arrays \(lists\)
 

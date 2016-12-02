@@ -1,24 +1,23 @@
 # Datatypes
 
-## Scalar variables
+## Scalar types
 
 An unusual feature of Julia is that it allows variable names to include a subset of Unicode symbols, allowing a variable to be represented e.g. by a greek letter.
 
-In most Julia development environments \(including the consol\), to input in the script the greek letter you can use a LaTeX-like syntax, typing `\ and then the LaTeX name for the symbol, e.g. \alpha for α.
-Using LaTeX syntax, you can also add subscripts, superscripts and decorators.`
+In most Julia development environments (including the console), to input in the script the greek letter you can use a LaTeX-like syntax, typing `\` and then the LaTeX name for the symbol, e.g. `\alpha` for `α`.
+Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 
-The main types of scalar you will use are `Int64, Float64, Char (e.g. x = 'a'), String (e.g. x="abc") and Bool.
-The default if you do not specify is Float64.`
+The main types of scalar you will use are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String` (e.g. `x="abc"`) and `Bool`.
+The default if you do not specify is Float64. Attenction to use the single quote for chars and double quotes for strings.
 
 ## Strings
 
-Using the dollar operator inside a string allows to replace the value of the variable in the string ("interpolation"), e.g. `a = "$str1 is a string and $(myobject.int1) is an integer"`
-
 ### Concatenation
 
-* Concatenation operator: `*`
-* function `string(str1,str2,str3)`
-* combine string variables in a bigger one using the dollar symbol: `a = "$str1 is a string and $int1 is an integer"`
+There are several ways to concatenate strings:
+* Concatenation operator: `*`;
+* Function `string(str1,str2,str3)`;
+* Combine string variables in a bigger one using the dollar symbol: `a = "$str1 is a string and $(myobject.int1) is an integer"` ("interpolation")
 
 The first method doesn't authomatically cast integer and floats to strings.
 

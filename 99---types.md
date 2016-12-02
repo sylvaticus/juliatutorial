@@ -60,3 +60,44 @@ This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
 ![](/imgs/type_hierarchy_for_julia_numbers.png)
 
+
+type Person
+  myname::String
+  age::Int64
+end
+
+type Shoes
+   shoesType::String
+   colour::String
+end
+
+type Student
+   s::Person
+   school::String
+   shoes::Shoes
+end
+
+function printMyActivity(self::Student)
+   println("I study at $(self.school) school")
+end
+
+type Employee
+   s::Person
+   monthlyIncomes::Float64
+   company::String
+   shoes::Shoes
+end
+
+function printMyActivity(self::Employee)
+  println("I work at $(self.company) company")
+end
+
+gymShoes = Shoes("gym","white")
+proShoes = Shoes("classical","brown")
+
+Marc = Student(Person("Marc",15),"Divine School",gymShoes)
+MrBrown = Employee(Person("Brown",45),1200.0,"ABC Corporation Inc.", proShoes)
+
+printMyActivity(Marc)
+printMyActivity(MrBrown)
+

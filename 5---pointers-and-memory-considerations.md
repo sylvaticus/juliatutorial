@@ -38,6 +38,11 @@ Or also, starting from a string (that is, the original representation of source 
 expr = parse("1+2")  # parses the string "1+2" and saves the `1+2` expression in the `expr` expression, same as expr = :(1+2)
 eval(expr)           # here the expression is evalueted and the code returns 3    
 ```
+Note that string interpolation is supported:
+```
+a = 1
+expr = :($a+2) # expr is now :(1+2)
+```
 
 What's in an expression? Using `fiendnames(expr)` or `dump(expr)` we found that `expr` is an `Expr` object made of three fields of type `Symbol`: `:head`, `:args` and `:typ` :
 
@@ -48,6 +53,19 @@ What's in an expression? Using `fiendnames(expr)` or `dump(expr)` we found that 
 The expression can be also directly constructed from the tree: `
 expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
  
+The second meaning of the `:` operator is to create symbols, and it is equivalent to the `Symbol()` function that concatenate its arguments to form a symbol:
+
+`a = :foo10` is equal to `a=Symbol("foo",10)`
+
+A useful example to highlight what a symbol is:
+
+```
+a = 1;
+ex = Expr(:call, :+, a, :b) # ex is equal to :(1 + b) Note b doesn't even need to be defined
+a = 0; b = 2;               # no matter what then happen to a, as a is evaluated at the moment of creating the expression and it is its value that it is stored in the expression
+eval(ex) # returns 3 
+```
+
 
 
 

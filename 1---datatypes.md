@@ -64,6 +64,32 @@ Checking for existence: `in(1, a)`
 
 Getting the length: `length(a)`
 
+### Multidimensional arrays
+In Julia there exists also `Vector` and `Matrix`, but these are just aliasis for 1-D and 2-D arrays.
+
+`a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements (each of those is again a vector)
+
+`a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array (a matrix with 2 columns) with three elements (scalars). The number of elements of each column must be the same, but the elements can be an arrays too: `a = [[[1,2],[1,2]] [[4,5],[4,5]]]`.
+
+`size(a)` returns a tuple with the size of the 1 or 2 dimensions
+
+`ndim(a)` returns the number of dimensions of the array (either 1 or 2)
+
+Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `squeeze(a, numDimensions)`.
+
+Both perform a shadow copy, returning just a differnet "view" of the underlying data.
+
+A 2x3 matrix can be constructed in one of the following ways:
+
+* `a = [[1,2] [3,4] [5,6]]`
+* `a = Array(Int64, 2, 3)` (content is garbage)
+* `a = zeros(2,3)` or `a = ones(2,3)`
+* `a = fill("abc",2,3)` (content is "abc")
+
+
+
+
+
 ## Turples
 
 Use turples to have a list of immutable elements: `a = (1,2,3)` or even without parenthesis `a = 1,2,3`

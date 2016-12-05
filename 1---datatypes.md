@@ -77,7 +77,7 @@ In Julia there exists also `Vector` and `Matrix`, but these are just aliasis for
 
 Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `squeeze(a, numDimensions)` or using the transpose `'` operator.
 
-They all perform a shadow copy, returning just a differnet "view" of the underlying data.
+reshape and squeeze (bun not transpose) perform a shadow copy, returning just a differnet "view" of the underlying data.
 
 A 2x3 matrix can be constructed in one of the following ways:
 

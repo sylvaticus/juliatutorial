@@ -56,7 +56,8 @@ Packages that you pretty surelly will need are `Winston` or `Plots` (plotting) a
 You can include other files, without changing the current namespace, using `include("MyFile.jl")`.
 
 ## A bit on Plotting
-The package "Plots" can wor kon various backends. This are chosed running `chosenBackend()` before calling the plot function.
+The package "Plots" can work on top of various backends. These are chosen running `chosenBackend()` before calling the plot function.
+
 Some useful doc:
 * [Which backend to choose ?](https://juliaplots.github.io/backends/)
 * [Charts and attributes supported by the various backends](https://juliaplots.github.io/supported/)

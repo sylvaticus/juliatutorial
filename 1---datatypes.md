@@ -86,6 +86,14 @@ A 2x3 matrix can be constructed in one of the following ways:
 * `a = zeros(2,3)` or `a = ones(2,3)`
 * `a = fill("abc",2,3)` (content is "abc")
 
+Elements of bidimensional arrays can be accessed with `a[row,col]` syntax.
+Note: for row vectors both `a[2]` or `a[1,2]` returns the second element.
+
+Sub-array or sub-matrices can be extracted using slice operator. Given `a` is a 3x3 Matrice, `a[1:2,:]` would return a 2x3 Matrix with all the column elements of the first and second row.
+
+
+
+
 
 
 

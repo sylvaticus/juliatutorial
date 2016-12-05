@@ -96,7 +96,9 @@ Boolean selection is implemented using a boolean array/matrix for the selection:
 a = [[1,2,3] [4,5,6]]
 mask = [[true,true,false] [false,true,false]]
 ```
-`a[mask]` rturns an 1-D array with 1, 2 and 5. Note that boolean selection result always in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
+`a[mask]` returns an 1-D array with 1, 2 and 5. Note that boolean selection results always in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
+
+For operations on arrays and matrices have a look at the [QuantEcon tutorial](http://lectures.quantecon.org/jl/julia_arrays.html#operations-on-arrays).
 
 
 ## Turples

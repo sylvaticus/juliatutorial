@@ -1,10 +1,15 @@
 ## Resources
 
-# Markdown
+## Markdown
 
 [https://help.github.com/articles/basic-writing-and-formatting-syntax/](https://help.github.com/articles/basic-writing-and-formatting-syntax/)  
 [https://help.github.com/articles/working-with-advanced-formatting/](https://help.github.com/articles/working-with-advanced-formatting/)  
 [https://guides.github.com/features/mastering-markdown/](https://guides.github.com/features/mastering-markdown/)
+
+## Install Julia
+All you need to run the code in this tutorial is a working Julia interpreter console (aka REPL - Read Eval Print Loop).
+In a recent version of Linux you can simply use your package manager to install `Julia` or   
+
 
 ## Ways to run Julia
 

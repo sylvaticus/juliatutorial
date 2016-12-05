@@ -68,6 +68,9 @@ Getting the length: `length(a)`
 
 Use turples to have a list of immutable elements: `a = (1,2,3)` or even without parenthesis `a = 1,2,3`
 
+They can be easily unpacked to multiple variable:
+`var1, var2 = (x,y)` (this is useful for e.g. collect the values of functions returning multiple values) 
+
 ## Dictionaries
 
 Dictionaries store mappings from keys to values. They have an apparently random sorting.

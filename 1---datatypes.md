@@ -10,7 +10,12 @@ Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 The main types of scalar you will use are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String` (e.g. `x="abc"`) and `Bool`.
 The default if you do not specify is Float64. Attenction to use the single quote for chars and double quotes for strings.
 
+Also, while boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, ` if 0 [...] end` brings an error. 
+
 ## Strings
+
+Typical string operations are supported:
+`split(s)` _(default on whitespaces)_, `replace(s, "toSearch", "toReplace")` and strip(s) _(remove whitespaces)_
 
 ### Concatenation
 
@@ -26,11 +31,11 @@ The first method doesn't authomatically cast integer and floats to strings.
 
 Empty (zero-elements) arrays: `a = []` (or `a = Int64[]`)
 
-5-elements zeros array: `a=zeros(5)` (or a=`zeros(Int64,5)`) (same with ones)
+5-elements zeros array: `a=zeros(5)` (or a=`zeros(Int64,5)`) (same with `ones()`)
 
-Column vector ('Vector' container, most common) : `a = [1;2;3]` or `a=[1,2,3]`
+Column vector (_Vector_ container, most common) : `a = [1;2;3]` or `a=[1,2,3]`
 
-Row vector ('Matrix' container, less common) : `a = [1 2 3]`
+Row vector (_Matrix_ container, less common) : `a = [1 2 3]`
 
 Reference to an element of an array/vector/matrix: `a[1]` (you can use also the keyword `end`, but not `begin`)
 

@@ -91,11 +91,12 @@ Note: for row vectors both `a[2]` or `a[1,2]` returns the second element.
 
 Sub-array or sub-matrices can be extracted using slice operator. Given `a` is a 3x3 Matrice, `a[1:2,:]` would return a 2x3 Matrix with all the column elements of the first and second row.
 
-
-
-
-
-
+Boolean selection is implemented using a boolean array/matrix for the selection:
+```
+a = [[1,2,3] [4,5,6]]
+mask = [[true,true,false] [false,true,false]]
+```
+`a[mask]` rturns an 1-D array with 1, 2 and 5. Note that boolean selection result always in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
 
 
 ## Turples

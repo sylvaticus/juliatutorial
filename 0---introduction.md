@@ -102,7 +102,7 @@ Some useful doc:
 
  
 
-### Documentation and debug
+### Documentation and debugging
 
 Tipyng `?` in the console lead you to the Julia help system where you can search for function api. In non-interactive environment you can use `?search_term`.
 
@@ -113,6 +113,10 @@ To retrieve object properties: `fieldnames(myobject)`
 To discover which specific method is used (within the several available, as Julia supports multiple-dispatch aka polymorfism): `@which myfunction(myargs)`
 
 To discover which type aka class an object istance is: `typeof(a)`
+
+To discover which fields are part of an object: `fieldnames(myobj)`
+
+To get more information about an object: `dump(myobj)`
 
 To profile a specific part of code: `@time myCode`
 

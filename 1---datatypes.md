@@ -15,7 +15,7 @@ Also, while boolean values `true` and `false` are evaluated to `1` and `0` respe
 ## Strings
 
 Typical string operations are supported:
-`split(s)` _(default on whitespaces)_, `replace(s, "toSearch", "toReplace")` and strip(s) _(remove whitespaces)_
+`split(s)` _(default on whitespaces)_, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove whitespaces)_
 
 ### Concatenation
 

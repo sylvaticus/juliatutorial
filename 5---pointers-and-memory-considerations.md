@@ -27,7 +27,7 @@ In Julia, macros works when the code has been already parsed and organised in a 
 The colon \`:\` prefix operator refers to an unevalueted expression. Such expression can be saved and then evalueted in a second moment using `eval(myexpression)`:
 
 ```
-expr = :(1+2)  # save the `1+2` expression in the `expr` symbol
+expr = :(1+2)  # save the `1+2` expression in the `expr` expression
 eval(expr)     # here the expression is evalueted and the code returns 3    
 ```
 
@@ -35,20 +35,18 @@ An alternative of the `:([...])` operator is to use the `quote [...] end` block.
 
 Or also, starting from a string (that is, the original representation of source code for Julia):
 ```
-expr = parse("1+2")  # parses the string "1+2" and saves the `1+2` expression in the `expr` symbol, same as expr = :(1+2)
+expr = parse("1+2")  # parses the string "1+2" and saves the `1+2` expression in the `expr` expression, same as expr = :(1+2)
 eval(expr)           # here the expression is evalueted and the code returns 3    
 ```
 
-The expression can be also directly constructed from the tree: `
-expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
-
-What's in a nexpression? Using `fiendnames(expr)` or `dump(expr)` we found that `expr` is an `Expr` object made of three fields of type `Symbol`: `:head`, `:args` and `:typ` :
+What's in an expression? Using `fiendnames(expr)` or `dump(expr)` we found that `expr` is an `Expr` object made of three fields of type `Symbol`: `:head`, `:args` and `:typ` :
 
 * `:head` defines the type of Expression, in this case `:call`
 * `:args` is an array of elements that can be symbols, literal values or other expressions. In this case they are `[:+, 1, 3]`
 * `typ` specify the type of return value of the expression
 
-
+The expression can be also directly constructed from the tree: `
+expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
  
 
 

@@ -8,4 +8,5 @@
 * [5 - pointers and memory considerations](5---pointers-and-memory-considerations.md)
 * [99 - types](99---types.md)
 * [999 - dataframes](999---dataframes.md)
+* [6 - Input\/Output](6---inputoutput.md)
 

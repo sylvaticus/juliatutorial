@@ -19,7 +19,7 @@ The last argument(s) can be specified together with a default value.
 
 `myfunction(a,b;c=1) = (2a+2b)*c`
  
-All keyword arguments need a default value, but the opposite is not true (positional arguments can have default argument)
+All keyword arguments need a default value, but the opposite is not true (positional arguments can also have default argument)
 
 
 ## Return value

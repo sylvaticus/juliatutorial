@@ -39,11 +39,11 @@ Row vector (_Matrix_ container, less common) : `a = [1 2 3]`
 
 Reference to an element of an array/vector/matrix: `a[1]` (you can use also the keyword `end`, but not `begin`)
 
-Arrays can be heterogeneus (but in this case the array will be of `Any` type): `x = [10, "foo", false]`
+Arrays can be heterogeneus (but in this case the array will be of `Any` type and I guess much slower): `x = [10, "foo", false]`
 
-Slice syntax [from:step:to] is generally supported and in several context will return a (fast) iterator rather than a list.
+Slice syntax `[from:step:to]` is generally supported and in several context it will return a (fast) iterator rather than a list.
 
-To trasform an iterator in a list use `collect(myiterator)`
+To trasform an iterator in a list use `collect(myiterator)`.
 
 Push an element to the end of a: `push!(a,b)`
 
@@ -52,7 +52,7 @@ To append the elements of b to a: `append!(a,b)`
 
 Remove an element from the end: `pop!(a)`
 
-Add an element at the beginning (left): `unshift!(a,1)`
+Add an element (b) at the beginning (left): `unshift!(a,b)`
 
 Removing an element at the beginning (left) : `shift!(a)`
 

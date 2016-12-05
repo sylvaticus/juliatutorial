@@ -8,21 +8,29 @@
 
 ## Install Julia
 All you need to run the code in this tutorial is a working Julia interpreter console (aka REPL - Read Eval Print Loop).
-In a recent version of Linux you can simply use your package manager to install `Julia` or   
+In a recent version of Linux you can simply use your package manager to install `julia`.
+
+For more up-to-date version, or for Windows/Mac packages, download the binaries available on the [download section](http://julialang.org/downloads/) of the [Julia web-site](http://julialang.org).
+
+For Integrated Development Editor checkout either [Juno](http://junolab.org/)  or IJulia, the Julia [Jupiter](http://jupyter.org/) backend.
+Setup instructions:
+* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md)
+* [IJulia](https://github.com/JuliaLang/IJulia.jl) (
+just run `Pkg.add("IJulia")` from the Julia console after already having Jupiter installed. That's all ;-) )
 
 
-## Ways to run Julia
+## Run Julia
 
-Different ways to run julia code:
+There are several different ways to run julia code:
 
 1. Julia can be run interactivelly in a console.
-Just run (after having installed it) `julia` in a console and then type your commands there;
+Just run (after having installed it) `julia` in a console and then type your commands there (and type `exit()` when you have finished);
 2. Alternatively, create a script, that is a text file ending in `.jl`, and let julia parse and run it with `julia myscript.jl [arg1, arg2,..]`;
-3. Script files can be run also from within the Julia console, just type `include("myscript.jl")`
+3. Script files can be run also from within the Julia console, just type `include("myscript.jl")`;
 3. Finally, you could instead add at the top of the script the location of the julia interpreter preceeded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` (you can find the fullpath of the Julia interpreter by typying `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`;
 4. Use an Integrated Development Editor (such as [Juno](include("test_script.jl") or [Jupiter](http://jupyter.org/)), open your Julia script and use the run comand of the editor.
 
-Julia keeps many things in memory. If this create problems in the eecution of your code, you can empty the current session for all the variables using `workspace()`.
+Julia keeps many things in memory. If this create problems in the execution of your code, you can empty the current session for all the variables using `workspace()`.
 
 Sometimes that is not enought, and restarting Julia is the only way to get a clean status.
 

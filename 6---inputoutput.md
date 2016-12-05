@@ -23,6 +23,12 @@ or
 
 ```
 
+A better way is to encapsule the file operation in a `do` loop
+open("testdata.txt", "r") do f
+   filecontent = readstring(f)
+   print(filecontent)
+end
+
 
 
 The effect of this is to create a file called newfile.txt in your present working directory with contents

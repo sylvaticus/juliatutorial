@@ -6,21 +6,16 @@
 [https://help.github.com/articles/working-with-advanced-formatting/](https://help.github.com/articles/working-with-advanced-formatting/)  
 [https://guides.github.com/features/mastering-markdown/](https://guides.github.com/features/mastering-markdown/)
 
-# Julia
-
-[http://ucidatascienceinitiative.github.io/IntroToJulia/](http://ucidatascienceinitiative.github.io/IntroToJulia/)
-[http://lectures.quantecon.org/jl/learning_julia.html](http://lectures.quantecon.org/jl/learning_julia.html)
-
 ## Ways to run Julia
 
 Different ways to run julia code:
 
-1. julia can be run interactivelly in a console.
+1. Julia can be run interactivelly in a console.
 Just run (after having installed it) `julia` in a console and then type your commands there;
 2. Alternatively, create a script, that is a text file ending in `.jl`, and let julia parse and run it with `julia myscript.jl [arg1, arg2,..]`;
-3. Script files can be run from within the Julia console, just type `include("myscript.jl")`
-3. Finally, add at the top of the script the location of the julia interpreter preceeded by `#!` and followed by an empty row (e.g. `#!/usr/bin/julia` (you can find the fullpath of the Julia interpreter by typying `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`;
-4. Use an Integrated Development Editor (such as [Juno](include("test_script.jl")) or [Jupiter](http://jupyter.org/)), open your Julia script and click the run comand of the editor.
+3. Script files can be run also from within the Julia console, just type `include("myscript.jl")`
+3. Finally, you could instead add at the top of the script the location of the julia interpreter preceeded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` (you can find the fullpath of the Julia interpreter by typying `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`;
+4. Use an Integrated Development Editor (such as [Juno](include("test_script.jl") or [Jupiter](http://jupyter.org/)), open your Julia script and use the run comand of the editor.
 
 Julia keeps many things in memory. If this create problems in the eecution of your code, you can empty the current session for all the variables using `workspace()`.
 
@@ -43,7 +38,7 @@ print (x)  ERROR
 print(x)   OK
 ```
 
-One-based indexing (arrays start counting from `1` and not `0`)
+One importat thing to remember is that Julia is one-based indexing (arrays start counting from `1` and not `0`)
 
 ## Packages
 

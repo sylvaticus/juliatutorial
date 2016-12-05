@@ -55,8 +55,36 @@ Then, in the console or at the beginning of the script using the functions provi
 Packages that you pretty surelly will need are `Winston` or `Plots` (plotting) and `DataFrames` (R-like tabular data).
 You can include other files, without changing the current namespace, using `include("MyFile.jl")`.
 
+For example (see next section on specific Plotting issues):
+```
+using Plots
+pyplot()
+plot(rand(4,4))
+```
+**or**
+```
+import Plots
+Plots.pyplot()
+Plots.plot(rand(4,4))
+```
+**or**
+```
+import Plots: pyplot, plot
+pyplot()
+plot(rand(4,4))
+```
 ## A bit on Plotting
-The package "Plots" can work on top of various backends. These are chosen running `chosenBackend()` before calling the plot function.
+The package "Plots" can work on top of various backends. These are chosen running `chosenbackend()` (all in lowercase, where instead the name of the backend package is in CamelCase) before calling the plot function.
+You need to install at least one backend before being able to use the `Plots` package.
+
+For example:
+```
+Pkg.add("Plots")
+Pkg.add("Plotly")
+using Plots
+plotly()
+plot(sin, -2pi, pi, label="sine function")
+```
 
 Some useful doc:
 * [Which backend to choose ?](https://juliaplots.github.io/backends/)

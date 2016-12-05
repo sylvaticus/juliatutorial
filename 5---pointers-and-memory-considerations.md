@@ -24,9 +24,6 @@ Note the difference with C or C++ macros. There, macros work performing textual 
 
 In Julia, macros works when the code has been already parsed and organised in a syntax tree, and hence the semantic is much riched and allows for much more powerful manipulations. 
 
-
-
- 
 The colon \`:\` prefix operator refers to an unevalueted expression. Such expression can be saved and then evalueted in a second moment using `eval(myexpression)`:
 
 ```
@@ -45,7 +42,14 @@ eval(expr)           # here the expression is evalueted and the code returns 3
 The expression can be also directly constructed from the tree: `
 expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
 
-What's in a nexpression? Using 
+What's in a nexpression? Using `fiendnames(expr)` or `dump(expr)` we found that `expr` is an `Expr` object made of three fields of type `Symbol`: `:head`, `:args` and `:typ` :
+
+* `:head` defines the type of Expression, in this case `:call`
+* `:args` is an array of elements that can be symbols, literal values or other expressions. In this case they are `[:+, 1, 3]`
+* `typ` specify the type of return value of the expression
+
+
+ 
 
 
 

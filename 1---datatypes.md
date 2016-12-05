@@ -28,13 +28,17 @@ Empty (zero-elements) arrays: `a = []` (or `a = Int64[]`)
 
 5-elements zeros array: `a=zeros(5)` (or a=`zeros(Int64,5)`) (same with ones)
 
-Column vector ('Vector' container) : `a = [1;2;3]` or `a=[1,2,3]` (common)
+Column vector ('Vector' container, most common) : `a = [1;2;3]` or `a=[1,2,3]`
 
-Row vector ('Matrix' container) : `a = [1 2 3]`
+Row vector ('Matrix' container, less common) : `a = [1 2 3]`
 
 Reference to an element of an array/vector/matrix: `a[1]` (you can use also the keyword `end`, but not `begin`)
 
-Slice syntax [from:step:to] is generally supported.
+Arrays can be heterogeneus (but in this case the array will be of `Any` type): `x = [10, "foo", false]`
+
+Slice syntax [from:step:to] is generally supported and in several context will return a (fast) iterator rather than a list.
+
+To trasform an iterator in a list use `collect(myiterator)`
 
 Push an element to the end of a: `push!(a,b)`
 

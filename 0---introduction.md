@@ -24,6 +24,8 @@ Just run (after having installed it) `julia` in a console and then type your com
 
 Julia keeps many things in memory. If this create problems in the eecution of your code, you can empty the current session for all the variables using `workspace()`.
 
+Sometimes that is not enought, and restarting Julia is the only way to get a clean status.
+
 ## Syntax elements
 
 Single line comments: start with `#`

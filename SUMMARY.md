@@ -10,5 +10,5 @@
 * [99 - types](99---types.md)
 * [999 - dataframes](999---dataframes.md)
 * [7 - interfacing with other languages](7---interfacing-with-other-languages.md)
-* 100 - A note on performances
+* [100 - A note on performances](100---a-note-on-performances.md)
 

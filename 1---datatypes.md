@@ -148,3 +148,20 @@ Initialize a set with values: `a = Set([1,2,2,3,4])`
 
 Set intersection, union, and difference: `intersect(set1,set2)`, `union(set1,set2)`, `setdiff(set1,set2)`
 
+## Memory and copy issues
+In order to unnecessarily copying large amount of datas, Julia by default copy only the memory address of large objects, unless the programmer explicitly request a so-called "deep" copy. In detail:
+
+**Equal sign (a=b)**
+
+* simple types are deep copied
+* containers of simple types (or other containers) are shadow copied (their internal is only referenced, not copied)
+
+**copy(x)**
+
+* simple types are deep copy
+* containers of simple types are deep copied
+* containers of containers: the content is shadow copied (the content of the content is only referenced, not copied)
+
+**deepcopy(x)**
+
+* everything is deepcopy recursively

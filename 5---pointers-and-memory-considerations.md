@@ -1,21 +1,4 @@
 
-# Memory and copy issues
-
-Equal sign \(a=b\)
-
-* simple types are deep copied
-* containers of simple types \(or other containers\) are shadow copied \(their internal is only referenced, not copied\)
-
-copy\(x\)
-
-* simple types are deep copy
-* containers of simple types are deep copied
-* containers of containers: the content is shadow copied \(the content of the content is only referenced, not copied\)
-
-deepcopy\(x\)
-
-* everything is deepcopy recursively
-
 # Metaprogramming
 
 Julia represents its own code as a data structure accessible from the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code, that is to create powerful macros (the term "metaprogramming" refers to the possibility to write code that write codes that is then evalueted)

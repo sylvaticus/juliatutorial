@@ -1,3 +1,5 @@
+# Performances 
+
 Julia is relativelly fast when working with `Any` data, but when we restrict a variable to a specific type of data it runs with the same order of magnitude of C.
 
 This mean you can code quite quickly and then, only on the parts that constitute a bootleness, you can concentrate and add specific typing.

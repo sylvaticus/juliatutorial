@@ -8,8 +8,13 @@ for i=1:2,j=2:4
 end
 ```
 
-`break` is supported
+`break` and `continue` are supported and works as expected
 
+Julia support list comprehension:
+
+`[myfunction(i) for i in [1,2,3]]`
+
+`[mydict[i]=value  for (i, value) in enumerate(mylist)]`
 
 
 

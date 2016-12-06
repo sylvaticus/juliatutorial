@@ -4,7 +4,7 @@ Types are what in other langauges are called classes, or structured data: they d
 
 Some syntax:
 
-* `a::B` means "a must be of 
+* `a::B` means "a must be of type B"
 * `A<:B` means "A must be a subtype of B".
 
 ## Defining a type

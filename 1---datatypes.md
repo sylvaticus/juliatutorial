@@ -117,6 +117,7 @@ Empty (zero-elements) dictionary: `mydict = Dict()`
 Initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 
 Add pairs to the dictionary: `mydict[akey] = avalue`
+Add pairs using maps: `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
 
 Look up values: `mydict['a']` (it raises an error if looked-up value doesn't exist)
 

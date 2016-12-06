@@ -14,3 +14,5 @@ Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], my
 
 \(the original data to replace can be in a different column or a totally different dataframe\)
 
+See also the section "Interfacing with other languages" to get an example on how to load data from an ods file.
+

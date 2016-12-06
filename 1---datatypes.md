@@ -116,6 +116,8 @@ Empty (zero-elements) dictionary: `mydict = Dict()`
 
 Initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 
+Add pairs to the dictionary: `mydict[akey] = avalue`
+
 Look up values: `mydict['a']` (it raises an error if looked-up value doesn't exist)
 
 Look up value with a default value for non-existing key: `get(mydict,'a',0)`

@@ -1,69 +1,20 @@
-# Functions
+# Control flow
 
-Functions can be defined inline or using the `function` keyword, e.g.:
-
-`f(x,y) = 2x+y`
+All typical control flow `for`, `while`, `if`/`else`, `do` are supported, and parenthesis around the condition are not necessary. Multiple conditions can be specified in the for loop, e.g.:`
 
 ```
-function f(x)
-  x+2
+for i=1:2,j=2:4
+ println(i*j)
 end
 ```
 
-## Arguments
+`break` and `continue` are supported and works as expected
 
-Arguments are specified by position. Arguments given after a semicolon are instead specified by name.
-The call of the function must respect this distinction, calling positional argument by position and keyword arguments by name (e.g., it is not possible to call positional arguments by name).
+Julia support list comprehension:
 
-The last argument(s) can be specified together with a default value.
+`[myfunction(i) for i in [1,2,3]]`
 
-`myfunction(a,b;c=1) = (2a+2b)*c`
- 
-All keyword arguments need a default value, but the opposite is not true (positional arguments can also have default argument)
+`[mydict[i]=value  for (i, value) in enumerate(mylist)]`
 
 
-## Return value
-
-Return value using the keywork `return` is optional: by default it is returned the last computed value.
-
-It can also be a turple (so to return multiple values):
-
-```
-myfunction(a,b) = a+1,b+1
-x,y = myfunction(1,2)
-```
-
-## Multiple-dispatch (aka polymorphism)
-
-The same function can be defined with different number and type of parameters (useful when the same kind of logical operation must be performed on different types).
-
-When calling such functions, Julia will pick up the correct one depending from the parameters in the call (by default the stricter version).
-
-These different versions are named "methods" in Julia.
-
-## Templates (type parametrisation)
-
-Functions can be further specified with which type they works using templates:
-
-`myfunction{T<:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z`
-
-The above function first defines two types, T (a subset of Number) and T2, and then specify each parameter of which of these two types must be.
-
-## Functions as objects
-
-Functions themselves are objects and can be assigned to new variables, returned, or nested. E.g.:
-
-```
-f(x) = 2x # define a function f inlinea = f(2)  # call f and assign the return value to a
-a = f     # bind f to a new variable name (it's not a deep copy)
-a(5)      # call again the function
-```
-
-## Call by reference / call by value
-
-Parameters gived to functions are normally passed by reference.
-
-Functions that do change their arguments have their name, BY CONVENCTION, postponed by a `!`, e.g.:
-
-`myfunction!(ref_par, other_pars)` (the parameter that will be changed is by convention the first one)
 

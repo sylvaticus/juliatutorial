@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-* [0 - introduction](0---introduction.md)
+* [0 - get started](0---introduction.md)
 * [1 - datatypes](1---datatypes.md)
 * [3 - control flow](3---control-flow.md)
 * [4 - functions](4---functions.md)

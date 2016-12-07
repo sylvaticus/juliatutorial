@@ -2,7 +2,7 @@
 
 ## Language core
 * [Introduction](README.md)
-* [1 - Get started](1---get-started.md)
+* [1 - Getting started](1---get-started.md)
 * [2 - Data types](2---data-types.md)
 * [3 - Control flow](3---control-flow.md)
 * [4 - Functions](4---functions.md)

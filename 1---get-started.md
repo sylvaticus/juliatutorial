@@ -1,3 +1,5 @@
+# Getting started
+
 ## Install Julia
 All you need to run the code in this tutorial is a working Julia interpreter console (aka REPL - Read Eval Print Loop).
 In a recent version of Linux you can simply use your package manager to install `julia`.

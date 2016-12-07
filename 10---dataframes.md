@@ -1,7 +1,8 @@
 # Dataframes
 
-Julia has a library to handle tabular data, in a way similar to R or Pandas dataframes. The approach and the function names are similar, altought the way of actually access the API may be a bit different.
+Julia has a library to handle tabular data, in a way similar to R or Pandas dataframes. The name is, no surprises, [DataFrames](https://github.com/JuliaStats/DataFrames.jl). The approach and the function names are similar, altought the way of actually access the API may be a bit different.
 
+Install the library: `Pkg.add(DataFrames)`  
 Load the library: `using DataArrays, DataFrames`  
 Read a CSV file: myData = `readtable\("mydatafile.csv", separator = ';'\)`  
 Concatenate different dataframes \(with same structure\): `df = vcat(my_df_list)`  

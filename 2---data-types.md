@@ -48,7 +48,7 @@ To trasform an iterator in a list use `collect(myiterator)`.
 Push an element to the end of a: `push!(a,b)`
 
 To append the elements of b to a: `append!(a,b)`
-(if b is a scalar obviously push! and append! are the same)
+(if b is a scalar obviously push! and append! are the same. Attenction that a string is treated as a list!)
 
 Remove an element from the end: `pop!(a)`
 
@@ -63,6 +63,9 @@ Reversing an arry: `a[end:-1:1]`
 Checking for existence: `in(1, a)`
 
 Getting the length: `length(a)`
+
+Empty an array: `empty!(a)`
+Checking if an array is empty: `isempty(a)`
 
 ### Multidimensional arrays
 In Julia there exists also `Vector` and `Matrix`, but these are just aliasis for 1-D and 2-D arrays.

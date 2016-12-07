@@ -8,10 +8,11 @@
 * [4 - Functions](4---functions.md)
 * [5 - Custom types](5---custom-types.md)
 * [6 - Input \/ Output](6---input--output.md)
-* [7 - Interfacing Julia with other languages](7---interfacing-julia-with-other-languages.md)
-* [8 - Metaprogramming](8---metaprogramming.md)
-* [9 - Performances](9---performances.md)
+* [7 - Managing run-time errors \(exceptions\)](7---managing-run-time-errors-exceptions.md)
+* [8 - Interfacing Julia with other languages](7---interfacing-julia-with-other-languages.md)
+* [9 - Metaprogramming](8---metaprogramming.md)
+* 10 - Managing run-time errors \(exceptions\)
 
 ## Useful packages
-* [10 - DataFrames](10---dataframes.md)
+* [11 - DataFrames](10---dataframes.md)
 

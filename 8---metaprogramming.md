@@ -47,5 +47,32 @@ a = 0; b = 2; # no matter what then happen to a, as a is evaluated at the moment
 eval(ex) # returns 3
 ```
 
+## Macros
+The possibility to represent code into expressions is at the heart of the usage of macros.
+Macros in Julia Macro take one or more input expressions and returns a modified expressions (at parse time).
+This contrast with normal functions that , at runtime, take the input values and return a computed value.
 
+**Macro definition**
+```
+macro unless(test, branch)
+  quote
+    if !$test
+      $branch
+    end
+  end
+end
+```
+**Macro call**
+```
+arr = [3.14, 42, 'b']
+@unless 42 in arr println("arr does not contain 42")
+```
+Like for strings, the `$` interpolation operator will substitute the variable with its content, in this context the expression.
+So the "expanded" macro will look in this case as:
+```
+if !(42 in arr)
+println("arr does not contain 42)
+end
+```
 
+Attenction that the macro doesn't create a new scope, and variables declared or assigned within the macro may collide with variables in the scope of where the macro is actually called.

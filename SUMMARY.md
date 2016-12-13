@@ -11,7 +11,7 @@
 * [7 - Managing run-time errors \(exceptions\)](7---managing-run-time-errors-exceptions.md)
 * [8 - Interfacing Julia with other languages](7---interfacing-julia-with-other-languages.md)
 * [9 - Metaprogramming](8---metaprogramming.md)
-* [10 - Managing run-time errors \(exceptions\)](10---managing-run-time-errors-exceptions.md)
+* [10 - Performances](10---performances.md)
 
 ## Useful packages
 * [11 - DataFrames](10---dataframes.md)

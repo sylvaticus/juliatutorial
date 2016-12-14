@@ -19,8 +19,8 @@ There are several different ways to run julia code:
 Just run (after having installed it) `julia` in a console and then type your commands there (and type `exit()` when you have finished);
 2. Alternatively, create a script, that is a text file ending in `.jl`, and let julia parse and run it with `julia myscript.jl [arg1, arg2,..]`;
 3. Script files can be run also from within the Julia console, just type `include("myscript.jl")`;
-3. Finally, you could instead add at the top of the script the location of the julia interpreter preceeded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` (you can find the fullpath of the Julia interpreter by typying `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`;
-4. Use an Integrated Development Editor (such as [Juno](include("test_script.jl") or [Jupiter](http://jupyter.org/)), open your Julia script and use the run comand of the editor.
+4. Finally, you could instead add at the top of the script the location of the julia interpreter preceeded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` (you can find the fullpath of the Julia interpreter by typying `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`) and then run it with `./myscript.jl`;
+5. Use an Integrated Development Editor (such as [Juno](include("test_script.jl") or [Jupiter](http://jupyter.org/)), open your Julia script and use the run comand of the editor.
 
 Julia keeps many things in memory. If this create problems in the execution of your code, you can empty the current session for all the variables using `workspace()`.
 
@@ -75,6 +75,10 @@ import Plots: pyplot, plot
 pyplot()
 plot(rand(4,4))
 ```
+
+[More informations about packages](http://docs.julialang.org/en/release-0.5/manual/packages/)
+You want write your own package? [Learn first how to document the code](http://docs.julialang.org/en/release-0.5/manual/documentation/)
+
 ## A bit on Plotting
 The package "Plots" can work on top of various backends. These are chosen running `chosenbackend()` (all in lowercase, where instead the name of the backend package is in CamelCase) before calling the plot function.
 You need to install at least one backend before being able to use the `Plots` package.

@@ -16,5 +16,11 @@ Julia support list comprehension:
 
 `[mydict[i]=value  for (i, value) in enumerate(mylist)]`
 
+zip
+
+map
+
+Ternary operator is supported as `a ? b : c` (if a is true, then b, else c).
+
 
 

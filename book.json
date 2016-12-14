@@ -1,6 +1,5 @@
 {
   "gitbook": ">=3.2.1",
-  "root": "_docs",
   "title": "reimertz awesome docz",
   "plugins": ["edit-link", "github"],
   "pluginsConfig": {

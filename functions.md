@@ -53,7 +53,8 @@ The above function first defines two types, T (a subset of Number) and T2, and t
 
 Functions themselves are objects and can be assigned to new variables, returned, or nested. E.g.:
 ```
-f(x) = 2x # define a function f inlinea = f(2)  # call f and assign the return value to a
+f(x) = 2x # define a function f inline
+a = f(2)  # call f and assign the return value to a
 a = f     # bind f to a new variable name (it's not a deep copy)
 a(5)      # call again the function
 ```

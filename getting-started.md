@@ -103,6 +103,7 @@ Here you can find some common operations concerning introspection and debugging:
 It is a good practice to document your own functions. You can use triple quoted strings (""") just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/release-0.5/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
 For example, this is the documentation string of the `ods_reall` function within the `OdsIO` package: 
 
+```
 """
     ods_readall(filename; <keyword arguments>)
 
@@ -122,12 +123,12 @@ Return a dictionary of tables|dictionaries|dataframes indexed by position or nam
 * using innerType="DataFrame" also preserves original column order
 
 # Examples
-```julia
+``julia
 julia> outDic  = ods_readall("spreadsheet.ods";sheetsPos=[1,3],ranges=[((1,1),(3,3)),((2,2),(6,4))], innerType="Dict")
 Dict{Any,Any} with 2 entries:
   3 => Dict{Any,Any}(Pair{Any,Any}("c",Any[33.0,43.0,53.0,63.0]),Pair{Any,Any}("b",Any[32.0,42.0,52.0,62.0]),Pair{Any,Any}("d",Any[34.0,44.0,54.…
   1 => Dict{Any,Any}(Pair{Any,Any}("c",Any[23.0,33.0]),Pair{Any,Any}("b",Any[22.0,32.0]),Pair{Any,Any}("a",Any[21.0,31.0]))
-```
+``
 """
-
+```
 

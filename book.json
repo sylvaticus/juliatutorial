@@ -4,7 +4,7 @@
   "plugins": ["edit-link", "github","numbered-headings"],
   "pluginsConfig": {
     "edit-link": {
-      "base": "https://github.com/reimertz/reimertz.co/tree/master",
+      "base": "https://github.com/sylvaticus/juliatutorial/edit/master",
       "label": "Edit This Page"
     },
     "github": {

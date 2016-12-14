@@ -1,3 +1,12 @@
+# Getting started
+
+## Why Julia
+Without going into long discussions, Julia (partially thanksful to recent development in just-in-time compliers) solves a trade-off that has long existed in programming: fast coding vs fast execution.  
+On one side it allows to code in a dynamic language like R, Python or Matlab, allowing interaction with the code and powerful expressivity (see the [Metaprogramming](metaprogramming.md) chapter for example). 
+On the other side, with minimum efforts (see [Performances](performances.md) it can be made to execute code approching C levels.  
+While still joung, Julia allows to easily interface your code with all the mayor programming languages (see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md), hence reusing their huge set of libraries when these are not already being ported in Julia.
+Julia has its roots in the domain of scientific, high performances programming, but is becoming more and more mature for any general purposes.
+
 ## Install Julia
 All you need to run the code in this tutorial is a working Julia interpreter console (aka REPL - Read Eval Print Loop).
 In a recent version of Linux you can simply use your package manager to install `julia`.

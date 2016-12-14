@@ -43,7 +43,7 @@ These different versions are named "methods" in Julia.
 
 ## Templates (type parametrisation)
 
-Functions can be further specified with which type they works using templates:
+Functions can be further specified regarding on which types they works with, using templates:
 
 `myfunction{T<:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z`
 
@@ -52,7 +52,6 @@ The above function first defines two types, T (a subset of Number) and T2, and t
 ## Functions as objects
 
 Functions themselves are objects and can be assigned to new variables, returned, or nested. E.g.:
-
 ```
 f(x) = 2x # define a function f inlinea = f(2)  # call f and assign the return value to a
 a = f     # bind f to a new variable name (it's not a deep copy)

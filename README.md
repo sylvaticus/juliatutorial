@@ -1,6 +1,7 @@
 # Julia language: a concise tutorial
 ![](/assets/julia_hello_world.png)
 
+
 While the primary purpose of this tutorial is to help myself in my pathway of learning the language, it can also be useful to reasonably seasoned programmers that want to code in Julia before reading the 533 pages of the (outstanding) [official documentation](http://docs.julialang.org/en/release-0.5/).
 
 This document is a compendium of thinks I did found of interest from several tutorials (plus the official documentation), in particular Chris Rackauckas's [A Deep Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/), the [Quantecon tutorial](http://lectures.quantecon.org/jl/learning_julia.html), the [WikiBook on Julia](https://en.wikibooks.org/wiki/Introducing_Julia) and [Learn X in Y minutes](https://learnxinyminutes.com/docs/julia/), from which I did borrow several examples.

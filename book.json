@@ -1,17 +1,14 @@
 {
   "gitbook": ">=3.2.1",
-  "title": "reimertz awesome docz",
-  "plugins": ["edit-link", "github","numbered-headings"],
+  "title": "Julia: a concise tutorial",
+  "plugins": ["edit-link", "numbered-headings"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/sylvaticus/juliatutorial/edit/master",
       "label": "Edit This Page"
     },
-    "github": {
-      "url": "https://github.com/sylvaticus/"
-    },
     "theme-default": {
-      "showLevel": false,
+      "showLevel": true,
       "styles": {
         "website": "build/gitbook.css"
       }

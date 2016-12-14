@@ -27,7 +27,7 @@ There are several ways to concatenate strings:
 Note: the first method doesn't automatically cast integer and floats to strings.
 
 
-## Arrays \(lists\)
+## Arrays (lists)
 
 Arrays are 1 or 2 dimensions mutable containers.
 
@@ -40,7 +40,7 @@ There are several ways to create an array:
 
 Arrays can be heterogeneous (but in this case the array will be of `Any` type and much slower): `x = [10, "foo", false]`
 
-Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use also the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`.
+Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`.
 
 The following methods are useful while working with arrays:
 
@@ -57,7 +57,7 @@ The following methods are useful while working with arrays:
 * Checking if an array is empty: `isempty(a)`
 
 ### Multidimensional and nested arrays
-In Julia an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).
+In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).
 Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
 In a `Matrix` (but not in an array of array), the number of elements on each column (row) must be the same.
 
@@ -81,7 +81,6 @@ a = [[1,2,3] [4,5,6]]
 mask = [[true,true,false] [false,true,false]]
 ```
 `a[mask]` returns an 1-D array with 1, 2 and 5. Note that boolean selection results always in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
-
 
 Note: for row vectors, both `a[2]` or `a[1,2]` returns the second element.\\
 

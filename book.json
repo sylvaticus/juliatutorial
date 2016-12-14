@@ -1,14 +1,14 @@
 {
   "gitbook": ">=3.2.1",
   "title": "Julia language: a concise tutorial",
-  "plugins": ["edit-link", "numbered-headings"],
+  "plugins": ["edit-link"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/sylvaticus/juliatutorial/edit/master",
       "label": "Edit This Page"
     },
     "theme-default": {
-      "showLevel": true,
+      "showLevel": false,
       "styles": {
         "website": "build/gitbook.css"
       }

@@ -2,3 +2,15 @@ h1:before, h2:before, h3:before, h4:before, h5:before {
   color: #aaa;
   width: 40px;
 }
+
+.markdown-section h1 {
+  font-size: 1.75 em;   /* orig 2*/
+}
+
+.markdown-section h2 {
+  font-size: 1.5 em;   /* orig 1.75*/
+}
+
+.markdown-section h3 {
+  font-size: 1.2 em;   /*orig 1.5*/
+}

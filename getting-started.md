@@ -38,7 +38,7 @@ Sometimes that is not enough, and restarting Julia is the only way to get a clea
 
 Single line comments start with `#` and multi-line comments can be placed in between `#=` and `=#`(and can be nested).
 
-In console mode `;` after a command suppresses the output (this is done automatically in scripting mode), and typed alone switches to one-time command shell prompt. 
+In console mode, `;` after a command suppresses the output (this is done automatically in scripting mode), and typed alone switches to one-time command shell prompt. 
 
 Indentation doesn't matter, but empty spaces sometimes do, e.g. functions must have the curved parenthesis with the inputs strictly attached to them, e.g.:
 
@@ -47,14 +47,14 @@ print (x)  ERROR
 print(x)   OK
 ```
 
-If you come from C or Python, One important thing to remember is that Julia is one-based indexing (arrays start counting from `1` and not `0`).
+If you come from C or Python, one important thing to remember is that Julia is one-based indexing (arrays start counting from `1` and not `0`).
 
 ## Packages
 
 Many functions are provided in Julia by external packages.
 
-To automatically download, compile and install a package run from a Julia console (only once) `Pkg.add("mypackage")`.  
-But before you do that, run `Pkg.update()` to be sure that (a) your local index of packages and (b) the version of local packages is up to date.
+To automatically download, compile and install a package, run from a Julia console (only once) `Pkg.add("mypackage")`.  
+But before you do that, run `Pkg.update()` to be sure that (a) your local index of packages and (b) the version of local packages is up to date.  
 Use `Pkg.status()` to check the current version of your local packages.
 
 To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`.  You can also include other files, without changing the current namespace, using `include("MyFile.jl")`.
@@ -82,8 +82,6 @@ plot(rand(4,4))
 ```
 
 If you are interested in writing your own package, you can read more about packages in the [relevant section](http://docs.julialang.org/en/release-0.5/manual/packages/) of the Julia documentation.  
-
-
 
  
 ### Documentation and debugging

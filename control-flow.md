@@ -8,7 +8,7 @@ for i=1:2,j=2:4
 end
 ```
 
-`break` and `continue` are supported and works as expected
+`break` and `continue` are supported and works as expected.
 
 
 Julia support list comprehension and maps:

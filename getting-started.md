@@ -1,13 +1,13 @@
 # Getting started
 
 ## Why Julia
-Without going into long discussions, Julia (partially thankful for the recent development in _just-in-time_ compliers) solves a trade-off that has long existed in programming: fast coding vs fast execution.  
+Without going into long discussions, Julia (partially thankful for the recent development in _just-in-time_ compilers) solves a trade-off that has long existed in programming: _fast coding_ vs. _fast execution_.  
 On one side, Julia allows to code in a dynamic language like Python,  R or Matlab, allowing interaction with the code and powerful expressivity (see the [Metaprogramming](metaprogramming.md) chapter for example). 
 On the other side, with minimum efforts (see [Performances](performances.md)), programs written in Julia can run as fast as C.  
 While still young, Julia allows to easily interface your code with all the mayor programming languages (see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)), hence reusing their huge set of libraries (when these are not already being ported in Julia).  
-Julia has its roots in the domain of scientific, high performances programming, but is becoming more and more mature as a general purpose programming language.
+Julia has its roots in the domain of scientific, high performances programming, but it is becoming more and more mature as a general purpose programming language.
 
-## Install Julia
+## Installing Julia
 All you need to run the code in this tutorial is a working Julia interpreter console (aka REPL - Read Eval Print Loop).
 In a recent version of Linux you can simply use your package manager to install `julia`.
 
@@ -19,14 +19,14 @@ Here you can find their detailed setup instructions:
 * [IJulia](https://github.com/JuliaLang/IJulia.jl) (in a nutshell: if you already have Jupiter installed, just run `Pkg.add("IJulia")` from the Julia console. That's all! ;-) )
 
 
-## Run Julia
+## Running Julia
 
 There are several ways to run Julia code:
 
 1. Julia can be run interactively in a console.
-Just run (after having installed it) `julia` in a console and then type your commands there (and type `exit()` when you have finished);
+Just write (after having installed it) `julia` in a console and then type your commands there (and type `exit()` when you have finished);
 2. Alternatively, create a script, that is a text file ending in `.jl`, and let Julia parse and run it with `julia myscript.jl [arg1, arg2,..]`;
-3. Script files can be run also from within the Julia console, just type `include("myscript.jl")`;
+3. Script files can also  be run from within the Julia console, just type `include("myscript.jl")`;
 4. In Linux, you could instead add at the top of the script the location of the Julia interpreter on your system, preceded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` (you can find the full path of the Julia interpreter by typing `which julia` in a console). Be sure that the file is executable (e.g. `chmod 755 myscript.jl`). Then you can run the script with `./myscript.jl`;
 5. Use an Integrated Development Editor (such as [Juno](include("test_script.jl") or [Jupiter](http://jupyter.org/)), open your Julia script and use the run command of the editor.
 

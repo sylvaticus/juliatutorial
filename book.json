@@ -1,6 +1,6 @@
 {
   "gitbook": ">=3.2.1",
-  "title": "Julia: a concise tutorial",
+  "title": "Julia language: a concise tutorial",
   "plugins": ["edit-link", "numbered-headings"],
   "pluginsConfig": {
     "edit-link": {

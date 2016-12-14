@@ -1,10 +1,10 @@
 # Getting started
 
 ## Why Julia
-Without going into long discussions, Julia (partially thankful for the recent development in _just-in-time_ compilers) solves a trade-off that has long existed in programming: _fast coding_ vs. _fast execution_.  
+Without going into long discussions, Julia (partially thankful for the recent development in _just-in-time_ compilers) solves a trade-off that has long been existed in programming: _fast coding_ vs. _fast execution_.  
 On one side, Julia allows to code in a dynamic language like Python,  R or Matlab, allowing interaction with the code and powerful expressivity (see the [Metaprogramming](metaprogramming.md) chapter for example). 
 On the other side, with minimum efforts (see [Performances](performances.md)), programs written in Julia can run as fast as C.  
-While still young, Julia allows to easily interface your code with all the mayor programming languages (see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)), hence reusing their huge set of libraries (when these are not already being ported in Julia).  
+While still young, Julia allows to easily interface your code with all the major programming languages (see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)), hence reusing their huge set of libraries (when these are not already being ported in Julia).  
 Julia has its roots in the domain of scientific, high performances programming, but it is becoming more and more mature as a general purpose programming language.
 
 ## Installing Julia
@@ -32,7 +32,7 @@ Just write (after having installed it) `julia` in a console and then type your c
 
 Julia keeps many things in memory within the same work session. If this create problems in the execution of your code, you can empty the current session for all the variables using `workspace()`.
 
-Sometimes that is not enought, and restarting Julia is the only way to get a clean status.
+Sometimes that is not enough, and restarting Julia is the only way to get a clean status.
 
 ## Syntax elements
 

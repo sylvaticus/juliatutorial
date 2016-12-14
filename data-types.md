@@ -108,7 +108,7 @@ Dictionaries store mappings from keys to values, and they have an apparently ran
 
 You can create an empty (zero-elements) dictionary with `mydict = Dict()`, or initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 
-These are some useful methods to work with dictionaries:
+There are some useful methods to work with dictionaries:
 * Add pairs to the dictionary: `mydict[akey] = avalue`
 * Add pairs using maps: `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
 * Look up values: `mydict['a']` (it raises an error if looked-up value doesn't exist)

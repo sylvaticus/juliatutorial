@@ -1,7 +1,7 @@
 {
   "gitbook": ">=3.2.1",
   "title": "reimertz awesome docz",
-  "plugins": ["edit-link", "github"],
+  "plugins": ["edit-link", "github","numbered-headings"],
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/reimertz/reimertz.co/tree/master",

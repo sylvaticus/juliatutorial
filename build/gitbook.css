@@ -1,6 +1,6 @@
 h1:before, h2:before, h3:before, h4:before, h5:before {
-  color: #aaa;
-  width: 40px;
+  /*color: #aaa;*/
+  /*width: 40px;*/
 }
 
 .markdown-section h1 {
@@ -13,4 +13,20 @@ h1:before, h2:before, h3:before, h4:before, h5:before {
 
 .markdown-section h3 {
   font-size: 1.2 em;   /*orig 1.5*/
+}
+
+body {
+        counter-reset: h2counter;
+}
+.markdown-section h1 {
+        counter-reset: h2counter;
+}
+.markdown-section h2:before {
+        content: counter(h2counter) ".\0000a0\0000a0";
+        counter-increment: h2counter;
+        counter-reset: h3counter;
+}
+.markdown-section h3:before {
+        content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+        counter-increment: h3counter;
 }

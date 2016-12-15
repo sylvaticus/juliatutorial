@@ -16,6 +16,10 @@ Antonello Lobianco
 
 
 
+#### Latest version
+
+The latest version of this tutorial can be found online on GitBook, at [https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial](https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial)
+
 #### Citations
 
 Please cite this tutorial as:

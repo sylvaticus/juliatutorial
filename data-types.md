@@ -32,7 +32,7 @@ Note: the first method doesn't automatically cast integer and floats to strings.
 
 ## Arrays (lists)
 
-Arrays are 1 or 2 dimensions mutable containers<sup>[2](#myfootnote2)</sup>.
+Arrays are 1 or 2 dimensions mutable containers[²](#myfootnote2).
 
 There are several ways to create an array:
 
@@ -156,5 +156,9 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 * everything is deep copied recursively
 
 
+
+- - -
+
 <a name="myfootnote1">¹</a>: Technically a `String` is an array in Julia (try to append a String to an array!), but for most uses it can be thought as a scalar type.
-<a name="myfootnote2"><sup>2</sup></a>: Arrays can actually have more than 2 dimensions, but are way less common: `[3x + 2y + z for x in 1:2, y in 2:3, z in 1:2]`
+
+<a name="myfootnote2">²</a>: Arrays can actually have more than 2 dimensions, but are way less common: `[3x + 2y + z for x in 1:2, y in 2:3, z in 1:2]`

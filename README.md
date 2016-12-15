@@ -18,13 +18,13 @@ Antonello Lobianco
 
 #### Latest version
 
-The latest version of this tutorial can be found online on GitBook, at [https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial](https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial)
+The latest version of this tutorial can be found online on GitBook, at [https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/](https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/)
 
 #### Citations
 
 Please cite this tutorial as:
 
-    A. Lobianco, (2016), “Julia language: a concise tutorial", GitBook, https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial, retrieved xx/xx/xxxx
+    A. Lobianco, (2016), “Julia language: a concise tutorial", GitBook, https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/, retrieved xx/xx/xxxx
 
 #### Acknowledgements
 

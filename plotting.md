@@ -1,8 +1,10 @@
 # Plotting
 
+Plotting can be obtained with several packages.
+
 ## The `Plots` package
 
-The package "Plots" can work on top of various backends. These are chosen running `chosenbackend()` (that is, the name of the corresponding backend package but all in lower case) before calling the `plot` function.
+Maybe the most flexible plotting package is `Plots`, as it can work on top of various backends, while providing a unified interface. Backends are chosen running `chosenbackend()` (that is, the name of the corresponding backend package, but all in lower case) before calling the `plot` function.  
 You need to install at least one backend before being able to use the `Plots` package.
 
 For example:

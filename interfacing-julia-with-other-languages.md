@@ -1,9 +1,9 @@
 # Interfacing Julia with other languages
 
-Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/release-0.5/manual/calling-c-and-fortran-code/) and, trough packages, [C++](https://github.com/timholy/Cpp.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).
+Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/release-0.5/manual/calling-c-and-fortran-code/) and, trough packages, [C++](https://github.com/timholy/Cpp.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).  
+This allows Julia to use the huge number of libraries of these more established languages.
 
-
-We show here an example with Python, allowing to work with its huge number of modules and libraries. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this have to be already present in the local installation of python): 
+We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this have to be already be available in the local installation of python): 
 
 ```
 using PyCall
@@ -37,18 +37,17 @@ for (i, row) in enumerate(sheet[:rows]())
       # use header instead of column index
       append!(df_dict[col_index[j]],cell[:value])
   end
-end  
+end
 # and convert to a DataFrame
 df = DataFrame(df_dict)
 ```
 
-The first thing it to declare we are using PyCall and to `@pyimport` the python module we want to work with.
-We can then directly call its functions with the usual syntax module.function().
+The first thing, is to declare we are using PyCall and to `@pyimport` the python module we want to work with.
+We can then directly call its functions with the usual Python syntax `module.function()`.
 
 Type conversions are automatically performed for numeric, boolean, string, IO stream, date/period, and function types, along with tuples, arrays/lists, and dictionaries of these types.
 
-Other types are converted to the generic PyObject type, as is the case for the `doc` object returned by the module function.
-
-You can then access its attributes and methos with `myPyObject[:attibute]` and `myPyObject[:method]()` rispectivelly.
+Other types are instead converted to the generic PyObject type, as it is the case for the `doc` object returned by the module function.  
+You can then access its attributes and methods with `myPyObject[:attibute]` and `myPyObject[:method]()` respectively.
 
 

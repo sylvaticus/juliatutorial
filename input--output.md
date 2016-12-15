@@ -4,19 +4,19 @@
 
 File reading/writing is similar to other languages where you first `open` the file, specify the modality (`r` read, `w` write or `a` append) and bind the file to an object, and finally operate on this object and `close()` it when you are done.
 
-A better alternative is to encapsule the file operations in a `do` block that closes the file automatically when the block ends:
+A better alternative is however to encapsulate the file operations in a `do` block that closes the file automatically when the block ends:
 
 Write:
 ```
 open("afile.txt", "w") do f  # "w" for writing
-  write(f, "test\n")          # \n for newline
+  write(f, "test\n")         # \n for newline
 end
 ```
 
 Read the whole file in a single operation:
 ```
 open("afile.txt", "r") do f   # "r" for reading
-  filecontent = readstring(f) # attenction that it can be used only once. The second time, without reopening the file, would return an empty string
+  filecontent = readstring(f) # attention that it can be used only once. The second time, without reopening the file, readstring() would return an empty string
   print(filecontent)
 end
 ```
@@ -28,7 +28,7 @@ open("afile.txt", "r") do f
   end
 end
 ```
-or, if you want to keep track of the line numbers
+or, if you want to keep track of the line numbers:
 ```
 open("afile.txt", "r") do f
    for (i,ln) in enumerate(eachline(f))
@@ -37,14 +37,6 @@ open("afile.txt", "r") do f
    end
 end
 
-```
-
-A better way is to encapsule the file operations in a `do` block that closes the file automatically when the block ends:
-
-```
-open("testdata.txt", "r") do f
-   print(readstring(f))
-end
 ```
 
 

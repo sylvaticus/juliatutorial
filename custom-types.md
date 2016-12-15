@@ -1,8 +1,8 @@
 # Types
 
-Types are what in other langauges are called classes, or structured data: they define the kind of information that is embedded in the type, that is a set of fields (aka properties in other languages), and then individual istances of objects can be made with specific values for the fields defined in the type.
+Types are, for the most (see later for the difference), what in other languages are called classes, or structured data: they define the kind of information that is embedded in the type, that is a set of fields (aka properties in other languages), and then individual instances of objects can be produced each with its own specific values for the fields defined by the type.
 
-Some syntax:
+Some syntax that will be used in the examples:
 
 * `a::B` means "a must be of type B"
 * `A<:B` means "A must be a subtype of B".
@@ -16,7 +16,7 @@ type MyOwnType
 end
 ```
 
-For increasing performances you can optionally specify which type is each field, like what has been done for `property2.`
+For increasing performances in certain circumstances, you can optionally specify the type of each field, as done in the previous example for `property2.`
 
 You can use templates also in type declaration:
 
@@ -28,9 +28,9 @@ type MyOwnType{T<:Number}
 end
 ```
 
-Use the keyword `immutable` in place of `type` when you want enforce that once an object of that type has been created, its fields can no longer be changed. They are faster!
+Use the keyword `immutable` in place of `type` when you want to enforce that once an object of that type has been created, its fields can no longer be changed. Although obviously less flexible, they are much faster.
 
-You can create abstract types using the keyword `abstract`. Abstract classes do not have any field, and objects can not be instantiated from them, altought concrete types can be defined as subtypes of them (an issue to allow abstract classes to have fields is currently open and may be soon implemented).
+You can create abstract types using the keyword `abstract`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them (an issue to allow abstract classes to have fields is currently open and may be soon implemented).
 
 Actually you can create a whole hierarchy of abstract classes:
 
@@ -94,17 +94,17 @@ printMyActivity(Marc)
 printMyActivity(MrBrown)
 ```
 
-There are two big elements that distinguish Julia implementation of OO paradigm from the mainstream one.
+There are three big elements that distinguish Julia implementation from a pure Object-Oriented paradigm:
 
-1. Firstly, you do not associate functions to a type. So you do not call a function over a method (`foo.bar(x,y)`) but rather you pass the object as a parameter (`bar(foo, x, y)`);
-2. In order to extend the behaiour of any object, Julia doesn't use _inheritance_ (only abstract classes can be inheritated) but rather _composition_ (a field of the subtype is of the higher type, allowing access to its fields). This still is a bit a limit in the exressivity of the language as the code can not consider directly different concepts of relations between objects (e.g. Person->Student _specialisation_, Person->Arm _composition_, Person->Shoes _weak relation_ )
-
+1. Firstly, in Julia **you do not associate functions to a type**. So, you do not call a function over a method (`myobj.func(x,y)`) but rather you pass the object as a parameter (`func(myobj, x, y)`);
+2. In order to extend the behaviour of any object, Julia doesn't use _inheritance_ (**only abstract classes can be inherited**) but rather _composition_ (a field of the subtype is of the higher type, allowing access to its fields). I personally believe that this is a bit a limit in the expressiveness of the language, as the code can not consider directly different concepts of relations between objects (e.g. Person->Student _specialisation_, Person->Arm _composition_, Person->Shoes _weak relation_ );
+3. **Multiple-inheritance is not supported** (yet).
 
 ## More on types
 
-To know all parents types of a type:  `supertype(MyType)`
+To know the parent types of a type:  `supertype(MyType)`
 
-To know all childs of a type:  `subtype(MyType)`
+To know all children of a type:  `subtype(MyType)`
 
 This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 

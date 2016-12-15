@@ -16,6 +16,21 @@ Antonello Lobianco
 
 
 
+#### Citations
+
+Please cite this tutorial as:
+
+    A. Lobianco, (2016), “Julia language: a concise tutorial", GitBook, https://sylvaticus.gitbooks.io/julia-language-a-concise-tutorial, retrieved xx/xx/xxxx
+
+#### Acknowledgements
+
+Development of this tutorial was supported by:
+
+* the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program (ANR 11 – LABX-0002-01).
+
+
+
+
 
 
 

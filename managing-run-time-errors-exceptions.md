@@ -1,4 +1,4 @@
-# Managing run-time errors \(exceptions\)
+# Managing run-time errors (exceptions)
 
 Run-time errors can be handled with the try/catch block:
 

@@ -10,7 +10,10 @@ The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `Strin
 The default, if you do not specify, is Float64.  
 Attention to use the single quote for chars and double quotes for strings.
 
-Also, while boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, ` if 0 [...] end` brings an error. 
+Also, while boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, ` if 0 [...] end` brings an error.
+
+Attention to the keyword `const`. When applied to a variable (e.g. `const  x::Int64`) doesn't mean that the variable can't change value (as in C), but simply that it can not change type.
+ 
 
 ## Strings
 

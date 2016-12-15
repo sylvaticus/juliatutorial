@@ -32,7 +32,7 @@ Note: the first method doesn't automatically cast integer and floats to strings.
 
 ## Arrays (lists)
 
-Arrays are 1 or 2 dimensions mutable containers<sup>[2]</sup>(#myfootnote2).
+Arrays are 1 or 2 dimensions mutable containers<sup>[2](#myfootnote2)</sup>.
 
 There are several ways to create an array:
 

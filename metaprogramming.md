@@ -89,8 +89,8 @@ array = [1, 2, 'b']
 Like for strings, the `$` interpolation operator will substitute the variable with its content, in this context the expression.
 So the "expanded" macro will look in this case as:
 ```
-if !(42 in arr)
-println("arr does not contain 42)
+if !(3 in array)
+println("array does not contain 3")
 end
 ```
 

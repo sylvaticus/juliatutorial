@@ -40,6 +40,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * Delete columns by name: `delete!(df, [:col1, :col2])`
 * Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` (the original data to replace can be in a different column or a totally different dataframe
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`
+* Alternative using list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
 * Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) & (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation)
 
 ## Aggregate/pivot

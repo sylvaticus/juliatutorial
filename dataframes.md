@@ -50,6 +50,8 @@ Attenction that all categorical fields have to be included in the list of fields
 The workaround is to remove the fields you don't want before doing the operation.
 
 
+## Export your data
+writetable("file.csv", df, separator = ';', header = false)
 
 See also the section [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md) to get an example on how to load data from an ods file.
 

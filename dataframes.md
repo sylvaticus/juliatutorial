@@ -48,6 +48,12 @@ Aggregate by several fields:
 * `aggregate(df, [:field1, :field2], sum)`
 Attenction that all categorical fields have to be included in the list of fields on which to aggregate, otherwise julia will try to comput a sum over them (that being string will rice an error) instead of just ignoring them.
 The workaround is to remove the fields you don't want before doing the operation.
+* Alternativly:
+```
+by(df, [:catfield1,:catfield2]) do df
+    DataFrame(m = sum(df[:valueField]))
+end
+```
 
 
 ## Export your data

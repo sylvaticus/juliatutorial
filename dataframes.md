@@ -34,6 +34,8 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * `describe(df)`
 * `unique(df[:fieldName])`
 * `count(df[:fieldName])`
+* `size(df)` (r,c), `size(df)[1]` (r), `size(df)[2]` (c)
+
 
 ## Edit/modify data
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`
@@ -54,7 +56,7 @@ by(df, [:catfield1,:catfield2]) do df
     DataFrame(m = sum(df[:valueField]))
 end
 ```
-
+* Add an "id" column (useful for unstacking): df[:id] = 1:size(df, 1)  # this makes it easier to unstack
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

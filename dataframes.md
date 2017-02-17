@@ -57,6 +57,16 @@ by(df, [:catfield1,:catfield2]) do df
 end
 ```
 * Add an "id" column (useful for unstacking): df[:id] = 1:size(df, 1)  # this makes it easier to unstack
+### Unstack 
+You can specify the dataframe, the column name which content will become the row index (id variable), the column name with content will become the name of the columns (column variable names) and the column name containing the values that will be placed in the new table (column values):
+
+`widedf = unstack(longdf, :id, :variable, :value)`
+
+Alternativly you can oit the :id parameter and all the existing column except the one defining column names and the one defining column values will be preserved as index (row) variables:
+
+`widedf = unstack(longdf, :variable, :value)`
+
+
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

@@ -66,6 +66,15 @@ Alternativly you can oit the :id parameter and all the existing column except th
 
 `widedf = unstack(longdf, :variable, :value)`
 
+### Cumulative sum by cathegories
+
+```
+df = DataFrame(region=["US","US","US","US","EU","EU","EU","EU"],
+               year = [2010,2011,2012,2013,2010,2011,2012,2013],
+               value=[3,3,2,2,2,2,1,1])
+df[:cumValue] = copy(df[:value])
+[r[:cumValue] = df[(df[:region] .== r[:region]) & (df[:year] .== (r[:year]-1)),:cumValue][1] + r[:value]  for r in eachrow(df) if r[:year] != minimum(df[:year])]    
+```
 
 
 ## Export your data

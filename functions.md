@@ -66,7 +66,7 @@ Functions that do change their arguments have their name, BY CONVENTION, postpon
 
 ## Anonymous functions
 
-Sometimes we don't need to give a name to a function.
+Sometimes we don't need to give a name to a function (e.g. within the `map` function).
 To define anonymour (nameless) functions we can use the `->` syntax, like this:
 ```
 x -> x^2 + 2x - 1

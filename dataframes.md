@@ -1,6 +1,10 @@
 # Dataframes
 
 Julia has a library to handle tabular data, in a way similar to R or Pandas dataframes. The name is, no surprises, [DataFrames](https://github.com/JuliaStats/DataFrames.jl). The approach and the function names are similar, although the way of actually accessing the API may be a bit different.
+For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) adds some helper macros.
+
+# Documentation:
+
 
 ## Install and import the library
 * Install the library: `Pkg.add(DataFrames)`
@@ -66,14 +70,39 @@ Alternativly you can oit the :id parameter and all the existing column except th
 
 `widedf = unstack(longdf, :variable, :value)`
 
-### Cumulative sum by cathegories
+### Cumulative sum by categories
 
+* Manual method (very slow):
 ```
 df = DataFrame(region=["US","US","US","US","EU","EU","EU","EU"],
                year = [2010,2011,2012,2013,2010,2011,2012,2013],
                value=[3,3,2,2,2,2,1,1])
 df[:cumValue] = copy(df[:value])
 [r[:cumValue] = df[(df[:region] .== r[:region]) & (df[:year] .== (r[:year]-1)),:cumValue][1] + r[:value]  for r in eachrow(df) if r[:year] != minimum(df[:year])]    
+```
+* Using by and the split-apply-combine strategy (fast):
+```
+using DataFramesMeta, DataArrays, DataFrames
+df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],
+               product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
+               year    = [2010,2011,2010,2011,2010,2011,2010,2011],
+               value   = [3,3,2,2,2,2,1,1])
+df[:cumValue] = copy(df[:value])
+by(df, [:region,:product]) do dd
+    dd[:cumValue] = cumsum(dd[:value])
+       return
+end
+```
+* Using @linq (from DataFramesMeta) and the split-apply-combine strategy (fast):
+```
+using DataFramesMeta, DataArrays, DataFrames
+df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],
+               product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
+               year    = [2010,2011,2010,2011,2010,2011,2010,2011],
+               value   = [3,3,2,2,2,2,1,1])
+df = @linq df |>
+groupby([:region,:product]) |>
+  transform(cumValue = cumsum(:value))
 ```
 
 

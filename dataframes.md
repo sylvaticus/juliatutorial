@@ -51,11 +51,29 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`
 * Alternative using list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
 * Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) & (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation)
-### Manage NA values
+* Add an "id" column (useful for unstacking): df[:id] = 1:size(df, 1)  # this makes it easier to unstack
+
+## Manage NA values
 * The NA value is simply `NA`
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])`)
 
-## Aggregate/pivot
+## Split-Apply-Combine strategy 
+
+The DataFrames package supports the Split-Apply-Combine strategy through the `by` function, which takes in three arguments: (1) a DataFrame, (2) a column (or columns) to split the DataFrame on, and (3) a function or expression to apply to each subset of the DataFrame.
+
+
+The function can return a value, a vector, or a DataFrame. For a value or vector, these are merged into a column along with the `cols` keys. For
+a DataFrame, `cols` are combined along columns with the resulting DataFrame. Returning a DataFrame is the clearest because it allows column labeling.
+
+Alternativly the `by` function can take the function as first argument, so to allow the usage of do blocks.
+It uses inside the groupby() function, as in code it is defined as nothing else than:
+```
+by(d::AbstractDataFrame, cols, f::Function) = combine(map(f, groupby(d, cols)))
+by(f::Function, d::AbstractDataFrame, cols) = by(d, cols, f)
+```
+
+### Aggregate/
+
 Aggregate by several fields:
 * `aggregate(df, [:field1, :field2], sum)`
 Attenction that all categorical fields have to be included in the list of fields on which to aggregate, otherwise julia will try to comput a sum over them (that being string will rice an error) instead of just ignoring them.
@@ -66,7 +84,12 @@ by(df, [:catfield1,:catfield2]) do df
     DataFrame(m = sum(df[:valueField]))
 end
 ```
-* Add an "id" column (useful for unstacking): df[:id] = 1:size(df, 1)  # this makes it easier to unstack
+
+
+
+## Pivot
+
+
 ### Unstack 
 You can specify the dataframe, the column name which content will become the row index (id variable), the column name with content will become the name of the columns (column variable names) and the column name containing the values that will be placed in the new table (column values):
 
@@ -110,7 +133,8 @@ df = @linq df |>
 groupby([:region,:product]) |>
   transform(cumValue = cumsum(:value))
 ```
-* Using by (fast):
+
+* Using groupby (fast):
 ```
 using DataFramesMeta, DataArrays, DataFrames
 df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],

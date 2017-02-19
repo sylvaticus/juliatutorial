@@ -4,8 +4,9 @@ Julia has a library to handle tabular data, in a way similar to R or Pandas data
 For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) adds some helper macros.
 
 # Documentation:
-* DataFrames: https://dataframesjl.readthedocs.io/en/latest/getting_started.html, https://juliastats.github.io/DataFrames.jl/stable/man/reshaping_and_pivoting/, https://en.wikibooks.org/wiki/Introducing_Julia/DataFrames
+* DataFrames: https://dataframesjl.readthedocs.io/en/latest/getting_started.html, http://juliastats.github.io/DataFrames.jl/, https://juliastats.github.io/DataFrames.jl/stable/man/reshaping_and_pivoting/, https://en.wikibooks.org/wiki/Introducing_Julia/DataFrames
 * DataFramesMeta: https://github.com/JuliaStats/DataFramesMeta.jl
+* Stats in Julia in general: http://juliastats.github.io/
 
 
 ## Install and import the library

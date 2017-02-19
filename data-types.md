@@ -58,6 +58,7 @@ The following methods are useful while working with arrays:
 * Getting the length: `length(a)`
 * Empty an array: `empty!(a)`
 * Checking if an array is empty: `isempty(a)`
+* Find the index of a value in a narray: `find(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
 
 ### Multidimensional and nested arrays
 In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).

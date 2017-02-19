@@ -51,6 +51,9 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`
 * Alternative using list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
 * Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) & (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation)
+### Manage NA values
+* The NA value is simply `NA`
+* complete_cases!(df) or complete_cases(df) select only raws without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])`)
 
 ## Aggregate/pivot
 Aggregate by several fields:

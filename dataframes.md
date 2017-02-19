@@ -107,7 +107,18 @@ df = @linq df |>
 groupby([:region,:product]) |>
   transform(cumValue = cumsum(:value))
 ```
-
+* Using by (fast):
+```
+using DataFramesMeta, DataArrays, DataFrames
+df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],
+               product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
+               year    = [2010,2011,2010,2011,2010,2011,2010,2011],
+               value   = [3,3,2,2,2,2,1,1])
+df[:cumValue] = 0.0
+for subdf in groupby(df,[:region,:product])
+    subdf[:cumValue] = cumsum(subdf[:value])
+end
+```
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

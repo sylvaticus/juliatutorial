@@ -91,7 +91,7 @@ Tipyng `?` in the console leads you to the Julia help system where you can searc
 
 Here you can find some common operations concerning introspection and debugging:
 
-* Retrieve function signatures: `method (myfunction)`
+* Retrieve function signatures: `methods(myfunction)`
 * Retrieve object properties: `fieldnames(myobject)`
 * Discover which specific method is used (within the several available, as Julia supports multiple-dispatch aka polymorfism): `@which myfunction(myargs)`
 * Discover which type (loosely a "class" in OO languages) an object instance is: `typeof(a)`

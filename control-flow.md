@@ -23,6 +23,19 @@ Ternary operator is supported as `a ? b : c` (if a is true, then b, else c).
 
 ## Do blocks
 
+Do blocks allow to define anonymous functions that are passed as first argument to the outer functions.
+For example, `find(x -> x == value, myarray)` expect the first argument to be a function. Everytime the first argument is a function, this can be written at posteriori with a do block:
+
+```
+find(smallprimes) do x
+       x == 13
+end
+```
+This defines x as a variable that is passed to the inner contend of the do block. It is the task of the outer function to where to apply this anonymous function (in this case to the smallprimes array) and what to do with its return values (in this case bolean values used for computing he indexes in the array).
+
+
+
+
 
 
 

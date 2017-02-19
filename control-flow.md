@@ -32,6 +32,8 @@ find(smallprimes) do x
 end
 ```
 This defines x as a variable that is passed to the inner contend of the do block. It is the task of the outer function to where to apply this anonymous function (in this case to the smallprimes array) and what to do with its return values (in this case bolean values used for computing he indexes in the array).
+More infos on the do blocks: https://en.wikibooks.org/wiki/Introducing_Julia/Controlling_the_flow#Do_block , http://docs.julialang.org/en/stable/manual/functions/#do-block-syntax-for-function-arguments
+
 
 
 

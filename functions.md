@@ -64,3 +64,13 @@ Functions that do change their arguments have their name, BY CONVENTION, postpon
 
 `myfunction!(ref_par, other_pars)` (the parameter that will be changed is by convention the first one)
 
+## Anonymous functions
+
+Sometimes we don't need to give a name to a function.
+To define anonymour (nameless) functions we can use the `->` syntax, like this:
+```
+x -> x^2 + 2x - 1
+```
+This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`.
+
+

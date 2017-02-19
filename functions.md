@@ -72,5 +72,6 @@ To define anonymour (nameless) functions we can use the `->` syntax, like this:
 x -> x^2 + 2x - 1
 ```
 This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`.
+Multiple arguments can be provided using touples: `(x,y,z) -> x + y + z`
 
 

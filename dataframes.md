@@ -137,6 +137,23 @@ end
 
 ## Pivot
 
+### Stack
+Move columns to rows of a "variable" column, i.re. moving from wide to long format.
+For `stack(df,[cols])` you have to specify the column(s) that have to be stacked, for `melt(df,[cols])` at the opposite you specify the other columns, that represent the id columns that are already in stacked form.
+Finally `stack(df)` - without column names - automatically stack all float columns.
+Note that the stacked columns are inserted as row of a "variable" column (with names of the variables not strings but symbols) and the corresponding values in a "column" value.
+
+```
+df = DataFrame(region = ["US","US","US","US","EU","EU","EU","EU"],
+               product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
+               year = [2010,2011,2010,2011,2010,2011,2010,2011],
+               produced = [3.3,3.2,2.3,2.1,2.7,2.8,1.5,1.3],
+               consumed = [4.3,7.4,2.5,9.8,3.2,4.3,6.5,3.0])
+long1 = stack(df,[:produced,:consumed])
+long2 = melt(df,[:region,:product,:year])
+long3 = stack(df)
+long1 == long2 == long3 # true
+```
 
 ### Unstack 
 You can specify the dataframe, the column name which content will become the row index (id variable), the column name with content will become the name of the columns (column variable names) and the column name containing the values that will be placed in the new table (column values):

@@ -61,7 +61,6 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 
 The DataFrames package supports the Split-Apply-Combine strategy through the `by` function, which takes in three arguments: (1) a DataFrame, (2) a column (or columns) to split the DataFrame on, and (3) a function or expression to apply to each subset of the DataFrame.
 
-
 The function can return a value, a vector, or a DataFrame. For a value or vector, these are merged into a column along with the `cols` keys. For
 a DataFrame, `cols` are combined along columns with the resulting DataFrame. Returning a DataFrame is the clearest because it allows column labeling.
 
@@ -85,21 +84,7 @@ by(df, [:catfield1,:catfield2]) do df
 end
 ```
 
-
-
-## Pivot
-
-
-### Unstack 
-You can specify the dataframe, the column name which content will become the row index (id variable), the column name with content will become the name of the columns (column variable names) and the column name containing the values that will be placed in the new table (column values):
-
-`widedf = unstack(longdf, :id, :variable, :value)`
-
-Alternativly you can oit the :id parameter and all the existing column except the one defining column names and the one defining column values will be preserved as index (row) variables:
-
-`widedf = unstack(longdf, :variable, :value)`
-
-### Cumulative sum by categories
+### Compute cumulative sum by categories
 
 * Manual method (very slow):
 ```
@@ -146,6 +131,23 @@ for subdf in groupby(df,[:region,:product])
     subdf[:cumValue] = cumsum(subdf[:value])
 end
 ```
+
+
+
+
+## Pivot
+
+
+### Unstack 
+You can specify the dataframe, the column name which content will become the row index (id variable), the column name with content will become the name of the columns (column variable names) and the column name containing the values that will be placed in the new table (column values):
+
+`widedf = unstack(longdf, :id, :variable, :value)`
+
+Alternativly you can oit the :id parameter and all the existing column except the one defining column names and the one defining column values will be preserved as index (row) variables:
+
+`widedf = unstack(longdf, :variable, :value)`
+
+
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

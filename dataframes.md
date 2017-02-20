@@ -165,7 +165,8 @@ Alternativly you can oit the :id parameter and all the existing column except th
 
 `widedf = unstack(longdf, :variable, :value)`
 
-
+### Sorting
+`sort!(df, cols = (:col1, :col2), rev = (false, false))` The 8optional) reverse order parameter (rev) must be a turple of the same size as the cols parameter
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

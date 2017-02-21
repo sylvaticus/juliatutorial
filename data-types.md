@@ -148,7 +148,7 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 **copy(x)**
 
-* simple types are deep copy
+* simple types are deep copied
 * containers of simple types are deep copied
 * containers of containers: the content is shadow copied (the content of the content is only referenced, not copied)
 

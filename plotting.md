@@ -41,4 +41,11 @@ plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, colo
 ```
 The first call to `plot()` create a new plot. Calling instead `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
 
+While to play interactivly I prefer plotlyjs, for saving the charts one has to rely to the saving button on the widget. For scripting task it is hence suggested to use the pyplot backend that allow to save the latest plot as simple as:
+```
+savefig("fruits_plot.svg")
+savefig("fruits_plot.pdf")
+savefig("fruits_plot.png")
+```
+
 

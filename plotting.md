@@ -21,3 +21,24 @@ You can find some useful documentation on `Plots` backends:
 * [Which backend to choose ?](https://juliaplots.github.io/backends/)
 * [Charts and attributes supported by the various backends](https://juliaplots.github.io/supported/)
 
+
+# Plotting multiple groups of series from a DataFrame
+The following example uses [StatPlots](https://github.com/JuliaPlots/StatPlots.jl) in order to work directly on DataFrames (rather than on arrays).
+Passing the dataFrame as first argument, you can access its columns by name and split the overall serie using a third column.
+
+```
+using DataFrames, Plots, StatPlots
+df = DataFrame(
+  fruit       = ["orange","orange","orange","orange","apple","apple","apple","apple"],
+  year        = [2010,2011,2012,2013,2010,2011,2012,2013],
+  produption  = [120,150,170,160,100,130,165,158],
+  consumption = [70,90,100,95,   80,95,110,120]
+)
+plotlyjs() 
+mycolours = [[:green] [:orange]] # series will be stacked in alphabetical order
+fruits_plot = plot(df, :year, :produption, group=:fruit, linestyle = :solid, linewidth=3, linecolor=mycolours)
+fruits_plot = plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, linecolor=mycolours)
+```
+The first call to `plot()` create a new plot. Calling instead `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
+
+

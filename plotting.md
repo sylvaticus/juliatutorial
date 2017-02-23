@@ -35,9 +35,9 @@ df = DataFrame(
   consumption = [70,90,100,95,   80,95,110,120]
 )
 plotlyjs() 
-mycolours = [[:green] [:orange]] # series will be stacked in alphabetical order
-fruits_plot = plot(df, :year, :produption, group=:fruit, linestyle = :solid, linewidth=3, linecolor=mycolours)
-fruits_plot = plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, linecolor=mycolours)
+mycolours = [:green :orange] # note that the serie is piled up alphabetically
+fruits_plot = plot(df, :year, :produption, group=:fruit, linestyle = :solid, linewidth=3, color=mycolours)
+plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, color=mycolours)
 ```
 The first call to `plot()` create a new plot. Calling instead `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
 

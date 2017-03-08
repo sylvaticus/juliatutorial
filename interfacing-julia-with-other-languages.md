@@ -3,6 +3,36 @@
 Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/release-0.5/manual/calling-c-and-fortran-code/) and, trough packages, [C++](https://github.com/timholy/Cpp.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).  
 This allows Julia to use the huge number of libraries of these more established languages.
 
+## C
+
+mylib.h:
+```
+#ifndef _MYLIB_H_
+#define _MYLIB_H_
+
+extern float iplustwo (float i);
+extern float getTen ();
+```
+
+mylib.c:
+```
+float
+iplustwo (float i){
+ return i+2;
+}
+```
+
+Compiled with:
+ - `gcc -o mylib.o -c mylib.c`
+ - `gcc -shared -o libmylib.so mylib.o -lm -fPIC`
+
+Use in julia with:
+```
+i = 2
+j = ccall((:iplustwo, "[MY FULL PATH]/libmylib.so"), Float32, (Float32,), i)
+```
+
+## Python
 We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this have to be already be available in the local installation of python): 
 
 ```

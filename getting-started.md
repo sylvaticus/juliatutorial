@@ -56,7 +56,8 @@ Many functions are provided in Julia by external packages.
 
 To automatically download, compile and install a package, run from a Julia console (only once) `Pkg.add("mypackage")`.  
 But before you do that, run `Pkg.update()` to be sure that (a) your local index of packages and (b) the version of local packages is up to date.  
-Use `Pkg.status()` to check the current version of your local packages.
+Use `Pkg.status()` to check the current version of your local packages. 
+You can remove a package with `Pkg.rm("mypackage")`.
 
 To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`.  You can also include other files, without changing the current namespace, using `include("MyFile.jl")`.
 

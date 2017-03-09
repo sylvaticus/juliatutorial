@@ -65,6 +65,10 @@ In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 
 Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
 In a `Matrix` (but not in an array of array), the number of elements on each column (row) must be the same.
 
+There are two ways to create a Matrix:
+* `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...]
+* `a = [1 4; 2 5; 3 6]`    [first row; second row; ...]
+
 Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements (each of those is again a vector);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array (a matrix with 2 columns) with three elements (scalars).

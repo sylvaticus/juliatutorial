@@ -67,7 +67,7 @@ In a `Matrix` (but not in an array of array), the number of elements on each col
 
 There are two ways to create a Matrix:
 * `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...]
-* `a = [1 4; 2 5; 3 6]`    [first row; second row; ...]
+* `a = [1 4; 2 5; 3 6]`    [elements of the first row; elements of the second row; ...]
 
 Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements (each of those is again a vector);

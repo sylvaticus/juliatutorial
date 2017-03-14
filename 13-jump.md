@@ -1,4 +1,4 @@
-# [JuMP]()
+# [JuMP](https://github.com/JuliaOpt/JuMP.jl)
 
 JuMP is an algebric modelling language for mathematical optimisation problems, similar to GAMS, AMPL or Pyomo.
 
@@ -7,3 +7,4 @@ It is solver-independent, supporting also non-linear solvers and providing them 
 The following notebook provides a commented implementation in JuMP of the classical transport problem found in the GAMS tutorial:
 
 http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/JuMP.ipynb
+

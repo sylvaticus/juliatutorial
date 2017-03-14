@@ -19,6 +19,6 @@
 * [11 - Plotting](plotting.md)
 * [12 - DataFrames](dataframes.md)
 * [13 - JuMP](13-jump.md)
-* 14 - SymPy
+* [14 - SymPy](14-sympy.md)
 * [15 - Weave](14-weave.md)
 

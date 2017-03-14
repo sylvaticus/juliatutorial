@@ -1,4 +1,6 @@
-[Weave](https://github.com/mpastell/Weave.jl) allows to produce dynamic documents where the script that produce the output is embedded directly in the document, but optionally only the output is rendered.
+# [Weave](https://github.com/mpastell/Weave.jl)
+
+Weave allows to produce dynamic documents where the script that produce the output is embedded directly in the document, but optionally only the output is rendered.
 
 e.g. 
 
@@ -28,7 +30,7 @@ head(df)
 The above references should have been compiled
 ```
 
-And then "compile" the document with 
+And then "compile" the document with: 
 
 `weave("testRef.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 

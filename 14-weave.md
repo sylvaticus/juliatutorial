@@ -32,4 +32,4 @@ And then "compile" the document with
 
 `weave("testRef.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 
-Note that the citations currently require the master branch of Weave and on Linux they require, other than pandoc, the ubuntu packages `pandoc-citeproc` and `texlive-xetex` installed.
+Note that citations currently require the master branch of Weave and on Linux they require, other than pandoc, the ubuntu packages `pandoc-citeproc` and `texlive-xetex` installed.

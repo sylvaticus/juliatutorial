@@ -116,3 +116,14 @@ Optimised (vectorised): the function returns an error (on my 8GB laptop), as too
 
 Of course the result is just n*(n+1)/4, so the best programming language is the human mind.. but still compilers are doing a pretty smart optimisation!
 
+## Code parallelisation
+
+Julia provide core funcionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.
+Threads instead (that are limited to the same CPU but differently than processes share the same memory) are not yet implementation (as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes).
+
+The following notebook show how to use several functions to facilitate code parallelism:
+ 
+http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb
+
+
+

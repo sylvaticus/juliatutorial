@@ -21,6 +21,16 @@ Julia support list comprehension and maps:
 
 Ternary operator is supported as `a ? b : c` (if a is true, then b, else c).
 
+## Logical operators
+* And: `&&`
+* Or:  `||`
+* Not: `!`
+
+Not to be confused with the bitwise operators `&` and `|`.
+
+A proposal is currently open to alias `and` and `or` with respectively `&&` and `||`, but it has not yet beeing committed.
+
+
 ## Do blocks
 
 Do blocks allow to define anonymous functions that are passed as first argument to the outer functions.

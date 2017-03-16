@@ -37,6 +37,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 
 ## Get insights about your data:
 * `head(df)`
+* `showall(df)`
 * `tail(df)`
 * `describe(df)`
 * `unique(df[:fieldName])`

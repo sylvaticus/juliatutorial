@@ -101,6 +101,10 @@ Note: for row vectors, both `a[2]` or `a[1,2]` returns the second element.\\
 
 `reshape` and `squeeze` (bun not transpose) perform a shadow copy, returning just a different "view" of the underlying data.
 
+`AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractMatrix{T,2}`.
+
+
+
 For further operations on arrays and matrices have a look at the [QuantEcon tutorial](http://lectures.quantecon.org/jl/julia_arrays.html#operations-on-arrays).
 
 

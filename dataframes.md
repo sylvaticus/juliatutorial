@@ -42,6 +42,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * `describe(df)`
 * `unique(df[:fieldName])`
 * `count(df[:fieldName])`
+* `names(df)` returns array of column names
 * `size(df)` (r,c), `size(df)[1]` (r), `size(df)[2]` (c)
 
 

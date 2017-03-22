@@ -88,17 +88,7 @@ If you are interested in writing your own package, you can read more about packa
  
 ### Documentation and debugging
 
-Tipyng `?` in the console leads you to the Julia help system where you can search for function's API (in non-interactive environment you can use `?search_term` instead).
-
-Here you can find some common operations concerning introspection and debugging:
-
-* Retrieve function signatures: `methods(myfunction)`
-* Retrieve object properties: `fieldnames(myobject)`
-* Discover which specific method is used (within the several available, as Julia supports multiple-dispatch aka polymorfism): `@which myfunction(myargs)`
-* Discover which type (loosely a "class" in OO languages) an object instance is: `typeof(a)`
-* Discover which fields are part of an object: `fieldnames(myobj)`
-* Get more information about an object: `dump(myobj)`
-* Profile a specific part of code: `@time myCode`
+Tipyng `?` in the console leads you to the Julia help system where you can search for function's API (in non-interactive environment you can use `?search_term` instead). If you don't remember exactly the function name, julia is kind enought to return a list of similar functions.
 
 It is a good practice to document your own functions. You can use triple quoted strings (""") just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/release-0.5/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
 For example, this is the documentation string of the `ods_reall` function within the `OdsIO` package: 

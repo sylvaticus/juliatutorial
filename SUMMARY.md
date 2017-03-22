@@ -12,7 +12,7 @@
 * [7 - Managing run-time errors \(exceptions\)](managing-run-time-errors-exceptions.md)
 * [8 - Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)
 * [9 - Metaprogramming](metaprogramming.md)
-* [10 - Performances](performances.md)
+* [10 - Performances \(parallelisation, debugging, profiling..\)](performances.md)
 
 ## Useful packages
 

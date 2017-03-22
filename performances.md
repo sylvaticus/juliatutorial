@@ -1,4 +1,4 @@
-# Performances 
+# Performances (parallelisation, debugging, profiling..)
 
 Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type it runs with the same order of magnitude of C.
 
@@ -129,14 +129,30 @@ http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/P
 
 In Juno to activate a graphical debugger just type in the console `Juno.@step myfunc()`. A hover toolbox will appear with buttons to go next line, enter sub-function or leave the current one.
 
+Here you can find some common operations concerning introspection and debugging:
+
+* Retrieve function signatures: `methods(myfunction)`
+* Retrieve object properties: `fieldnames(myobject)`
+* Discover which specific method is used (within the several available, as Julia supports multiple-dispatch aka polymorfism): `@which myfunction(myargs)`
+* Discover which type (loosely a "class" in OO languages) an object instance is: `typeof(a)`
+* Discover which fields are part of an object: `fieldnames(myobj)`
+* Get more information about an object: `dump(myobj)`
+
+
+
 ## Profiling
 Profiling is the "art" of finding boottlenecks in the code. 
-Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
+
+A simple way to time a part of the code is to simply type `@time myFunc()` or `@benchmark myFunc()` (from package `BenchmarkTools`)
+
+For more extensive coverage, Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
 
 Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small hoverheads compared to run the code normally.
 
 * Profile a function: `@profile myfunct()` (best after the function has been already ran once for JIT-compilation). 
 * Print the profiling results: `Profile.print()` (number of samples in corresponding line and all downstream code; file name:line number; function name;)
+* Explore a chart of the call graph with profiled data: `ProfileView.view()` (from package `ProfileView`)
+* Clear profile dfata: `Profile.clear(`
 
 
   

@@ -152,7 +152,7 @@ Using this sampling method, at a cost of loosing some precision, profiling can b
 * Profile a function: `@profile myfunct()` (best after the function has been already ran once for JIT-compilation). 
 * Print the profiling results: `Profile.print()` (number of samples in corresponding line and all downstream code; file name:line number; function name;)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` (from package `ProfileView`)
-* Clear profile dfata: `Profile.clear(`
+* Clear profile data: `Profile.clear()`
 
 
   

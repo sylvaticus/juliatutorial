@@ -118,12 +118,31 @@ Of course the result is just n*(n+1)/4, so the best programming language is the 
 
 ## Code parallelisation
 
-Julia provide core funcionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.
-Threads instead (that are limited to the same CPU but differently than processes share the same memory) are not yet implementation (as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes).
+Julia provides core funcionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.
+Threads instead (that are limited to the same CPU but differently than processes share the same memory) are not yet implemented (as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes).
 
-The following notebook show how to use several functions to facilitate code parallelism:
+The following notebook shows how to use several functions to facilitate code parallelism:
  
 http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb
+
+## Debugging
+
+In Juno to activate a graphical debugger just type in the console `Juno.@step myfunc()`. A hover toolbox will appear with buttons to go next line, enter sub-function or leave the current one.
+
+## Profiling
+Profiling is the "art" of finding boottlenecks in the code. 
+Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
+
+Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small hoverheads compared to run the code normally.
+
+* Profile a function: `@profile myfunct()` (best after the function has been already ran once for JIT-compilation). 
+* Print the profiling results: `Profile.print()` (number of samples in corresponding line and all downstream code; file name:line number; function name;)
+
+
+  
+ 
+
+
 
 
 

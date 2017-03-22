@@ -40,17 +40,20 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * `showall(df)`
 * `tail(df)`
 * `describe(df)`
-* `unique(df[:fieldName])`
+* `unique(df[:fieldName])` or `[unique(df[i]) for i in names(df)]`
 * `count(df[:fieldName])`
 * `names(df)` returns array of column names
 * `size(df)` (r,c), `size(df)[1]` (r), `size(df)[2]` (c)
+
 
 
 ## Edit/modify data
 
 * Delete columns by name: `delete!(df, [:col1, :col2])`
 * Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` (the original data to replace can be in a different column or a totally different dataframe
-* Add an "id" column (useful for unstacking): df[:id] = 1:size(df, 1)  # this makes it easier to unstack
+* Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
+* Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
+
 
 ### Filter
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`

@@ -65,7 +65,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 
 ## Merge/Join datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`
-
+* Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 
 
 
@@ -73,6 +73,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * The NA value is simply `NA`
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])`)
 * Within an operation (e.g. a sum) you can use `dropna()` in order to skip NA values before the operation take place.
+* `[res[isna(res[i]), i] = 0 for i in names(res)]` remove NA values on all columns
 
 ## Split-Apply-Combine strategy 
 
@@ -182,7 +183,7 @@ Alternativly you can oit the :id parameter and all the existing column except th
 `widedf = unstack(longdf, :variable, :value)`
 
 ### Sorting
-`sort!(df, cols = (:col1, :col2), rev = (false, false))` The 8optional) reverse order parameter (rev) must be a turple of the same size as the cols parameter
+`sort!(df, cols = (:col1, :col2), rev = (false, false))` The (optional) reverse order parameter (rev) must be a turple of the same size as the cols parameter
 
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)

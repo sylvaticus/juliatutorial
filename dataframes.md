@@ -44,6 +44,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * `count(df[:fieldName])`
 * `names(df)` returns array of column names
 * `size(df)` (r,c), `size(df)[1]` (r), `size(df)[2]` (c)
+* `ENV["LINES"] = 60` change the default number of lines before the content is truncated (default 30). Also COLUMNS. May not work with terminal.
 
 
 

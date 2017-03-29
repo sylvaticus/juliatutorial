@@ -45,7 +45,7 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 * `names(df)` returns array of column names
 * `size(df)` (r,c), `size(df)[1]` (r), `size(df)[2]` (c)
 * `ENV["LINES"] = 60` change the default number of lines before the content is truncated (default 30). Also COLUMNS. May not work with terminal.
-* `for r in eachrow(df)` iterate over each row
+* `for r in eachrow(df)` iterates over each row
 
 Column names are Julia symbols. To programmatically compose a column name you need hence to use the Symbol(String) constructor, e.g.:
 `i = 0; df[1,Symbol("value_"*string(i))]`

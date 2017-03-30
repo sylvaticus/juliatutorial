@@ -53,12 +53,9 @@ If a column if found to have all NA values, it will be treated by default as a I
 Column names are Julia symbols. To programmatically compose a column name you need hence to use the Symbol(String) constructor, e.g.:
 `i = 0; df[1,Symbol("value_"*string(i))]`
 
-## Edit/modify data
+## Edit data
 
-* Delete columns by name: `delete!(df, [:col1, :col2])`
 * Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` (the original data to replace can be in a different column or a totally different dataframe
-* Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
-* Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
 
 
 ### Filter
@@ -68,7 +65,13 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Filter using `@where` (`DataFrameMeta` package): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`
 * Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") & (df[:year] .== 2010) , :consumption] = 200`
 
-## Merge/Join datasets
+## Edit structure
+* Delete columns by name: `delete!(df, [:col1, :col2])`
+* Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
+* Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
+
+
+### Merge/Join datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`
 * Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 

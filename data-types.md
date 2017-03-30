@@ -7,19 +7,14 @@ In most Julia development environments (including the console), to type the Gree
 Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 
 The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String`[¹](#myfootnote1) (e.g. `x="abc"`) and `Bool`.
-The default, if you do not specify, is Float64.  
-Attention to use the single quote for chars and double quotes for strings.
-
-Also, while boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, ` if 0 [...] end` brings an error.
-
-Attention to the keyword `const`. When applied to a variable (e.g. `const  x::Int64`) doesn't mean that the variable can't change value (as in C), but simply that it can not change type.
- 
-To convert ("cast") between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen (`InexactError()` in this case).
+The default, if you do not specify, is Float64 (but for DataFrames, at least columns with all NA values, seems to be Int64!)  
 
 ## Strings
 
 Julia supports most typical string operations, for example:
 `split(s)` _(default on white spaces)_, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove white spaces)_
+Attention to use the single quote for chars and double quotes for strings.
+
 
 ### Concatenation
 
@@ -166,6 +161,14 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 * everything is deep copied recursively
 
+
+## Various notes on Data types
+
+While boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, ` if 0 [...] end` brings an error.
+
+Attention to the keyword `const`. When applied to a variable (e.g. `const  x::Int64`) doesn't mean that the variable can't change value (as in C), but simply that it can not change type.
+ 
+To convert ("cast") between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen (`InexactError()` in this case).
 
 
 - - -

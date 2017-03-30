@@ -21,6 +21,13 @@ The last argument(s) can be specified together with a default value.
  
 All keyword arguments need a default value, but the opposite is not true (positional arguments can also have default argument).
 
+To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union:
+`function f(par::Union{Symbol, Vector{Symbol}} = Symbol[]) ... end`
+
+
+
+
+
 
 ## Return value
 

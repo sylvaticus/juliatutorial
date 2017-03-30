@@ -26,9 +26,6 @@ To declare a function parameter as being either a scalar type `T` or a vector `T
 
 
 
-
-
-
 ## Return value
 
 Return value using the keyword `return` is optional: by default it is returned the last computed value.  

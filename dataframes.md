@@ -25,7 +25,7 @@ Pannels  200    300      300
 """
 ```
 
-* Read a CSV file: myData = `readtable("mydatafile.csv", separator = ';', decimal=".")`
+* Read a CSV file: myData = `readtable("mydatafile.csv", separator = ';', decimal='.')`
 * Crate a df from scratch:
 ```
 df = DataFrame(

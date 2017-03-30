@@ -14,6 +14,7 @@ Also, while boolean values `true` and `false` are evaluated to `1` and `0` respe
 
 Attention to the keyword `const`. When applied to a variable (e.g. `const  x::Int64`) doesn't mean that the variable can't change value (as in C), but simply that it can not change type.
  
+To convert ("cast") between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen (`InexactError()` in this case).
 
 ## Strings
 

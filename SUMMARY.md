@@ -21,4 +21,5 @@
 * [13 - JuMP](13-jump.md)
 * [14 - SymPy](14-sympy.md)
 * [15 - Weave](14-weave.md)
+* [16 - LAJuliaUtils](16-lajuliautils.md)
 

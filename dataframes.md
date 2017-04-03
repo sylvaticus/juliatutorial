@@ -72,9 +72,10 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
 
 
-### Merge/Join datasets
+### Merge/Join/Copy datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`
 * Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
+* Copy the structure of a DataFrame (to an empty one): `df2 = similar(df1, 0)`
 
 
 
@@ -92,7 +93,7 @@ The function can return a value, a vector, or a DataFrame. For a value or vector
 a DataFrame, `cols` are combined along columns with the resulting DataFrame. Returning a DataFrame is the clearest because it allows column labeling.
 
 Alternativly the `by` function can take the function as first argument, so to allow the usage of do blocks.
-It uses inside the groupby() function, as in code it is defined as nothing else than:
+Inside, it uses the groupby() function, as in the code it is defined as nothing else than:
 ```
 by(d::AbstractDataFrame, cols, f::Function) = combine(map(f, groupby(d, cols)))
 by(f::Function, d::AbstractDataFrame, cols) = by(d, cols, f)

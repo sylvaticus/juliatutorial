@@ -170,6 +170,7 @@ Attention to the keyword `const`. When applied to a variable (e.g. `const  x::In
  
 To convert ("cast") between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen (`InexactError()` in this case).
 
+To convert strings (representing numbers) to integers or float use `myInt = parse(Int,"2017")`.
 
 - - -
 

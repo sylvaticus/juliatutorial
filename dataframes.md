@@ -25,7 +25,7 @@ Pannels  200    300      300
 """
 ```
 
-* Read a CSV file: myData = `readtable("mydatafile.csv", separator = ';', decimal='.')`
+* Read a CSV file: myData = `readtable("mydatafile.csv", separator = ';', decimal='.')` (Important note: at this point only `'.'` is supported as decimal)
 * Crate a df from scratch:
 ```
 df = DataFrame(
@@ -56,6 +56,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 ## Edit data
 
 * Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` (the original data to replace can be in a different column or a totally different dataframe
+* Concatenate (string) values for several columns to create the value a new column: with a constant, use `*`, while with other columns use the vectorized version `.*`, e.g. `df[:c] = df[:a] * " " .* df[:yearString]` (this is a bug as it should be `.*` in both cases, and it should have been corrected in Julia 0.6)
 
 
 ### Filter

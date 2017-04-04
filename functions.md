@@ -40,7 +40,10 @@ x,y = myfunction(1,2)
 
 The same function can be defined with different number and type of parameters (this is useful when the same kind of logical operation must be performed on different types).  
 When calling such functions, Julia will pick up the correct one depending from the parameters in the call (by default the stricter version).  
-These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time.
+These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time. 
+
+The multiple-dispatch polymorphism is a generalisation of object-oriented run-time polymorphism where the same function name can performs different tasks depending on which is the owner's object's class, i.e. the polymorphism is applied only to a single parameter (it remains true however that OO languages have usually multiple-parameters polymorphism at compile-time).
+
 
 ## Templates (type parametrisation)
 

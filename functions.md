@@ -81,4 +81,8 @@ x -> x^2 + 2x - 1
 This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`.
 Multiple arguments can be provided using touples: `(x,y,z) -> x + y + z`
 
+## Broadcast
+You can "broadcast" a function to work over each elements of an array (singleton): 
+`myArray = broadcast(i -> replace(i, "x", "y"), myArray)` 
 
+When available, `.f` is an alias of `broadcast(f)`

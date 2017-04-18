@@ -43,8 +43,8 @@ Square brackets are used to access the elements of an array  (e.g. `a[1]`). The 
 
 The following methods are useful while working with arrays:
 
-* Push an element to the end of a: `push!(a,b)` (as a single element even if it is an Array. Equivalent to python `append` or `+=`)
-* To append all the elements of b to a: `append!(a,b)` (if b is a scalar obviously push! and append! are the same. Attention that a string is treated as a list!. Equivalent to Python `extend`)
+* Push an element to the end of a: `push!(a,b)` (as a single element even if it is an Array. Equivalent to python `append`)
+* To append all the elements of b to a: `append!(a,b)` (if b is a scalar obviously push! and append! are the same. Attention that a string is treated as a list!. Equivalent to Python `extend` or `+=`)
 * Concatenation of arrays (new array): `a = [1,2,3]; b = [4,5]; c = cat(1,a,b)`
 * Remove an element from the end: `pop!(a)`
 * Add an element (b) at the beginning (left): `unshift!(a,b)`

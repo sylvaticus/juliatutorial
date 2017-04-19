@@ -10,23 +10,13 @@ Patching other people packages:
 * using PkgDev
 * PkgDev.submit("OdsIO")
 
+Develp your own project and publish a new version
+* `Pkg.add(pkg)`
+* `Pkg.checkout(pkg)` to checkout master
+* [...work on the project..]
+* `PkgDev.tag(pkg, v"0.X.X")`
+* `PkgDev.publish(pkg)`
 
+In case of problems: http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream
 
-checkout master
-do work
-tag
-Pkg.update()
-PkgDev.publish("OdsIO")
-
-http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream
-
-cd v0.5/METADATA
-
-git remote remove origin
-git remote add origin git@github.com:sylvaticus/METADATA.jl
-git remote add upstream https://github.com/JuliaLang/METADATA.jl
-git fetch upstream
-git checkout metadata-v2
-git reset --hard upstream/metadata-v2
-git push original metadata-v2 --force
 

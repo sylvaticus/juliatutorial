@@ -13,6 +13,7 @@
 * [8 - Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)
 * [9 - Metaprogramming](metaprogramming.md)
 * [10 - Performances \(parallelisation, debugging, profiling..\)](performances.md)
+* [11 - Developing Julia packages](11-developing-julia-packages.md)
 
 ## Useful packages
 

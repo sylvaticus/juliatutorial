@@ -59,6 +59,8 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Concatenate (string) values for several columns to create the value a new column: with a constant, use `*`, while with other columns use the vectorized version `.*`, e.g. `df[:c] = df[:a] * " " .* df[:yearString]` (this is a bug as it should be `.*` in both cases, and it should have been corrected in Julia 0.6)
 * To compute the value of a column based of other columns you need to use  elementwise operations using the dot, e.g. `df[:a] = df[:b] .* df[:c]` (note that the equal sign doesn't have the dot.. but if you have to make a comparation `==` oeprator wants also the dot, i.e. `.==`)
 * Append a row: `push!(df, [1 2 3])`
+* Convert a column from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col])  for r in eachrow(db)]`
+
 
 ### Filter
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`

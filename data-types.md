@@ -12,7 +12,7 @@ The default, if you do not specify, is Float64 (but for DataFrames, at least col
 ## Strings
 
 Julia supports most typical string operations, for example:
-`split(s)` _(default on white spaces)_, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove white spaces)_
+`split(s)` _(default on white spaces)_, `join([s], separator="")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove white spaces)_ 
 Attention to use the single quote for chars and double quotes for strings.
 
 

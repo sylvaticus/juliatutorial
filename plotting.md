@@ -47,5 +47,8 @@ savefig("fruits_plot.svg")
 savefig("fruits_plot.pdf")
 savefig("fruits_plot.png")
 ```
+There is a bug in Plots that with plotlyjs backend the figure is saved as an html with the plot embedded.
+To save the plot actually as svg or pnf, you need the `Rscg` package(`Pkg.add("Rsvg")`) and then even the plotlyjs backend will work.
+
 
 

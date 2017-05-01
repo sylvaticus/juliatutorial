@@ -174,6 +174,8 @@ To convert strings (representing numbers) to integers or floats use `myInt = par
 
 The opposite, to convert integers or floats to strings, use `myString = string(123)`.
 
+Variable names have to start with a letter, as if they start by a numer there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` (and note that `6 ax` would result in a compile error). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
+
 - - -
 
 <a name="myfootnote1">¹</a>: Technically a `String` is an array in Julia (try to append a String to an array!), but for most uses it can be thought as a scalar type.

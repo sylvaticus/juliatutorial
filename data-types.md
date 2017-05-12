@@ -39,7 +39,7 @@ There are several ways to create an array:
 
 Arrays can be heterogeneous (but in this case the array will be of `Any` type and much slower): `x = [10, "foo", false]`
 
-Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`.
+Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`. 
 You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` or `y=vcat(2015, 2025:2030, 2100)`.
 
 The following methods are useful while working with arrays:

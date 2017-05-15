@@ -22,7 +22,7 @@ You can find some useful documentation on `Plots` backends:
 * [Charts and attributes supported by the various backends](https://juliaplots.github.io/supported/)
 
 
-# Plotting multiple groups of series from a DataFrame
+### Plotting multiple groups of series from a DataFrame
 The following example uses [StatPlots](https://github.com/JuliaPlots/StatPlots.jl) in order to work directly on DataFrames (rather than on arrays).
 Passing the dataFrame as first argument, you can access its columns by name and split the overall serie using a third column.
 
@@ -40,6 +40,12 @@ fruits_plot = plot(df, :year, :production, group=:fruit, linestyle = :solid, lin
 plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label = ("Consumption of " * sort(unique(df[:fruit]))'), color=mycolours)
 ```
 The first call to `plot()` create a new plot. Calling instead `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
+
+## Printing area charts
+Use the `fill(fillrange,fillalpha,fillcolor)` attribute, e.g. `fill = (0, 0.5, :blue)`.
+
+
+## Saving
 
 While to play interactivly I prefer plotlyjs, for saving the charts one has to rely to the saving button on the widget. For scripting task it is hence suggested to use the pyplot backend that allow to save the latest plot as simple as:
 ```

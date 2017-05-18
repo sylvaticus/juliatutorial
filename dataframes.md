@@ -1,4 +1,4 @@
-# Dataframes
+eachro# Dataframes
 
 Julia has a library to handle tabular data, in a way similar to R or Pandas dataframes. The name is, no surprises, [DataFrames](https://github.com/JuliaStats/DataFrames.jl). The approach and the function names are similar, although the way of actually accessing the API may be a bit different.
 For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesMeta.jl) adds some helper macros.
@@ -84,7 +84,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 
 ## Manage NA values
 * The NA value is simply `NA`
-* `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])`)
+* `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`)
 * Within an operation (e.g. a sum) you can use `dropna()` in order to skip NA values before the operation take place.
 * `[df[isna(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
 

@@ -26,6 +26,13 @@ Pannels  200    300      300
 ```
 
 * Read a CSV file: myData = `readtable("mydatafile.csv", separator = ';', decimal='.')` (Important note: at this point only `'.'` is supported as decimal)
+* From a stream, use the package `Request`:
+```
+using DataFrames, Requests
+resp = get("https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD")
+df = readtable(IOBuffer(resp.data))
+```
+
 * Crate a df from scratch:
 ```
 df = DataFrame(
@@ -36,6 +43,8 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 ```
 
 If a column if found to have all NA values, it will be treated by default as a Int64. In this case use `convert()` if you want to store other type of values: `df[:col] = convert(DataArrays.DataArray{Float64,1}, df[:col])`
+
+
 
 
 ## Get insights about your data:

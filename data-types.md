@@ -49,7 +49,7 @@ The following methods are useful while working with arrays:
 * Concatenation of arrays (new array): `a = [1,2,3]; b = [4,5]; c = cat(1,a,b)`
 * Remove an element from the end: `pop!(a)`
 * Removing an element at the beginning (left) : `shift!(a)`
-* Remove an element at an arbitrary position: `deleteat!(a,pos)`
+* Remove an element at an arbitrary position: `deleteat!(a, pos)`
 * Add an element (b) at the beginning (left): `unshift!(a,b)`
 
 * Sorting: `sort!(a)` or `sort(a)` (depending on whether we want to modify or not the original array)

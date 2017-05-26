@@ -51,14 +51,14 @@ The following methods are useful while working with arrays:
 * Removing an element at the beginning (left) : `shift!(a)`
 * Remove an element at an arbitrary position: `deleteat!(a, pos)`
 * Add an element (b) at the beginning (left): `unshift!(a,b)`
-
 * Sorting: `sort!(a)` or `sort(a)` (depending on whether we want to modify or not the original array)
 * Reversing an arry: `a[end:-1:1]`
 * Checking for existence: `in(1, a)`
 * Getting the length: `length(a)`
 * Empty an array: `empty!(a)`
+* Random-shuffling the elements: `shuffle(a)` (or `shuffle!(a)`)
 * Checking if an array is empty: `isempty(a)`
-* Find the index of a value in a narray: `find(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
+* Find the index of a value in an array: `find(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
 
 ### Multidimensional and nested arrays
 In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).

@@ -179,6 +179,8 @@ You can broadcast `parse` to work over an array (or a df column), even in 0.5, u
 
 Variable names have to start with a letter, as if they start by a numer there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` (and note that `6 ax` would result in a compile error). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
+You can get a random float in the range [0,1] with `rand()`. If you need a random integer in the range [1,n] use `rn = Int(floor(n* rand()) + 1)`
+
 - - -
 
 <a name="myfootnote1">¹</a>: Technically a `String` is an array in Julia (try to append a String to an array!), but for most uses it can be thought as a scalar type.

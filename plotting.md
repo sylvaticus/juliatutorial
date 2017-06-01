@@ -31,7 +31,7 @@ using DataFrames, Plots, StatPlots
 df = DataFrame(
   fruit       = ["orange","orange","orange","orange","apple","apple","apple","apple"],
   year        = [2010,2011,2012,2013,2010,2011,2012,2013],
-  produption  = [120,150,170,160,100,130,165,158],
+  production  = [120,150,170,160,100,130,165,158],
   consumption = [70,90,100,95,   80,95,110,120]
 )
 plotlyjs() 

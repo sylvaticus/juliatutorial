@@ -181,7 +181,7 @@ You can broadcast `parse` to work over an array (or a df column), even in 0.5, u
 
 Variable names have to start with a letter, as if they start by a numer there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` (and note that `6 ax` would result in a compile error). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
-You can specify discontinuous ranges using the `;` operator, e.g. `a[1:3; 6; 4-end]` 
+You can specify discontinuous ranges using the `;` operator, e.g. `a[1:3; 6; 4-end]` .
 
 ### Random numbers
 * Random float in [0,1]: `rand()`

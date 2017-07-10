@@ -69,7 +69,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * To compute the value of a column based of other columns you need to use  elementwise operations using the dot, e.g. `df[:a] = df[:b] .* df[:c]` (note that the equal sign doesn't have the dot.. but if you have to make a comparation `==` operator wants also the dot, i.e. `.==`)
 * Append a row: `push!(df, [1 2 3])`
 * Convert a column from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col])  for r in eachrow(db)]`
-* Delete a given row
+* Delete a given row: use `deleterows!()` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]` 
 
 
 ### Filter

@@ -86,7 +86,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 
 
 ### Merge/Join/Copy datasets
-* Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`
+* Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  
 * Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 * Copy the structure of a DataFrame (to an empty one): `df2 = similar(df1, 0)`
 

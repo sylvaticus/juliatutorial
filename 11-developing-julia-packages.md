@@ -20,7 +20,7 @@ Develp your own project and publish a new version
 * `PkgDev.tag(pkg, v"0.X.X")`
 * `PkgDev.publish(pkg)`
 
-or (better) use the package [attobot](https://github.com/attobot/attobot) that automatise the workflow.
+or (better) use the package [attobot](https://github.com/attobot/attobot) that automatise the workflow (just create a new GitHub release).
 
 In case of problems: [http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream](http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream)
 

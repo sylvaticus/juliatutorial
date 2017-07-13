@@ -78,6 +78,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) & (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation). Note the usage of the bitwise and (single ampersand).
 * Filter using `@where` (`DataFrameMeta` package): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`
 * Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") & (df[:year] .== 2010) , :consumption] = 200`
+* Filterbased on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
 
 ## Edit structure
 * Delete columns by name: `delete!(df, [:col1, :col2])`

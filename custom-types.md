@@ -30,12 +30,13 @@ end
 
 Use the keyword `immutable` in place of `type` when you want to enforce that once an object of that type has been created, its fields can no longer be changed. Although obviously less flexible, they are much faster.
 
-You can create abstract types using the keyword `abstract`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them (an issue to allow abstract classes to have fields is currently open and may be soon implemented).
+You can create abstract types using the keyword `abstract` in front of `type`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them ([https://github.com/JuliaLang/julia/issues/4935](an issue) to allow abstract classes to have fields is currently open and may soon be implemented).
 
 Actually you can create a whole hierarchy of abstract classes:
 
 ```
-abstract MyOwnAbstractType <: MyOwnGenericAbstractType
+abstract type MyOwnGenericAbstractType end
+abstract type MyOwnAbstractType <: MyOwnGenericAbstractType end
 type AConcreteType <: MyOwnAbstractType
   property1
   property2::String

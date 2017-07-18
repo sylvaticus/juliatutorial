@@ -62,7 +62,7 @@ But before you do that, run `Pkg.update()` to be sure that \(a\) your local inde
 Use `Pkg.status()` to check the current version of your local packages.   
 You can remove a package with `Pkg.rm("mypackage")`.
 
-To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`.  You can also include other files, without changing the current namespace, using `include("MyFile.jl")`.
+To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`.  You can also include other files using `include("MyFile.jl")`: when that line is run, the included file is completely ran (not only parsed) and any symbol defined there becomes available in the namespace relative to where include has been called.
 
 `Winston` or `Plots` \(plotting\) and `DataFrames` \(R-like tabular data\) are example of packages that you will pretty surely want to consider.
 

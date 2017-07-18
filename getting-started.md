@@ -78,8 +78,9 @@ plot(rand(4,4))
 
 ```
 import Plots
-Plots.pyplot()
-Plots.plot(rand(4,4))
+pl = Plots # this create an an alias, equivalent to Python "import Plots as pl"
+pl.pyplot()
+pl.plot(rand(4,4))
 ```
 
 **or**
@@ -90,13 +91,13 @@ pyplot()
 plot(rand(4,4))
 ```
 
-If you are interested in writing your own package, you can read more about packages in the [relevant section](http://docs.julialang.org/en/release-0.5/manual/packages/) of the Julia documentation.
+If you are interested in writing your own package, you can read more about packages in the [relevant section](https://docs.julialang.org/en/stable/manual/packages) of the Julia documentation.
 
 ### Documentation and debugging
 
 Tipyng `?` in the console leads you to the Julia help system where you can search for function's API \(in non-interactive environment you can use `?search_term` instead\). If you don't remember exactly the function name, julia is kind enought to return a list of similar functions.
 
-It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/release-0.5/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
+It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
 For example, this is the documentation string of the `ods_reall` function within the `OdsIO` package:
 
     """

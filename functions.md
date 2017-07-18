@@ -83,6 +83,8 @@ Multiple arguments can be provided using touples: `(x,y,z) -> x + y + z`
 
 ## Broadcast
 You can "broadcast" a function to work over each elements of an array (singleton): 
-`myArray = broadcast(i -> replace(i, "x", "y"), myArray)` 
+`myArray = broadcast(i -> replace(i, "x", "y"), myArray)`.
+This is equivalent to (note the dot):
+`myArray = replace.(a, "x", "y")`
 
-When available, `.f` is an alias of `broadcast(f)`
+From Julia 0.6, the `f.()` syntax is automatically available for any function, including the ones you write, while before Julia 0.6 this was available on a limited number of core functions only.

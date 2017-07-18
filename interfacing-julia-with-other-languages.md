@@ -1,6 +1,6 @@
 # Interfacing Julia with other languages
 
-Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/release-0.5/manual/calling-c-and-fortran-code/) and, trough packages, C++ [1](https://github.com/timholy/Cpp.jl) [2](https://github.com/JuliaInterop/CxxWrap.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).  
+Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/) and, trough packages, C++ [1](https://github.com/timholy/Cpp.jl) [2](https://github.com/JuliaInterop/CxxWrap.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).  
 This allows Julia to use the huge number of libraries of these more established languages.
 
 ## C

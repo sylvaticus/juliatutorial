@@ -1,6 +1,9 @@
 # Julia language: a concise tutorial
 ![](/assets/julia_hello_world.png)
 
+**This version of the tutorial (from 18 July 2017) is compatible with Julia 0.6**
+
+&nbsp;
 
 While the primary purpose of this tutorial is to help myself in the learning path of the language, it can also be useful to reasonably seasoned programmers that want to code in Julia before reading the 533 pages of the (outstanding) [official documentation](http://docs.julialang.org/en/release-0.5/).
 

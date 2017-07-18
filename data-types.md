@@ -12,7 +12,7 @@ The default, if you do not specify, is Float64 (but for DataFrames, at least col
 ## Strings
 
 Julia supports most typical string operations, for example:
-`split(s)` _(default on white spaces)_, `join([s], separator="")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove white spaces)_ 
+`split(s)` _(default on whitespaces)_, `join([s], "")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
 Attention to use the single quote for chars and double quotes for strings.
 
 
@@ -39,8 +39,10 @@ There are several ways to create an array:
 
 Arrays can be heterogeneous (but in this case the array will be of `Any` type and much slower): `x = [10, "foo", false]`
 
+`a = Int64[]` is just a shortland for `a = Array{Int64,1}`. `a = Array{Int64}` creates instead a 0-elements N-dimensions array (see next section for multidimensinal arrays)
+
 Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`. 
-You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` (note the semivcolon) or `y=vcat(2015, 2025:2030, 2100)`.
+You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` (note the semicolon) or `y=vcat(2015, 2025:2030, 2100)`.
 
 The following methods are useful while working with arrays:
 
@@ -76,7 +78,8 @@ Attention to this difference:
 A 2x3 matrix can be constructed in one of the following ways:
 
 * `a = [[1,2] [3,4] [5,6]]`
-* `a = Array(Int64, 2, 3)` (content is garbage)
+* `a = Array(Int64, 2, 3)` (content is garbage, **DEPRECATED**)
+* `a = Array{Int64}(2, 3)` (content is zeros)
 * `a = zeros(2,3)` or `a = ones(2,3)`
 * `a = fill("abc",2,3)` (content is "abc")
 
@@ -100,7 +103,7 @@ Note: for row vectors, both `a[2]` or `a[1,2]` returns the second element.\\
 
 `reshape` and `squeeze` (bun not transpose) perform a shadow copy, returning just a different "view" of the underlying data.
 
-`AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractMatrix{T,2}`.
+`AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractArray{T,2}`.
 
 
 
@@ -177,11 +180,9 @@ To convert strings (representing numbers) to integers or floats use `myInt = par
 
 The opposite, to convert integers or floats to strings, use `myString = string(123)`.
 
-You can broadcast `parse` to work over an array (or a df column), even in 0.5, using `myNewList = parse.([Int],["1.1","1.2"])` (in 0.6 the brackets arount `Int` are not necessary).
+You can broadcast `parse` to work over an array (or a df column) using `myNewList = parse.([Float64],["1.1","1.2"])` (from Julia version 0.6 the brackets arount `Float64` are no longer necessary).
 
-Variable names have to start with a letter, as if they start by a numer there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` (and note that `6 ax` would result in a compile error). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
-
-You can specify discontinuous ranges using the `;` operator, e.g. `a[1:3; 6; 4-end]` .
+Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` (and note that `6 ax` would result in a compile error). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
 ### Random numbers
 * Random float in [0,1]: `rand()`

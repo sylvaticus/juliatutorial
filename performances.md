@@ -6,7 +6,7 @@ This mean you can code quite quickly and then, only on the parts that constitute
 
 ## Type safety
 
-Take this function \(from the [Performance tips](http://docs.julialang.org/en/release-0.5/manual/performance-tips/) of the Julia documentation\).
+Take this function \(from the [Performance tips](https://docs.julialang.org/en/stable/manual/performance-tips/) of the Julia documentation\).
 
 ```
 function f(n)

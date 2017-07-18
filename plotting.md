@@ -3,7 +3,7 @@
 Plotting in julia can be obtained using a specific plotting package (e.g. [Gadfly](https://github.com/dcjones/Gadfly.jl), [Winston](https://github.com/nolta/Winston.jl)) or, as I prefer, use the [Plots](https://github.com/JuliaPlots/Plots.jl) package that provide a unified API to several supported backends
 
 Backends are chosen running `chosenbackend()` (that is, the name of the corresponding backend package, but written all in lower case) before calling the `plot` function.  
-You need to install at least one backend before being able to use the `Plots` package. My preferred one is [PlotlyJS](https://github.com/sglyon/PlotlyJS.jl) (a julia interface to the [plotly.js](https://plot.ly) visualization library. ), but you may be interested also in [PyPlot](https://github.com/JuliaPy/PyPlot.jl) (that use the excellent python [matplotlib](http://matplotlib.org/api/pyplot_api.html)).
+You need to install at least one backend before being able to use the `Plots` package. My preferred one is [PlotlyJS](https://github.com/sglyon/PlotlyJS.jl) (a julia interface to the [plotly.js](https://plot.ly) visualization library. ), but you may be interested also in [PyPlot](https://github.com/JuliaPy/PyPlot.jl) (that use the excellent python [matplotlib](http://matplotlib.org/api/pyplot_api.html) **VERSION 2**).
 
 For example:
 

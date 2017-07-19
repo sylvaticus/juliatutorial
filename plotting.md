@@ -47,14 +47,18 @@ Use the `fill(fillrange,fillalpha,fillcolor)` attribute, e.g. `fill = (0, 0.5, :
 
 ## Saving
 
-While to play interactivly I prefer plotlyjs, for saving the charts one has to rely to the saving button on the widget. For scripting task it is hence suggested to use the pyplot backend that allow to save the latest plot as simple as:
+To save the figure just call one of the following:
 ```
 savefig("fruits_plot.svg")
 savefig("fruits_plot.pdf")
 savefig("fruits_plot.png")
 ```
-There is a bug in Plots that with plotlyjs backend the figure is saved as an html with the plot embedded.
-To save the plot actually as svg or pnf, you need the `Rscg` package(`Pkg.add("Rsvg")`) and then even the plotlyjs backend will work.
+### A note on saving with the plotlyjs backend
+Only for the `plotlyjs` backend, you need to first install the `Rsvg` package (`Pkg.add("Rsvg")`) (or rely to the saving button on the widget).
+Still there will be some problems:
+- svg: an html file with embedded svg is actually created, not a svg file
+- pdf: this currently doesn't work in Julia 0.6
+- png: this works
 
 
 

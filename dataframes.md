@@ -76,10 +76,10 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 ### Filter
 * Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`
 * Alternative using list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
-* Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) & (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation). Note the usage of the bitwise and (single ampersand).
+* Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) .& (df[:shape] .== "triangle"), :]` (the dot is needed to vectorize the operation). Note the usage of the bitwise and (single ampersand).
 * Filter using `@where` (`DataFrameMeta` package): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`
-* Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") & (df[:year] .== 2010) , :consumption] = 200`
-* Filterbased on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
+* Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") .& (df[:year] .== 2010) , :consumption] = 200`
+* Filter based on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
 
 ## Edit structure
 * Delete columns by name: `delete!(df, [:col1, :col2])`
@@ -135,7 +135,7 @@ df = DataFrame(region=["US","US","US","US","EU","EU","EU","EU"],
                year = [2010,2011,2012,2013,2010,2011,2012,2013],
                value=[3,3,2,2,2,2,1,1])
 df[:cumValue] = copy(df[:value])
-[r[:cumValue] = df[(df[:region] .== r[:region]) & (df[:year] .== (r[:year]-1)),:cumValue][1] + r[:value]  for r in eachrow(df) if r[:year] != minimum(df[:year])]    
+[r[:cumValue] = df[(df[:region] .== r[:region]) .& (df[:year] .== (r[:year]-1)),:cumValue][1] + r[:value]  for r in eachrow(df) if r[:year] != minimum(df[:year])]    
 ```
 * Using by and the split-apply-combine strategy (fast):
 ```
@@ -213,5 +213,5 @@ Alternativly you can oit the :id parameter and all the existing column except th
 ## Export your data
 writetable("file.csv", df, separator = ';', header = false)
 
-See also the section [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md) to get an example on how to load data from an ods file.
+See also the section [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md) to get an example on how to import/export data from an ods file.
 

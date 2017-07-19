@@ -1,7 +1,7 @@
 # Julia language: a concise tutorial
 ![](/assets/julia_hello_world.png)
 
-**This version of the tutorial (from 18 July 2017) is compatible with Julia 0.6**
+**This version of the tutorial (from 19 July 2017) is compatible with Julia 0.6**
 
 &nbsp;
 

@@ -36,10 +36,10 @@ df = DataFrame(
 )
 plotlyjs() 
 mycolours = [:green :orange] # note that the serie is piled up alphabetically
-fruits_plot = plot(df, :year, :production, group=:fruit, linestyle = :solid, linewidth=3, label = ("Production of " * sort(unique(df[:fruit]))'), color=mycolours)
-plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label = ("Consumption of " * sort(unique(df[:fruit]))'), color=mycolours)
+fruits_plot = plot(df, :year, :production, group=:fruit, linestyle = :solid, linewidth=3, label= reshape("Production of " * sort(unique(df[:fruit])),(1,:)), color=mycolours)
+plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label ="Consumption of " .* reshape(sort(unique(df[:fruit])),(1,:)), color=mycolours)
 ```
-The first call to `plot()` create a new plot. Calling instead `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
+The first call to `plot()` create a new plot. Calling `plot!()` modify instead the plot that is passed as first argument (if none, the latest plot is modified)
 
 ## Printing area charts
 Use the `fill(fillrange,fillalpha,fillcolor)` attribute, e.g. `fill = (0, 0.5, :blue)`.

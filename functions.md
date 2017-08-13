@@ -24,6 +24,20 @@ All keyword arguments need a default value, but the opposite is not true (positi
 To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union:
 `function f(par::Union{Symbol, Vector{Symbol}} = Symbol[]) ... end`
 
+The ellipsis (splat) can be uses in order to both specify a variable number of arguments and "splicing" a list or array in the parameters of a function call:
+
+```
+values = [1,2,3]
+function average(init, args...) #The parameter that uses the ellipsis must be the last one
+  s = 0
+  for arg in args 
+    s += arg 
+  end
+  return init + s/length(args)
+end
+a = average(10,1,2,3)        # 12
+a = average(10, values ...)  # 12
+```
 
 
 ## Return value

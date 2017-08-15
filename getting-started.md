@@ -18,7 +18,7 @@ For more up-to-date version, or for Windows/Mac packages, download the binaries 
 For Integrated Development Editor, checkout either [Juno](http://junolab.org/)  or IJulia, the Julia [Jupiter](http://jupyter.org/) backend.  
 Here you can find their detailed setup instructions:
 
-* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md)
+* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md)(useful tip: block selection mode: ALT+SHIFT)
 * [IJulia](https://github.com/JuliaLang/IJulia.jl) \(in a nutshell: if you already have Jupiter installed, just run `Pkg.add("IJulia")` from the Julia console. That's all! ;-\) \)
 
 You can also choose, at least to start with, _not_ to install Julia at all, and try instead [JuliaBox](https://juliabox.com/), a free online IJulia notebook server that you access from your browser.

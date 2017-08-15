@@ -84,7 +84,10 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Delete columns by name: `delete!(df, [:col1, :col2])`
 * Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
 * Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
-* Convert a column from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col]) for r in eachrow(db)]`
+* Convert columns:
+  * from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col]) for r in eachrow(db)]`
+  * from Int to Float: `df[:A] = convert(DataArrays.DataArray{Float64,1},df[:A])`
+  * from Float to Int: `df[:A] = convert(DataArrays.DataArray{Int64,1},df[:A])`
 
 ### Merge/Join/Copy datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  

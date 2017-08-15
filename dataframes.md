@@ -69,7 +69,6 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 (in julia pre-0.6, due to a bug, use instead `df[:c] = df[:a] * " " .* df[:b]`)
 * To compute the value of a column based of other columns you need to use  elementwise operations using the dot, e.g. `df[:a] = df[:b] .* df[:c]` (note that the equal sign doesn't have the dot.. but if you have to make a comparation `==` operator wants also the dot, i.e. `.==`)
 * Append a row: `push!(df, [1 2 3])`
-* Convert a column from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col])  for r in eachrow(db)]`
 * Delete a given row: use `deleterows!()` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]` 
 
 
@@ -85,7 +84,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Delete columns by name: `delete!(df, [:col1, :col2])`
 * Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
 * Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
-
+* Convert a column from Int to String: `db[:newCol] = ""; [r[:newCol] = string(r[:col]) for r in eachrow(db)]`
 
 ### Merge/Join/Copy datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  

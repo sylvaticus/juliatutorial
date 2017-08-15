@@ -61,6 +61,7 @@ The following methods are useful while working with arrays:
 * Random-shuffling the elements: `shuffle(a)` (or `shuffle!(a)`)
 * Checking if an array is empty: `isempty(a)`
 * Find the index of a value in an array: `find(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
+* Delete a given item from a list: `deleteat!(myarray, find(x -> x == myunwanteditem, myarray))`
 
 ### Multidimensional and nested arrays
 In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).

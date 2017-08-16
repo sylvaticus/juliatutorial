@@ -57,6 +57,7 @@ The following methods are useful while working with arrays:
 * Reversing an arry: `a[end:-1:1]`
 * Checking for existence: `in(1, a)`
 * Getting the length: `length(a)`
+* Get the maximum value: `maximum(a)` or  `max(a...)` (`max` returns the maximum value between the given arguments)
 * Empty an array: `empty!(a)`
 * Random-shuffling the elements: `shuffle(a)` (or `shuffle!(a)`)
 * Checking if an array is empty: `isempty(a)`

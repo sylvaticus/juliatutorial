@@ -83,6 +83,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 ## Edit structure
 * Delete columns by name: `delete!(df, [:col1, :col2])`
 * Add an "id" column (useful for unstacking): `df[:id] = 1:size(df, 1)`  # this makes it easier to unstack
+* Add a Float64 column (all filled with NA by default): `df[:a] = DataArray(Float64,size(df,1))`
 * Rename columns: `names!(df, [:c1,:c2,:c3])` (all) `rename!(df, Dict(:c1 => :neCol))` (a selection)
 * Convert columns:
   * from Int to Float: `df[:A] = convert(DataArrays.DataArray{Float64,1},df[:A])`

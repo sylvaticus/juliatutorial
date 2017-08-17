@@ -102,7 +102,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * The NA value is simply `NA`
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`)
 * Within an operation (e.g. a sum) you can use `dropna()` in order to skip NA values before the operation take place.
-* `[df[isna(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
+* `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
 
 ## Split-Apply-Combine strategy 
 

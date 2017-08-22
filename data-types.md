@@ -169,6 +169,8 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 * everything is deep copied recursively
 
+You can check if two objects have the same value with `==` and if two objects are actually the same with `===` (in the sense that immutable objects are checked at the bit level and mutable objects are checked for their memory address):  given `a = [1, 2]; b = [1, 2];`, `a == b` and `a === a` are true, but `a === b` is false.
+
 
 ## Various notes on Data types
 

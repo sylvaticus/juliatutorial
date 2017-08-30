@@ -119,7 +119,8 @@ Use tuples to have a list of immutable elements: `a = (1,2,3)` or even without p
 Tuples can be easily unpacked to multiple variable: `var1, var2 = (x,y)` (this is useful, for example, to collect the values of functions returning multiple values) 
 
 Useful tricks:
-* Convert a tuple in a vector: `a=(1,2,3); v = [a...]`
+* Convert a tuple in a vector: `a=(1,2,3); v = [a...]` or `v = [i[1] for i in a]`
+* Convert an array in tuple: `a = (v...)`
 
 ## Dictionaries
 

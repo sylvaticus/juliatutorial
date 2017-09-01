@@ -23,3 +23,8 @@ contour([-10,10],[-10,10], z) # contour plotting
 
 Infinity: either "oo" or "Inf" (eventually with + or -)
 
+
+# MAthematical functionalities
+
+* Numerical integration of definite integrals (univariate): ([QuadGK Package](https://github.com/JuliaMath/QuadGK.jl): `quadgk(x->2x,0,2)`
+

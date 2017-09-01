@@ -21,3 +21,5 @@ surface([-10,10],[-10,10], z) # 2-D plotting
 contour([-10,10],[-10,10], z) # contour plotting
 """
 
+Infinity: either "oo" or "Inf"
+

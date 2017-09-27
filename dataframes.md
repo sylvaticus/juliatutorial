@@ -46,8 +46,8 @@ area   = [1.1, 2.3, 3.1, 4.2, 5.2])
 
 If a column if found to have all NA values, it will be treated by default as a Int64. In this case use `convert()` if you want to store other type of values: `df[:col] = convert(DataArrays.DataArray{Float64,1}, df[:col])`
 
-
-
+* Convert from a Matrix of data and a vector of column names: `convert(DataFrame, Dict(zip(headerstrs,[mat[:,i] for i in 1:size(mat,2)])))`
+* Convert from a Matrix with headers in the first row: `convert(DataFrame,Dict(zip(mat[1,:],[mat[2:end,i] for i in 1:size(mat,2)])))`
 
 ## Get insights about your data:
 * `head(df)`

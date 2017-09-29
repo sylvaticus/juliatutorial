@@ -93,6 +93,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
   * from Int (or Float) to String: `df[:A] = map(string, df[:A])`
   * from String to Float: `string_to_float(str) = try parse(Float64, str) catch return(NA) end; df[:A] = map(string_to_float, df[:A])`
   * from DataArray{T} to Array{T]: `a = Array(df[:a])`
+  * from Any to T (including String): `df[:A] = convert(DataArrays.DataArray{T,1},df[:A])`
 
 ### Merge/Join/Copy datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  

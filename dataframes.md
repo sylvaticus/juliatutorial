@@ -81,6 +81,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Filter using `@where` (`DataFrameMeta` package): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`. If the column name is stored in a variable, you need to wrap it using the `_I_()` function, e.g. `col = Symbol("x");  @where(df, _I_(col) .> 2)`
 * Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") .& (df[:year] .== 2010) , :consumption] = 200`
 * Filter based on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
+* A benchmark note: using `@with()` or boolean selection is ~ the same, while "querying" an equivalent Dict with categorical variables as tuple keys is around ~20% faster than querying the dataframe.
 
 ## Edit structure
 * Delete columns by name: `delete!(df, [:col1, :col2])`
@@ -94,6 +95,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
   * from String to Float: `string_to_float(str) = try parse(Float64, str) catch return(NA) end; df[:A] = map(string_to_float, df[:A])`
   * from DataArray{T} to Array{T]: `a = Array(df[:a])`
   * from Any to T (including String, if the individual elements are already strings): `df[:A] = convert(DataArrays.DataArray{T,1},df[:A])`
+* You can "pool" specific columns in order to efficiently store repeated categorical variabels with `pool!(df, [:A, :B])`. Attenction that while the memory decrease, filtering with pooled values is not quicked (indeed it is a bit slower)
 
 ### Merge/Join/Copy datasets
 * Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  
@@ -107,7 +109,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values (you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`)
 * Within an operation (e.g. a sum) you can use `dropna()` in order to skip NA values before the operation take place.
 * `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
-* To use filtering (either boolean filtering or `@where` macro in `DataFramesMeta`) where NA values could be present or may be requested esplicitly use `isequal(a,b)` as otherwise the confrontation (`==`) with NA values leads to NA values and not the expected boolean ones.
+* To use filtering (either boolean filtering or `@where` macro in `DataFramesMeta`) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation (`==`) with NA values leads to NA values and not the expected boolean ones.
 
 ## Split-Apply-Combine strategy 
 

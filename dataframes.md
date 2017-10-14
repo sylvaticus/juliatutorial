@@ -226,3 +226,12 @@ writetable("file.csv", df, separator = ';', header = false)
 
 See also the section [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md) to get an example on how to import/export data from an ods file.
 
+### Export to Dict #1
+This export to a dictionary where the keys are the unique elements of a df column and the values are the splitted dataframes:
+
+```
+vars = Dict{String,DataFrame}()
+[vars[x] = @where(data, :varName .== x) for x in unique(dataata[:varName])]
+[delete!(vars[k], [:varName]) for k in keys(vars)]
+```
+

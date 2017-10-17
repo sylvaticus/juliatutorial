@@ -28,7 +28,7 @@ Note: the first method doesn't automatically cast integer and floats to strings.
 
 ## Arrays (lists)
 
-Arrays are 1 or 2 dimensions mutable containers[²](#myfootnote2).
+Arrays are N-dimensional mutable containers. In this section, we deal with 1-dimensional arrays, in the next one we consider2 or more dimensional arrays. 
 
 There are several ways to create an array:
 
@@ -71,9 +71,9 @@ The following methods are useful while working with arrays:
 * Delete a given item from a list: `deleteat!(myarray, find(x -> x == myunwanteditem, myarray))`
 
 ### Multidimensional and nested arrays
-In Julia, an array can have 1 dimension (a column, also known as `Vector`) or 2 dimensions (that is, a `Matrix`).
+In Julia, an array can have 1 dimension (a column, also known as `Vector`), 2 dimensions (that is, a `Matrix`) or more.
 Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
-In a `Matrix` (but not in an array of array), the number of elements on each column (row) must be the same.
+The main difference between a `Matrix` and an array of array is that in the former the number of elements on each column (row) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
 * `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...]
@@ -83,11 +83,16 @@ Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements (each of those is again a vector);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array (a matrix with 2 columns) with three elements (scalars).
 
-A 2x3 matrix can be constructed in one of the following ways:
+An empty Matrix can be constructed in one of the following ways:
+* a = Array{T,2}()
+* a = Matrix{T}()
 
+A 2x3 matrix can be constructed in one of the following ways:
 * `a = [[1,2] [3,4] [5,6]]`
-* `a = Array(Int64, 2, 3)` (content is garbage, **DEPRECATED**)
-* `a = Array{Int64}(2, 3)` (content is zeros)
+* `a = Array(Int64, 2, 3)`  (content is garbage, **DEPRECATED**)
+* `a = Array{Int64}(2, 3)`  (content is garbage)
+* `a = Array{Int64,2}(2,3)` (content is garbage)
+  (note that `a = Array{Int64,2}(2,3,4)` would result in an error, as you are specifing 3 sizes for a 2-dimensional array)
 * `a = zeros(2,3)` or `a = ones(2,3)`
 * `a = fill("abc",2,3)` (content is "abc")
 
@@ -103,17 +108,17 @@ mask = [[true,true,false] [false,true,false]]
 
 Note: for row vectors, both `a[2]` or `a[1,2]` returns the second element.\\
 
-2-D arrays support several methods:
+n-D arrays support several methods:
 
-* `size(a)` returns a tuple with the size of the 1 or 2 dimensions
-* `ndim(a)` returns the number of dimensions of the array (either 1 or 2)
+* `size(a)` returns a tuple with the sizes of the _n_ dimensions
+* `ndim(a)` returns the number of dimensions of the array (e.g. 2 for a Matrix)
 * Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `squeeze(a, numDimensions)` or using the transpose `'` operator.
 
 `reshape` and `squeeze` (bun not transpose) perform a shadow copy, returning just a different "view" of the underlying data.
 
 `AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractArray{T,2}`.
 
-
+Multidimensional Arrays can arice for example from using list comprehension: `a = [3x + 2y + z for x in 1:2, y in 2:3, z in 1:2]`
 
 For further operations on arrays and matrices have a look at the [QuantEcon tutorial](http://lectures.quantecon.org/jl/julia_arrays.html#operations-on-arrays).
 
@@ -205,5 +210,3 @@ Variable names have to start with a letter, as if they start by a number there i
 - - -
 
 <a name="myfootnote1">¹</a>: Technically a `String` is an array in Julia (try to append a String to an array!), but for most uses it can be thought as a scalar type.
-
-<a name="myfootnote2">²</a>: Arrays can actually have more than 2 dimensions, but are way less common: `[3x + 2y + z for x in 1:2, y in 2:3, z in 1:2]`

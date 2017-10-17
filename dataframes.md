@@ -110,6 +110,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Within an operation (e.g. a sum) you can use `dropna()` in order to skip NA values before the operation take place.
 * `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
 * To use filtering (either boolean filtering or `@where` macro in `DataFramesMeta`) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation (`==`) with NA values leads to NA values and not the expected boolean ones.
+* Count the `NA` values
 
 ## Split-Apply-Combine strategy 
 

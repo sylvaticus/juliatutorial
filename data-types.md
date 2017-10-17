@@ -32,14 +32,20 @@ Arrays are 1 or 2 dimensions mutable containers[²](#myfootnote2).
 
 There are several ways to create an array:
 
-* Empty (zero-elements) arrays: `a = []` (or `a = T[]`, e.g. `a = Int64[]`)
+* Empty (zero-elements) arrays: `a = []`. Alternative ways:
+  * `a = T[]`, e.g. `a = Int64[]`;
+  * using explictitly the contructor `a = Array{T,1}()`;
+  * using the `Vector` alias: `c = Vector{T}()`;
 * 5-elements zeros array: `a=zeros(5)` (or a=`zeros(Int64,5)`) (same with `ones()`)
 * Column vector (_Vector_ container, alias for 1-dimensions array) : `a = [1;2;3]` or `a=[1,2,3]`
-* Row vector (_Matrix_ container, alias for 2-dimensions array) : `a = [1 2 3]`
+* Row vector (_Matrix_ container, alias for 2-dimensions array, see next section "Multidimensional and nested arrays
+"): `a = [1 2 3]`
 
-Arrays can be heterogeneous (but in this case the array will be of `Any` type and much slower): `x = [10, "foo", false]`
+Arrays can be heterogeneous (but in this case the array will be of `Any` type and in general much slower): `x = [10, "foo", false]`
 
-`a = Int64[]` is just a shortland for `a = Array{Int64,1}` (but you can write `a = Any[1,1.5,2.5]` but not `a = Array{Any,1}[1,1.5,2.5]`). `a = Array{Int64}` creates instead a 0-elements N-dimensions array (see next section for multidimensinal arrays)
+`a = Int64[]` is just a shortland for `a = Array{Int64,1}()` (e.g. `a = Any[1,1.5,2.5]` is equivalent to `a = Array{Any,1}([1,1.5,2.5])`).
+Attenction that `a = Array{Int64,1}` doesn't create an Array at all, but just assign the "DataType" `Array{Int64,1}` to `a`.
+You can also declare an array of size _n_ (with garbage content) with `a=Array{T,1}(n)`.
 
 Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`. 
 You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` (note the semicolon) or `y=vcat(2015, 2025:2030, 2100)`.

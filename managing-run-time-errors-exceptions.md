@@ -11,5 +11,17 @@ catch
 end
 ```
 
+You can also check for a specific type of exception, e.g.:
 
-
+```
+function vol_(region=NA, d1=NA, dc=NA, year=NA) 
+    try
+        return t["vol",region,d1,dc,year]
+    catch  e
+        if isa(e, KeyError)
+          return NA
+        end
+        rethrow(e)
+    end
+end
+```

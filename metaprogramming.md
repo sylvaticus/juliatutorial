@@ -63,6 +63,11 @@ a = 0; b = 2;               # no matter what now happens to a, as a is evaluated
 eval(ex)                    # returns 4, not 0
 ```
 
+* To convert a string to symbol: `Symbol("mystring")`
+* To conver a Symbol to string: `String(mysymbol) or convert(String, mysymbol)`
+
+
+
 ## Macros
 The possibility to represent code into expressions is at the heart of the usage of macros.
 Macros in Julia take one or more input expressions and return a modified expressions (at parse time).

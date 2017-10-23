@@ -37,3 +37,7 @@ An alternative way to construct a `Column` is to use a serie of Arrays and the o
 dimValues = [Array{String,1}(),Array{Int,1}()]
 s = Columns(dimValues..., names=[:region,:year])
 ```
+
+## Edit values
+
+Assign/change values: `t["price","banana","FR] = 2.7, 3.2`

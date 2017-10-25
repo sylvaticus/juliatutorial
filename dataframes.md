@@ -98,7 +98,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * You can "pool" specific columns in order to efficiently store repeated categorical variabels with `pool!(df, [:A, :B])`. Attenction that while the memory decrease, filtering with pooled values is not quicked (indeed it is a bit slower)
 
 ### Merge/Join/Copy datasets
-* Concatenate different dataframes (with same structure): `df = vcat(my_df_list)`. Note that the `df_list must` be of type `DataFrames.DataFrame[]`. If it is instead of type `Any[]` you neet to run `vcat()` twice, the first tyme it will return an array of `DataFrames.DataFrame[]`, and the second time it will actually perform the concatenation.  
+* Concatenate different dataframes (with same structure): ``df = vcat(df1,df2,df3)` or `df = vcat([df1,df2,df3]...)` (note the three dots at the end).
 * Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 * Copy the structure of a DataFrame (to an empty one): `df2 = similar(df1, 0)`
 

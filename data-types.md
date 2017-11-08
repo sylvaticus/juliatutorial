@@ -73,7 +73,7 @@ The following methods are useful while working with arrays:
 ### Multidimensional and nested arrays
 In Julia, an array can have 1 dimension (a column, also known as `Vector`), 2 dimensions (that is, a `Matrix`) or more.
 Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
-The main difference between a `Matrix` and an array of array is that in the former the number of elements on each column (row) must be the same and rules of linear algebra applies.
+The main difference between a `Matrix` and an _array of array_ is that in the former the number of elements on each column (row) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
 * `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...]
@@ -85,7 +85,7 @@ Attention to this difference:
 
 An empty Matrix can be constructed in one of the following ways:
 * a = Array{T,2}()
-* a = Matrix{T}()
+* a = Matrix{T}()  # just a name alias to Array{T,2}
 
 A 2x3 matrix can be constructed in one of the following ways:
 * `a = [[1,2] [3,4] [5,6]]`

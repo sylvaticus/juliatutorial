@@ -16,18 +16,20 @@ For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesM
 
 ## Create a df or load data:
 
-* From a table \(csw: comma separated values,  wsv: white-space separated values\):
+* From a table (use `CSV.read(IOBuffer("""..."""); delim='	')` for comma separated values):
 
 ```
-supplytable = wsv"""
-prod     Epinal Bordeaux Grenoble
-Fuelwood 400    700      800
-Sawnwood 800    1600     1800
-Pannels  200    300      300
-"""
+using CSV
+supplytable = CSV.read(IOBuffer("""
+prod Epinal Bordeaux Grenoble
+Fuelwood 400 700 800
+Sawnwood 800 1600 1800
+Pannels 200 300 300
+"""))
+
 ```
 
-* Read a CSV file: `myData = readtable("mydatafile.csv", separator = ';', decimal='.')` \(Important note: at this point only `'.'` is supported as decimal\)
+* Read a CSV file: `myData = CSV.read(file; delim=';', null="\N", delim=";", decimal=','))` ~~(Important note: at this point only `'.'` is supported as decimal)~~
 * From a stream, use the package `Request`:
 
   ```

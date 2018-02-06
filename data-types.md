@@ -76,7 +76,7 @@ Then each element of the Vector or Matrix can be a scalar, a vector or an other 
 The main difference between a `Matrix` and an _array of array_ is that in the former the number of elements on each column (row) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
-* `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...]
+* `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...] (note that this is valid only if wrote in a single line. Use hcat(...) to write matrix by each column)
 * `a = [1 4; 2 5; 3 6]`    [elements of the first row; elements of the second row; ...]
 
 Attention to this difference:

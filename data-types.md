@@ -206,6 +206,7 @@ Variable names have to start with a letter, as if they start by a number there i
 ### Random numbers
 * Random float in [0,1]: `rand()`
 * Random integer in [1,n]: `Int(floor(n* rand()) + 1)`
+* Random float im [a,b] : `rand((a*100000000):(b*100000000))/100000000`
 
 - - -
 

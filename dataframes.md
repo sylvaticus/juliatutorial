@@ -28,7 +28,7 @@ Pannels 200 300 300
 """))
 ```
 
-* Read a CSV file: `myData = CSV.read(file; delim=';', null="\N", delim=";", decimal=','))` (use `CSV.read(file; delim='	')` for comma separated values)
+* Read a CSV file: `myData = CSV.read(file; delim=';', null="\N", delim=";", decimal=',')` (use `CSV.read(file; delim='	')` for comma separated values)
 * From a stream, use the package `Request`:
 
   ```
@@ -249,6 +249,12 @@ vars = Dict{String,DataFrame}()
 [vars[x] = @where(data, :varName .== x) for x in unique(dataata[:varName])]
 [delete!(vars[k], [:varName]) for k in keys(vars)]
 ```
+
+### Use hdf5 format
+sudo apt-get install hdf5-tools
+Pkg.add("HDF5")
+
+
 
 
 

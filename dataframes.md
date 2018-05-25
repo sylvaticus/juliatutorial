@@ -29,6 +29,8 @@ Pannels 200 300 300
 ```
 
 * Read a CSV file: `myData = CSV.read(file; delim=';', null="\N", delim=";", decimal=',')` (use `CSV.read(file; delim='	')` for comma separated values)
+
+  If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter (Vector or Dictionary, e.g. `type=Dict("freeDim" => Union{Missing,Int64})`)
 * From a stream, use the package `Request`:
 
   ```

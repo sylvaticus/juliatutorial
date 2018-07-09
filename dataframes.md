@@ -95,9 +95,12 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 ## Edit structure
 
 * Delete columns by name: `delete!(df, [:col1, :col2])`
+* Rename columns: `names!(df, [:c1,:c2,:c3])` \(all\) `rename!(df, Dict(:c1 => :neCol))` \(a selection\)
+* Change column order: `df = df[[:b, :a]]`
 * Add an "id" column \(useful for unstacking\): `df[:id] = 1:size(df, 1)`  \# this makes it easier to unstack
 * Add a Float64 column \(all filled with NA by default\): `df[:a] = DataArray(Float64,size(df,1))`
-* Rename columns: `names!(df, [:c1,:c2,:c3])` \(all\) `rename!(df, Dict(:c1 => :neCol))` \(a selection\)
+* Add a column based on values of other columns: `df[:c] =  df[:a]+df[:b]` (alternative: use map: `df[:c] = map((x,y) -> x + y, df[:a], df[:b])`)
+* Insert a column at a given position: (1) save the name before adding the new column `dfnames = names(df)`; (2) add the column; (3) `df = df[vcat(dfnames[1:1],:newCol,dfnames[2:end])]`
 * Convert columns:
   * from Int to Float: `df[:A] = convert(DataArrays.DataArray{Float64,1},df[:A])`
   * from Float to Int: `df[:A] = convert(DataArrays.DataArray{Int64,1},df[:A])`

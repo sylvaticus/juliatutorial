@@ -24,3 +24,5 @@ or (much better) use the package [attobot](https://github.com/attobot/attobot) t
 
 In case of problems: [http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream](http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream)
 
+* Testing a package: `Pkg.test("pkg")`
+

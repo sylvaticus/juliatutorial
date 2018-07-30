@@ -61,7 +61,7 @@ If a column if found to have all NA values, it will be treated by default as a I
 * `head(df)`
 * `showall(df)`
 * `tail(df)`
-* `describe(df)` or \(more compact/less verbose\) `showcols(df)`
+* `describe(df)`
 * `unique(df[:fieldName])` or `[unique(df[i]) for i in names(df)]`
 * `count(df[:fieldName])`
 * `names(df)` returns array of column names

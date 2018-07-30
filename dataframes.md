@@ -116,7 +116,7 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 * Copy the structure of a DataFrame \(to an empty one\): `df2 = similar(df1, 0)`
 
-## Manage NA values
+## OLD::Manage NA values
 
 * The NA value is simply `NA`
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values \(you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`\)
@@ -124,6 +124,21 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
 * To use filtering \(either boolean filtering or `@where` macro in `DataFramesMeta`\) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation \(`==`\) with NA values leads to NA values and not the expected boolean ones.
 * Count the `NA` values: `nNA = length(find(x -> isna(x), df[:col]))`
+
+## Manage Missing values (NEW)
+
+Starting from DataFrames 0.11.3, NA has been replaced with missing object (Missing type) from package Missings.jl
+In Julia >= 0.7 Missings will be in core (with some additional functionality still provided by the additional package Missings.jl).
+A DataFrame change from being a collection of DataArrays to a colelction of simple Arrays, eventually of type Union{T,Missing} if missing data is present.
+
+* The missing value is simply `missing`
+* `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values \(you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`\)
+* Within an operation \(e.g. a sum\) you can use `dropna()` in order to skip NA values before the operation take place.
+* `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
+* To use filtering \(either boolean filtering or `@where` macro in `DataFramesMeta`\) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation \(`==`\) with NA values leads to NA values and not the expected boolean ones.
+* Count the `NA` values: `nNA = length(find(x -> isna(x), df[:col]))`
+
+
 
 ## Split-Apply-Combine strategy
 

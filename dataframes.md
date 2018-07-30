@@ -132,7 +132,7 @@ In Julia >= 0.7 Missings will be in core (with some additional functionality sti
 A DataFrame change from being a collection of DataArrays to a colelction of simple Arrays, eventually of type Union{T,Missing} if missing data is present.
 
 * The missing value is simply `missing`
-* Remove missing values with: `a = collect(Missings.skip(df[:col1]))` (returns an Array) or `b = dropmissing(df[[:col1,:col2]])` (return a DataFrame even for a single column) 
+* Remove missing values with: `a = collect(Missings.skipmissings(df[:col1]))` (returns an Array) or `b = dropmissing(df[[:col1,:col2]])` (return a DataFrame even for a single column) 
 
 
 * `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values \(you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`\)

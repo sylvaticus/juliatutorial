@@ -67,11 +67,12 @@ The following methods are useful while working with arrays:
 * Getting the length: `length(a)`
 * Get the maximum value: `maximum(a)` or  `max(a...)` (`max` returns the maximum value between the given arguments)
 * Get the minimum value: `minimum(a)` or  `min(a...)` (`min` returns the maximum value between the given arguments)
-* Empty an array: `empty!(a)`
-* Random-shuffling the elements: `shuffle(a)` (or `shuffle!(a)`)
+* Empty an array: `empty!(a)` (only column vector, not row vector)
+* Transform row vectors in cloumn vectors: `b = vec(a)`
+* Random-shuffling the elements: `shuffle(a)` (or `shuffle!(a)`. From Julia 1.0 this require `using Random` before)
 * Checking if an array is empty: `isempty(a)`
-* Find the index of a value in an array: `find(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
-* Delete a given item from a list: `deleteat!(myarray, find(x -> x == myunwanteditem, myarray))`
+* Find the index of a value in an array: `findall(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position(s).
+* Delete a given item from a list: `deleteat!(myarray, findall(x -> x == myunwanteditem, myarray))`
 
 ### Multidimensional and nested arrays
 In Julia, an array can have 1 dimension (a column, also known as `Vector`), 2 dimensions (that is, a `Matrix`) or more.
@@ -79,29 +80,34 @@ Then each element of the Vector or Matrix can be a scalar, a vector or an other 
 The main difference between a `Matrix` and an _array of array_ is that in the former the number of elements on each column (row) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
-* `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...] (note that this is valid only if wrote in a single line. Use hcat(...) to write matrix by each column)
-* `a = [1 4; 2 5; 3 6]`    [elements of the first row; elements of the second row; ...]
+* `a = [[1,2,3] [4,5,6]]`  [[elements of the first column] [elements of the second column] ...] (note that this is valid only if wrote in a single line. Use `hcat(col1, col2)` to write matrix by each column)
+* `a = [1 4; 2 5; 3 6]`    [elements of the first row; elements of the second row; ...] (here you can also use `vcat(row1, row2)` to concatenate several rows)
 
 Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements (each of those is again a vector);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array (a matrix with 2 columns) with three elements (scalars).
 
-An empty Matrix can be constructed in one of the following ways:
-* a = Array{T,2}()
-* a = Matrix{T}()  # just a name alias to Array{T,2}
+As of Julia 1.0 empty matrices can be constructed as:
+
+`m = Array{T}(undef, 0, 0)`
+
+for an _(0,0)-size_ 2-D Matrix and more in general:
+
+`m = Array{T}(undef, a, b, ...,z)`
+
+for an _(a,b,...,z)-size_ multidimensional Matrix (whose content is garbage)
+
 
 A 2x3 matrix can be constructed in one of the following ways:
 * `a = [[1,2] [3,4] [5,6]]`
-* `a = Array(Int64, 2, 3)`  (content is garbage, **DEPRECATED**)
-* `a = Array{Int64}(2, 3)`  (content is garbage)
-* `a = Array{Int64,2}(2,3)` (content is garbage)
-  (note that `a = Array{Int64,2}(2,3,4)` would result in an error, as you are specifing 3 sizes for a 2-dimensional array)
-* `a = zeros(2,3)` or `a = ones(2,3)`
+* `a = zeros(2,3)` or `a = ones(2,3)` (the zeros and ones are strored as `Float64`)
 * `a = fill("abc",2,3)` (content is "abc")
 
 Nested arrays can be accessed with double square brackets, e.g. `a[2][3]`.  
 Elements of bidimensional arrays can be accessed instead with the `a[row,col]` syntax, where again the slice syntax can be used, for example, given `a` is a 3x3 Matrix, `a[1:2,:]` would return a 2x3 Matrix with all the column elements of the first and second row.
 
+** ### 16 august: Arrived till here to port the manual to Julia 1.0 ### **
+ 
 Boolean selection is implemented using a boolean array/matrix for the selection:
 ```
 a = [[1,2,3] [4,5,6]]

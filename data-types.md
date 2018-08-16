@@ -13,7 +13,7 @@ The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `Strin
 Julia supports most typical string operations, for example:
 `split(s)` _(default on whitespaces)_, `join([s1,s2], "")`, `replace(s, "toSearch" => "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
 Attention to use the single quote for chars and double quotes for strings.
-
+c
 
 ### Concatenation
 
@@ -40,24 +40,27 @@ There are several ways to create an array:
 * Row vector (_Matrix_ container, alias for 2-dimensions array, see next section "Multidimensional and nested arrays
 "): `a = [1 2 3]`
 
-Arrays can be heterogeneous (but in this case the array will be of `Any` type and in general much slower): `x = [10, "foo", false]`
+Arrays can be heterogeneous (but in this case the array will be of `Any` type and in general much slower): `x = [10, "foo", false]`.
+
+If you need to store a limited set of types in the array, you can use the `Union` keyword to still have an efficient implementation, e.g. `a = Union{Int64,String,Bool}[10, "Foo", false]`.
+
 
 `a = Int64[]` is just a shortland for `a = Array{Int64,1}()` (e.g. `a = Any[1,1.5,2.5]` is equivalent to `a = Array{Any,1}([1,1.5,2.5])`).
-Attenction that `a = Array{Int64,1}` doesn't create an Array at all, but just assign the "DataType" `Array{Int64,1}` to `a`.
-You can also declare an array of size _n_ (with garbage content) with `a=Array{T,1}(n)`.
+Attenction that `a = Array{Int64,1}` (without the round brackets) doesn't create an Array at all, but just assign the "DataType" `Array{Int64,1}` to `a`.
+You can also declare an array of size _n_ (with garbage content) with `a=Array{T,1}(undef,n)`.
 
 Square brackets are used to access the elements of an array  (e.g. `a[1]`). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a (fast) iterator rather than a list (you can use the keyword `end`, but not `begin`). To then transform the iterator in a list use `collect(myiterator)`. 
-You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` (note the semicolon) or `y=vcat(2015, 2025:2030, 2100)`.
+You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` (note the semicolon!) or `y=vcat(2015, 2025:2030, 2100)`.
 
 The following methods are useful while working with arrays:
 
 * Push an element to the end of a: `push!(a,b)` (as a single element even if it is an Array. Equivalent to python `append`)
-* To append all the elements of b to a: `append!(a,b)` (if b is a scalar obviously push! and append! are the same. Attention that a string is treated as a list!. Equivalent to Python `extend` or `+=`)
+* To append all the elements of b to a: `append!(a,b)` (if b is a scalar obviously push! and append! are the same. Attention that a string is traeated as a list!. Equivalent to Python `extend` or `+=`)
 * Concatenation of arrays (new array): `a = [1,2,3]; b = [4,5]; c = vcat(1,a,b)`
 * Remove an element from the end: `pop!(a)`
-* Removing an element at the beginning (left): `shift!(a)`
+* Removing an element at the beginning (left): `popfirst!(a)`
 * Remove an element at an arbitrary position:  `deleteat!(a, pos)`
-* Add an element (b) at the beginning (left):  `unshift!(a,b)`
+* Add an element (b) at the beginning (left):  `pushfirst!(a,b)` (no, `appendfirst!` doesn't exists!)
 * Sorting: `sort!(a)` or `sort(a)` (depending on whether we want to modify or not the original array)
 * Reversing an arry: `a[end:-1:1]`
 * Checking for existence: `in(1, a)`

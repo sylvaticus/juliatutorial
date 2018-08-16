@@ -19,7 +19,7 @@ For Integrated Development Editor, checkout either [Juno](http://junolab.org/)  
 Here you can find their detailed setup instructions:
 
 * [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md)(useful tip: block selection mode: ALT+SHIFT)
-* [IJulia](https://github.com/JuliaLang/IJulia.jl) \(in a nutshell: if you already have Jupiter installed, just run `Pkg.add("IJulia")` from the Julia console. That's all! ;-\) \)
+* [IJulia](https://github.com/JuliaLang/IJulia.jl) \(in a nutshell: if you already have Jupiter installed, just run `using Pkg; Pkg.update();Pkg.add("IJulia")` from the Julia console. That's all! ;-\) \)
 
 You can also choose, at least to start with, _not_ to install Julia at all, and try instead [JuliaBox](https://juliabox.com/), a free online IJulia notebook server that you access from your browser.
 
@@ -34,9 +34,8 @@ There are several ways to run Julia code:
 4. In Linux, you could instead add at the top of the script the location of the Julia interpreter on your system, preceded by `#!` and followed by an empty row , e.g. `#!/usr/bin/julia` \(you can find the full path of the Julia interpreter by typing `which julia` in a console\). Be sure that the file is executable \(e.g. `chmod 755 myscript.jl`\). Then you can run the script with `./myscript.jl`;
 5. Use an Integrated Development Editor \(such as \[Juno\]\(include\("test\_script.jl"\) or [Jupiter](http://jupyter.org/)\), open your Julia script and use the run command of the editor.
 
-Julia keeps many things in memory within the same work session. If this create problems in the execution of your code, you can empty the current session for all the variables using `workspace()`.
+Julia keeps many things in memory within the same work session. If this create problems in the execution of your code, you can restart Julia or use the [Revise.jl](https://github.com/timholy/Revise.jl) package for a finer control.
 
-Sometimes that is not enough, and restarting Julia is the only way to get a clean status.
 
 ## Syntax elements
 
@@ -47,8 +46,8 @@ In console mode, `;` after a command suppresses the output \(this is done automa
 Indentation doesn't matter, but empty spaces sometimes do, e.g. functions must have the curved parenthesis with the inputs strictly attached to them, e.g.:
 
 ```
-print (x)  ERROR  
-print(x)   OK
+println (x)  ERROR  
+println(x)   OK
 ```
 
 If you come from C or Python, one important thing to remember is that Julia is one-based indexing \(arrays start counting from `1` and not `0`\).
@@ -56,6 +55,8 @@ If you come from C or Python, one important thing to remember is that Julia is o
 ## Packages
 
 Many functions are provided in Julia by external packages.
+
+New in 1.0: To use Package functions starting from Julia 1.0 you need to explicitly use the `Pkg`... package (just type `using Pkg` or, if using the terminal, `]` to enter Pkg mode).
 
 To automatically download, compile and install a package, run from a Julia console \(only once\) `Pkg.add("mypackage")`.  
 But before you do that, run `Pkg.update()` to be sure that \(a\) your local index of packages and \(b\) the version of local packages is up to date.  
@@ -98,7 +99,7 @@ If you are interested in writing your own package, you can read more about packa
 Tipyng `?` in the console leads you to the Julia help system where you can search for function's API \(in non-interactive environment you can use `?search_term` instead\). If you don't remember exactly the function name, julia is kind enought to return a list of similar functions.
 
 It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
-For example, this is the documentation string of the `ods_reall` function within the `OdsIO` package:
+For example, this is the documentation string of the `ods_readall` function within the `OdsIO` package:
 
     """
         ods_readall(filename; <keyword arguments>)

@@ -11,7 +11,7 @@ The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `Strin
 ## Strings
 
 Julia supports most typical string operations, for example:
-`split(s)` _(default on whitespaces)_, `join([s1,s2], "")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
+`split(s)` _(default on whitespaces)_, `join([s1,s2], "")`, `replace(s, "toSearch" => "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
 Attention to use the single quote for chars and double quotes for strings.
 
 

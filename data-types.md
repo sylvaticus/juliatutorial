@@ -6,13 +6,12 @@ In Julia, variable names can include a subset of Unicode symbols, allowing a var
 In most Julia development environments (including the console), to type the Greek letter you can use a LaTeX-like syntax, typing `\` and then the LaTeX name for the symbol, e.g. `\alpha` for `α`.
 Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 
-The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String`[¹](#myfootnote1) (e.g. `x="abc"`) and `Bool`.
-The default, if you do not specify, is Float64 (but for DataFrames, at least columns with all NA values, seems to be Int64!)  
+The main types of scalar are `Int64`, `Float64`, `Char` (e.g. `x = 'a'`), `String`[¹](#myfootnote1) (e.g. `x="abc"`) and `Bool`. 
 
 ## Strings
 
 Julia supports most typical string operations, for example:
-`split(s)` _(default on whitespaces)_, `join([s], "")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
+`split(s)` _(default on whitespaces)_, `join([s1,s2], "")`, `replace(s, "toSearch", "toReplace")` and `strip(s)` _(remove leading and trailing whitespaces)_ 
 Attention to use the single quote for chars and double quotes for strings.
 
 

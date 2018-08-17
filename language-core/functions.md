@@ -14,15 +14,14 @@ end
 
 Arguments are normally specified by position, while arguments given after a semicolon are instead specified by name.  
 The call of the function must respect this distinction, calling positional argument by position and keyword arguments by name \(e.g., it is not possible to call positional arguments by name\).  
-The last argument\(s\) can be specified together with a default value.
+The last argument\(s\) \(whtever positional or keyword\) can be specified together with a default value.
 
-`myfunction(a,b;c=1) = (a+b)*3c`
+`myfunction(a,b=1;c=2) = (a+b)*3 # definition with 2 position arguments and one keyword argument  
+myfunction(1,c=3) # calling (1+2)*3` 
 
-All keyword arguments need a default value, but the opposite is not true \(positional arguments can also have default argument\).
+To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union:`function f(par::Union{Float64, Vector{Float64}} = Float64[]) [...] end`
 
-To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union: `function f(par::Union{Symbol, Vector{Symbol}} = Symbol[]) ... end`
-
-The ellipsis \(splat\) can be uses in order to both specify a variable number of arguments and "splicing" a list or array in the parameters of a function call:
+The ellipsis \(splat `...` \) can be uses in order to both specify a variable number of arguments and "splicing" a list or array in the parameters of a function call:
 
 ```text
 values = [1,2,3]
@@ -33,8 +32,8 @@ function average(init, args...) #The parameter that uses the ellipsis must be th
   end
   return init + s/length(args)
 end
-a = average(10,1,2,3)        # 12
-a = average(10, values ...)  # 12
+a = average(10,1,2,3)        # 12.0
+a = average(10, values ...)  # 12.0
 ```
 
 ## Return value
@@ -51,7 +50,8 @@ x,y = myfunction(1,2)
 
 The same function can be defined with different number and type of parameters \(this is useful when the same kind of logical operation must be performed on different types\).  
 When calling such functions, Julia will pick up the correct one depending from the parameters in the call \(by default the stricter version\).  
-These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time.
+These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time and very fast.  
+You can inspect the methods of a function with `methods(f)`.
 
 The multiple-dispatch polymorphism is a generalisation of object-oriented run-time polymorphism where the same function name can performs different tasks depending on which is the owner's object's class, i.e. the polymorphism is applied only to a single parameter \(it remains true however that OO languages have usually multiple-parameters polymorphism at compile-time\).
 
@@ -59,9 +59,10 @@ The multiple-dispatch polymorphism is a generalisation of object-oriented run-ti
 
 Functions can be further specified regarding on which types they works with, using templates:
 
-`myfunction{T<:Number,T2}(x::T,y::T2,z::T2) = 5x + 5y + 5z`
+`myfunction(x::T, y::T2, z::T2) where {T <: Number, T2} = 5x + 5y + 5z`
 
-The above function first defines two types, T \(a subset of Number\) and T2, and then specify each parameter of which of these two types must be.
+The above function first defines two types, T \(a subset of Number\) and T2, and then specify each parameter of which of these two types must be.  
+You can call it  with `(1,2,3)` or `(1,2.5,3.5)` as parameter, but not with `(1,2,3.5)` as the definition of `myfunction` constrains that the second and third parameter must be the same type \(whatever it is\).
 
 ## Functions as objects
 
@@ -83,17 +84,17 @@ Functions that do change their arguments have their name, BY CONVENTION, postpon
 
 ## Anonymous functions
 
-Sometimes we don't need to give a name to a function \(e.g. within the `map` function\). To define anonymour \(nameless\) functions we can use the `->` syntax, like this:
+Sometimes we don't need to give a name to a function \(e.g. within the `map` function\). To define anonymous \(nameless\) functions we can use the `->` syntax, like this:
 
 ```text
 x -> x^2 + 2x - 1
 ```
 
-This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`. Multiple arguments can be provided using touples: `(x,y,z) -> x + y + z`
+This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`. Multiple arguments can be provided using tuples: `(x,y,z) -> x + y + z`
 
 ## Broadcast
 
-You can "broadcast" a function to work over each elements of an array \(singleton\): `myArray = broadcast(i -> replace(i, "x", "y"), myArray)`. This is equivalent to \(note the dot\): `myArray = replace.(a, "x", "y")`
+You can "broadcast" a function to work over each elements of an array \(singleton\): `myArray = broadcast(i -> replace(i, "x" => "y"), myArray)`. This is equivalent to \(note the dot\): `myArray = replace.(myArray, Ref("x" => "y"))` \(`Ref()` is needed to protect the pair \(x,y\) from trying to be broadcasted itself as well\).
 
-From Julia 0.6, the `f.()` syntax is automatically available for any function, including the ones you write, while before Julia 0.6 this was available on a limited number of core functions only.
+While in the past broadcast was available on a limited number of core functions only, the `f.()` syntax is now  automatically available for any function, including the ones you define.
 

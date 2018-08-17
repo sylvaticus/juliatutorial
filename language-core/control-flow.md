@@ -16,9 +16,9 @@ Julia support list comprehension and maps:
 * `[x + 2y for x in [10,20,30], y in [1,2,3]]`
 * `mydict = Dict(); [mydict[i]=value  for (i, value) in enumerate(mylist)]` \(`enumerate` returns an iterator to tuples with the index and the value of elements in an array\)
 * `[students[name] = sex for (name,sex) in zip(names,sexes)]` \(`zip` returns an iterator of tuples pairing two or multiple lists, e.g. \[\("Marc","M"\),\("Anne","F"\)\] \)
-* `map(x-> x*2,[1,2])` \(`map` applies a function to a list of arguments\)
+* `map((n,s) -> students[n] = s, names, sexes)` \(`map` applies a function to a list of arguments\)
 
-Ternary operator is supported as `a ? b : c` \(if a is true, then b, else c\).
+Ternary operator is supported as `a ? b : c` \(if `a` is true, then `b`, else `c`\).
 
 ## Logical operators
 
@@ -28,17 +28,17 @@ Ternary operator is supported as `a ? b : c` \(if a is true, then b, else c\).
 
 Not to be confused with the bitwise operators `&` and `|`.
 
-A proposal is currently open to alias `and` and `or` with respectively `&&` and `||`, but it has not yet beeing committed.
+Currently `and` and `or` aliases to  respectively `&&` and `||`has not being imlemented.
 
 ## Do blocks
 
-Do blocks allow to define anonymous functions that are passed as first argument to the outer functions. For example, `find(x -> x == value, myarray)` expect the first argument to be a function. Everytime the first argument is a function, this can be written at posteriori with a do block:
+Do blocks allow to define anonymous functions that are passed as first argument to the outer functions. For example, `findall(x -> x == value, myarray)` expects the first argument to be a function. Every time the first argument is a function, this can be written at posteriori with a do block:
 
 ```text
-find(smallprimes) do x
-       x == 13
+findall(myarray) do x
+       x == value
 end
 ```
 
-This defines x as a variable that is passed to the inner contend of the do block. It is the task of the outer function to where to apply this anonymous function \(in this case to the smallprimes array\) and what to do with its return values \(in this case bolean values used for computing he indexes in the array\). More infos on the do blocks: [https://en.wikibooks.org/wiki/Introducing\_Julia/Controlling\_the\_flow\#Do\_block](https://en.wikibooks.org/wiki/Introducing_Julia/Controlling_the_flow#Do_block) , [http://docs.julialang.org/en/stable/manual/functions/\#do-block-syntax-for-function-arguments](http://docs.julialang.org/en/stable/manual/functions/#do-block-syntax-for-function-arguments)
+This defines `x` as a variable that is passed to the inner contend of the `do` block. It is the task of the outer function to where to apply this anonymous function \(in this case to the `myarray` array\) and what to do with its return values \(in this case boolean values used for computing the indexes in the array\). More infos on the do blocks: [https://en.wikibooks.org/wiki/Introducing\_Julia/Controlling\_the\_flow\#Do\_block](https://en.wikibooks.org/wiki/Introducing_Julia/Controlling_the_flow#Do_block) , [https://docs.julialang.org/en/stable/manual/functions/\#Do-Block-Syntax-for-Function-Arguments-1](https://docs.julialang.org/en/stable/manual/functions/#Do-Block-Syntax-for-Function-Arguments-1)
 

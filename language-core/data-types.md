@@ -205,7 +205,7 @@ To convert strings \(representing numbers\) to integers or floats use `myInt = p
 The opposite, to convert integers or floats to strings, use `myString = string(123)`.
 
 You can "broadcast" a function to work over an Array \(instead of a scalar\) using the dot \(`.`\) operator.  
-For example, to broadcast `parse` to work over an array use:`myNewList = parse.(Float64,["1.1","1.2"])`
+For example, to broadcast `parse` to work over an array use:`myNewList = parse.(Float64,["1.1","1.2"])` \(see also Broadcast in the "Functions" Section\)
 
 Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
@@ -228,6 +228,14 @@ You can import data from a file to a matrix using `readdlm()` \(in standard libr
   ```
 
 You can obtain an Array or a Matrix of random numbers simply specifying the requested size to rand\(\), e.g. `rand(2,3)`or `rand(Uniform(a,b),2,3)` for a 2x3 Matrix.
+
+### Missing, nothing and NaN
+
+Julia supports different concepts of missingness:
+
+* **`nothing`** \(type `Nothing`\): is the value returned by code blocks and functions which do not return anything. It is a single instance of the type `Nothing`, and the closer to C style NULL \(sometimes it is referred as to the "software engineer’s null"\). Most operations with `nothing` values will result in a run-type error. In some contexts it is printed as `#NULL`;
+* **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when are declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
+* **`NaN`** \(type `Float64`\):  represents when an operation result in a Not-a-Number value \(e.g. 0/0\). It is similar to `missing` in the fact that it propagates silently. Similarly, Julia also offers `Inf` \(e.g. `1/0`\) and `-Inf` \(e.g. `-1/0`\).
 
 [¹](data-types.md): Technically a `String` is an array in Julia \(try to append a String to an array!\), but for most uses it can be thought as a scalar type.
 

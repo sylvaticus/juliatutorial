@@ -209,16 +209,25 @@ For example, to broadcast `parse` to work over an array use:`myNewList = parse.(
 
 Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
-You can import data from a file to a matrix skipping rows and/or columns:
+You can import data from a file to a matrix using `readdlm()` \(in standard library package  `DelimitedFiles`\). You can skip rows and/or columns using slice operator and then converting to the desidered type, e.g.
 
-* `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t', skipstart=2)[:,4:end]);`
-* `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t', skipstart=2)[:,3:end]);`
+* `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t')[2:end,4:end]); # skip the first 1 row and the first 3 columns`
 
 ### Random numbers
 
 * Random float in \[0,1\]: `rand()`
-* Random integer in \[1,n\]: `Int(floor(n* rand()) + 1)`
-* Random float im \[a,b\] : `rand((a*100000000):(b*100000000))/100000000`
+* Random integer in \[a,b\]: `rand(a:b)`
+* Random float in \[a,b\] : `rand((a*100000000):(b*100000000))/100000000` 
+
+  This last can be executed faster and more elegantly using the `Distribution` package:
+
+  ```text
+  using Pkg; Pkg.add("Distributions")
+  import Distributions: Uniform 
+  rand(Uniform(a,b))
+  ```
+
+You can obtain an Array or a Matrix of random numbers simply specifying the requested size to rand\(\), e.g. `rand(2,3)`or `rand(Uniform(a,b),2,3)` for a 2x3 Matrix.
 
 [¹](data-types.md): Technically a `String` is an array in Julia \(try to append a String to an array!\), but for most uses it can be thought as a scalar type.
 

@@ -1,16 +1,16 @@
-# 5 - Custom types
+# 5 - Custom structures
 
-Types are, for the most \(see later for the difference\), what in other languages are called classes, or structured data: they define the kind of information that is embedded in the type, that is a set of fields \(aka properties in other languages\), and then individual instances of objects can be produced each with its own specific values for the fields defined by the type.
+Structures \(previously known in Julia as "Types"\) are, for the most \(see later for the difference\), what in other languages are called classes, or "structured data": they define the kind of information that is embedded in the structure, that is a set of fields \(aka "properties" in other languages\), and then individual instances \(or "objects"\) can be produced each with its own specific values for the fields defined by the structure.
 
 Some syntax that will be used in the examples:
 
 * `a::B` means "a must be of type B"
 * `A<:B` means "A must be a subtype of B".
 
-## Defining a type
+## Defining a structure
 
 ```text
-type MyOwnType
+mutable struct MyOwnType
   property1
   property2::String
 end
@@ -18,26 +18,26 @@ end
 
 For increasing performances in certain circumstances, you can optionally specify the type of each field, as done in the previous example for `property2.`
 
-You can use templates also in type declaration:
+You can use templates also in structure declaration:
 
 ```text
-type MyOwnType{T<:Number}
+mutable struct MyOwnType{T<:Number}
  property1
  property2::String
  property3::T
 end
 ```
 
-Use the keyword `immutable` in place of `type` when you want to enforce that once an object of that type has been created, its fields can no longer be changed. Although obviously less flexible, they are much faster.
+You can omit the `mutable` keyword in place of `struct` when you want to enforce that once an object of that type has been created, its fields can no longer be changed \(i.e. , structures are immutable by default\). Although obviously less flexible, immutable structures are much faster.
 
-You can create abstract types using the keyword `abstract` in front of `type`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them \([https://github.com/JuliaLang/julia/issues/4935](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/an%20issue/README.md) to allow abstract classes to have fields is currently open and may soon be implemented\).
+You can create abstract types using the keyword `abstract type`. Abstract types do not have any field, and objects can not be instantiated from them, although concrete types \(structures\) can be defined as subtypes of them \(an [issue](https://github.com/JuliaLang/julia/issues/4935%20) to allow abstract classes to have fields is currently open and may be implemented in the future\).
 
-Actually you can create a whole hierarchy of abstract classes:
+Actually you can create a whole hierarchy of abstract types:
 
 ```text
 abstract type MyOwnGenericAbstractType end
 abstract type MyOwnAbstractType <: MyOwnGenericAbstractType end
-type AConcreteType <: MyOwnAbstractType
+mutable struct AConcreteType <: MyOwnAbstractType
   property1
   property2::String
 end
@@ -55,17 +55,17 @@ a = myObject.property3 # 10
 Let's take the following example:
 
 ```text
-type Person
+struct Person
   myname::String
   age::Int64
 end
 
-type Shoes
+struct Shoes
    shoesType::String
    colour::String
 end
 
-type Student
+struct Student
    s::Person
    school::String
    shoes::Shoes
@@ -75,7 +75,7 @@ function printMyActivity(self::Student)
    println("I study at $(self.school) school")
 end
 
-type Employee
+struct Employee
    s::Person
    monthlyIncomes::Float64
    company::String

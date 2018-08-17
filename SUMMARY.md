@@ -9,7 +9,7 @@
 * [2 - Data types](language-core/data-types.md)
 * [3 - Control flow](language-core/control-flow.md)
 * [4 - Functions](language-core/functions.md)
-* [5 - Custom types](language-core/custom-types.md)
+* [5 - Custom structures](language-core/custom-types.md)
 * [6 - Input - Output](language-core/input-output.md)
 * [7 - Managing run-time errors \(exceptions\)](language-core/managing-run-time-errors-exceptions.md)
 * [8 - Interfacing Julia with other languages](language-core/interfacing-julia-with-other-languages.md)

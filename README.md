@@ -2,7 +2,11 @@
 
 ![](.gitbook/assets/julia_hello_world.png)
 
- **Versions from 16 August 2018 are works in progress to Julia 1.0. Use versions before for compatibilities with julia 0.6**   **This version of the tutorial \(from 19 July 2017\) is compatible with Julia 0.6**
+**Compatibilities table of this tutorial with Julia versions:** 
+
+* **Julia 1.0:** Work in progress
+* **Julia 0.6:** 19 July 2017 - 15 August 2018 versions
+* **Julia 0.5:** Versions before 19 July 2017
 
 While the primary purpose of this tutorial is to help myself in the learning path of the language, it can also be useful to reasonably seasoned programmers that want to code in Julia before reading the 533 pages of the \(outstanding\) [official documentation](https://docs.julialang.org/en/stable/).
 
@@ -18,7 +22,9 @@ Antonello Lobianco
 
 ## Latest version
 
-The latest version of this tutorial can be found online on GitBook, at [https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/](https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/). The corresponing git repo is [here](https://github.com/sylvaticus/juliatutorial).
+The latest version of this tutorial can be found online on GitBook, at [https://beta-bureau-economie.gitbook.io/julia-language-a-concise-tutorial](https://beta-bureau-economie.gitbook.io/julia-language-a-concise-tutorial) or  [https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial](https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial).
+
+The corresponding git repo is [here](https://github.com/sylvaticus/juliatutorial).
 
 ## Citations
 

@@ -27,23 +27,21 @@ Arrays are N-dimensional mutable containers. In this section, we deal with 1-dim
 
 There are several ways to create an array:
 
-* Empty \(zero-elements\) arrays: `a = []`. Alternative ways:
+* Empty \(zero-elements\) arrays: `a = []`.  Alternative ways:
   * `a = T[]`, e.g. `a = Int64[]`;
   * using explictitly the contructor `a = Array{T,1}()`;
   * using the `Vector` alias: `c = Vector{T}()`;
 * 5-elements zeros array: `a=zeros(5)` \(or a=`zeros(Int64,5)`\) \(same with `ones()`\)
 * Column vector \(_Vector_ container, alias for 1-dimensions array\) : `a = [1;2;3]` or `a=[1,2,3]`
-* Row vector \(_Matrix_ container, alias for 2-dimensions array, see next section "Multidimensional and nested arrays
-
-  "\): `a = [1 2 3]`
+* Row vector \(_Matrix_ container, alias for 2-dimensions array, see next section "Multidimensional and nested arrays"\): `a = [1 2 3]`
 
 Arrays can be heterogeneous \(but in this case the array will be of `Any` type and in general much slower\): `x = [10, "foo", false]`.
 
 If you need to store a limited set of types in the array, you can use the `Union` keyword to still have an efficient implementation, e.g. `a = Union{Int64,String,Bool}[10, "Foo", false]`.
 
-`a = Int64[]` is just a shortland for `a = Array{Int64,1}()` \(e.g. `a = Any[1,1.5,2.5]` is equivalent to `a = Array{Any,1}([1,1.5,2.5])`\). Attenction that `a = Array{Int64,1}` \(without the round brackets\) doesn't create an Array at all, but just assign the "DataType" `Array{Int64,1}` to `a`. You can also declare an array of size _n_ \(with garbage content\) with `a=Array{T,1}(undef,n)`.
+`a = Int64[]` is just a shorthand for `a = Array{Int64,1}()` \(e.g. `a = Any[1,1.5,2.5]` is equivalent to `a = Array{Any,1}([1,1.5,2.5])`\). Attention that `a = Array{Int64,1}` \(without the round brackets\) doesn't create an Array at all, but just assign the "DataType" `Array{Int64,1}` to `a`. You can also declare an array of size _n_ \(with garbage content\) with `a=Array{T,1}(undef,n)`.
 
-Square brackets are used to access the elements of an array \(e.g. `a[1]`\). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a \(fast\) iterator rather than a list \(you can use the keyword `end`, but not `begin`\). To then transform the iterator in a list use `collect(myiterator)`. You can initialisate an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` \(note the semicolon!\) or `y=vcat(2015, 2025:2030, 2100)`.
+Square brackets are used to access the elements of an array \(e.g. `a[1]`\). The slice syntax `[from:step:to]` is generally supported and in several contexts will return a \(fast\) iterator rather than a list \(you can use the keyword `end`, but not `begin`\). To then transform the iterator in a list use `collect(myiterator)`. You can initialise an array with a mix of values and ranges with either `y=[2015; 2025:2030; 2100]` \(note the semicolon!\) or `y=vcat(2015, 2025:2030, 2100)`.
 
 The following methods are useful while working with arrays:
 
@@ -61,7 +59,7 @@ The following methods are useful while working with arrays:
 * Get the maximum value: `maximum(a)` or  `max(a...)` \(`max` returns the maximum value between the given arguments\)
 * Get the minimum value: `minimum(a)` or  `min(a...)` \(`min` returns the maximum value between the given arguments\)
 * Empty an array: `empty!(a)` \(only column vector, not row vector\)
-* Transform row vectors in cloumn vectors: `b = vec(a)`
+* Transform row vectors in column vectors: `b = vec(a)`
 * Random-shuffling the elements: `shuffle(a)` \(or `shuffle!(a)`. From Julia 1.0 this require `using Random` before\)
 * Checking if an array is empty: `isempty(a)`
 * Find the index of a value in an array: `findall(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position\(s\).
@@ -82,15 +80,15 @@ Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements \(each of those is again a vector\);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array \(a matrix with 2 columns\) with three elements \(scalars\).
 
-As of Julia 1.0 empty matrices can be constructed as:
+Empty matrices can be constructed as:
 
-`m = Array{T}(undef, 0, 0)`
+`m = Array{Float64}(undef, 0, 0)`
 
-for an _\(0,0\)-size_ 2-D Matrix and more in general:
+for an _\(0,0\)-size_ 2-D Matrix of type `Float64` and more in general:
 
 `m = Array{T}(undef, a, b, ...,z)`
 
-for an _\(a,b,...,z\)-size_ multidimensional Matrix \(whose content is garbage\)
+for an _\(a,b,...,z\)-size_ multidimensional Matrix \(whose content, of type `T,`is garbage\)
 
 A 2x3 matrix can be constructed in one of the following ways:
 
@@ -116,9 +114,7 @@ n-D arrays support several methods:
 
 * `size(a)` returns a tuple with the sizes of the _n_ dimensions
 * `ndims(a)` returns the number of dimensions of the array \(e.g. 2 for a Matrix\)
-* Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `dropdims(a, dims=(dimToDrop1,dimToDrop2))` \(where the dim\(s\) to drop must all have a single element for all the other dimensions, e.r. be of `size`1\)  the transpose `'` operator.
-
-`reshape` and `squeeze` \(bun not transpose\) perform a shadow copy, returning just a different "view" of the underlying data.
+* Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `dropdims(a, dims=(dimToDrop1,dimToDrop2))` \(where the dim\(s\) to drop must all have a single element for all the other dimensions, e.r. be of `size`1\)  the transpose `'` operator. These operations perform a shadow copy, returning just a different "view" of the underlying data \(so modifying the original matrix modifies also the reshaped/transposed matrix\). You can use `collect(reshape/dropdims/transpose)` to force a deepcopy.
 
 `AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractArray{T,2}`.
 
@@ -135,7 +131,7 @@ Tuples can be easily unpacked to multiple variable: `var1, var2 = (x,y)` \(this 
 Useful tricks:
 
 * Convert a tuple in a vector: `a=(1,2,3); v = [a...]` or `v = [i[1] for i in a]`
-* Convert an array in tuple: `a = (v...)`
+* Convert an array in tuple: `a = (v...,)`
 
 ## Dictionaries
 
@@ -146,10 +142,10 @@ You can create an empty \(zero-elements\) dictionary with `mydict = Dict()`, or 
 There are some useful methods to work with dictionaries:
 
 * Add pairs to the dictionary: `mydict[akey] = avalue`
-* Add pairs using maps: `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
+* Add pairs using maps \(i.e. from vector of keys and verctor of values to dictionary\): `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
 * Look up values: `mydict['a']` \(it raises an error if looked-up value doesn't exist\)
 * Look up value with a default value for non-existing key: `get(mydict,'a',0)`
-* Get all keys: `keys(mydict)` \(the result is an iterator, not a list\)
+* Get all keys: `keys(mydict)` \(the result is an iterator, not an Array. Use `collect()` to transform it.\)
 * Get all values: `values(mydict)` \(result is again an iterator\)
 * Check if a key exists: `haskey(mydict, 'a')`
 * Check if a given key/value pair exists \(that it, if the key exists and has that specific value\): `in(('a' => 1), mydict)`
@@ -178,7 +174,7 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 **Equal sign \(a=b\)**
 
-* simple types are deep copied
+* "simple" types \(e.g. `Float64, Int64,` but also `String`\) are deep copied
 * containers of simple types \(or other containers\) are shadow copied \(their internal is only referenced, not copied\)
 
 **copy\(x\)**
@@ -191,23 +187,27 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 * everything is deep copied recursively
 
-You can check if two objects have the same value with `==` and if two objects are actually the same with `===` \(in the sense that immutable objects are checked at the bit level and mutable objects are checked for their memory address\): given `a = [1, 2]; b = [1, 2];`, `a == b` and `a === a` are true, but `a === b` is false.
+You can check if two objects have the same value with `==` and if two objects are actually the same with `===` \(in the sense that immutable objects are checked at the bit level and mutable objects are checked for their memory address\):
+
+* given `a = [1, 2]; b = [1, 2];`, `a == b` and `a === a` are true, but `a === b` is false;
+* given `a = (1, 2); b = (1, 2);`,  all `a == b, a === a` and`a === b`are true.
 
 ## Various notes on Data types
 
-While boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, `if 0 [...] end` brings an error.
+While boolean values `true` and `false` are evaluated to `1` and `0` respectively, the opposite is not true. So, `if 0 [...] end` brings a _non-boolean \(Int64\) used in boolean context_ `TypeError`.
 
-Attention to the keyword `const`. When applied to a variable \(e.g. `const x::Int64`\) doesn't mean that the variable can't change value \(as in C\), but simply that it can not change type.
+Attention to the keyword `const`. When applied to a variable \(e.g. `const x = 5`\) doesn't mean that the variable can't change value \(as in C\), but simply that it can not change type. Only global variables can be declared constant.
 
-To convert \("cast"\) between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen \(`InexactError()` in this case\).
+To convert \("cast"\) between types, use `convertedObj = convert(T,x)`. Still, when conversion is not possible, e.g. trying to convert a 6.4 Float64 in a Int64 value, an error, will be risen \(`InexactError` in this case\).
 
 To convert strings \(representing numbers\) to integers or floats use `myInt = parse(Int,"2017")`.
 
 The opposite, to convert integers or floats to strings, use `myString = string(123)`.
 
-You can broadcast `parse` to work over an array \(or a df column\) using `myNewList = parse.([Float64],["1.1","1.2"])` \(from Julia version 0.6 the brackets arount `Float64` are no longer necessary\).
+You can "broadcast" a function to work over an Array \(instead of a scalar\) using the dot \(`.`\) operator.  
+For example, to broadcast `parse` to work over an array use:`myNewList = parse.(Float64,["1.1","1.2"])`
 
-Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversly, `ax6` would be a variable named `ax6` and not `ax * 6`.
+Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
 You can import data from a file to a matrix skipping rows and/or columns:
 

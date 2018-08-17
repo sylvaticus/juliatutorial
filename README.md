@@ -22,7 +22,7 @@ Antonello Lobianco
 
 ## Latest version
 
-The latest version of this tutorial can be found online on GitBook, at [https://beta-bureau-economie.gitbook.io/julia-language-a-concise-tutorial](https://beta-bureau-economie.gitbook.io/julia-language-a-concise-tutorial) or  [https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial](https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial).
+The latest version of this tutorial can be found online on GitBook, at [https://syl1.gitbook.io/julia-language-a-concise-tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial) or  [https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial](https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial).
 
 The corresponding git repo is [here](https://github.com/sylvaticus/juliatutorial).
 

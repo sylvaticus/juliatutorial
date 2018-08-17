@@ -1,12 +1,12 @@
-# [IndexedTables](https://github.com/JuliaComputing/IndexedTables.jl)
+# 17 - IndexedTables
 
 IndexedTables are DataFrame-like data structure that, working with touples dictionaries, are in my experience much faster to perform select operations.
 
 ## Create an IndexedTable
 
-The constructor for IndexedTable takes two parts, a Column for the index (dimensions) part and one for the value part. Both can be named or not:
+The constructor for IndexedTable takes two parts, a Column for the index \(dimensions\) part and one for the value part. Both can be named or not:
 
-```
+```text
  tnamed = Table(
     Columns(
         param  = String["price","price","price","price","waterContent","waterContent"],
@@ -38,17 +38,19 @@ tsingle = Table(
         Union{String,DataArrays.NAtype}["FR","UK","FR","UK",NA,NA]
     ),
     Float64[2.8,2.7,1.1,0.8,0.2,0.7]
-) 
-
+)
 ```
 
 An alternative way to construct a `Column` is to use a serie of Arrays and the optional `names` paramenter:
-```
+
+```text
 dimValues = [Array{String,1}(),Array{Int,1}()]
 s = Columns(dimValues..., names=[:region,:year])
 ```
-Note that using `Columns()` will always build a tuple, even for a single column. If you want a single column (unnamed!) use directly the `Array` in the constructor, like in the tsingle example. 
+
+Note that using `Columns()` will always build a tuple, even for a single column. If you want a single column \(unnamed!\) use directly the `Array` in the constructor, like in the tsingle example.
 
 ## Edit values
 
 Assign/change values: `t["price","banana","FR] = 2.7, 3.2`
+

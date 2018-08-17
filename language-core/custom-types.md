@@ -1,6 +1,6 @@
-# Types
+# 5 - Custom types
 
-Types are, for the most (see later for the difference), what in other languages are called classes, or structured data: they define the kind of information that is embedded in the type, that is a set of fields (aka properties in other languages), and then individual instances of objects can be produced each with its own specific values for the fields defined by the type.
+Types are, for the most \(see later for the difference\), what in other languages are called classes, or structured data: they define the kind of information that is embedded in the type, that is a set of fields \(aka properties in other languages\), and then individual instances of objects can be produced each with its own specific values for the fields defined by the type.
 
 Some syntax that will be used in the examples:
 
@@ -9,7 +9,7 @@ Some syntax that will be used in the examples:
 
 ## Defining a type
 
-```
+```text
 type MyOwnType
   property1
   property2::String
@@ -20,7 +20,7 @@ For increasing performances in certain circumstances, you can optionally specify
 
 You can use templates also in type declaration:
 
-```
+```text
 type MyOwnType{T<:Number}
  property1
  property2::String
@@ -30,11 +30,11 @@ end
 
 Use the keyword `immutable` in place of `type` when you want to enforce that once an object of that type has been created, its fields can no longer be changed. Although obviously less flexible, they are much faster.
 
-You can create abstract types using the keyword `abstract` in front of `type`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them ([https://github.com/JuliaLang/julia/issues/4935](an issue) to allow abstract classes to have fields is currently open and may soon be implemented).
+You can create abstract types using the keyword `abstract` in front of `type`. Abstract classes do not have any field, and objects can not be instantiated from them, although concrete types can be defined as subtypes of them \([https://github.com/JuliaLang/julia/issues/4935](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/an%20issue/README.md) to allow abstract classes to have fields is currently open and may soon be implemented\).
 
 Actually you can create a whole hierarchy of abstract classes:
 
-```
+```text
 abstract type MyOwnGenericAbstractType end
 abstract type MyOwnAbstractType <: MyOwnGenericAbstractType end
 type AConcreteType <: MyOwnAbstractType
@@ -45,7 +45,7 @@ end
 
 ## Initialising an object and accessing its fields
 
-```
+```text
 myObject = MyOwnType("something","something",10)
 a = myObject.property3 # 10
 ```
@@ -53,7 +53,8 @@ a = myObject.property3 # 10
 ## Implementation of the OO paradigm in Julia
 
 Let's take the following example:
-```
+
+```text
 type Person
   myname::String
   age::Int64
@@ -97,20 +98,17 @@ printMyActivity(MrBrown)
 
 There are three big elements that distinguish Julia implementation from a pure Object-Oriented paradigm:
 
-1. Firstly, in Julia **you do not associate functions to a type**. So, you do not call a function over a method (`myobj.func(x,y)`) but rather you pass the object as a parameter (`func(myobj, x, y)`);
-2. In order to extend the behaviour of any object, Julia doesn't use _inheritance_ (**only abstract classes can be inherited**) but rather _composition_ (a field of the subtype is of the higher type, allowing access to its fields). I personally believe that this is a bit a limit in the expressiveness of the language, as the code can not consider directly different concepts of relations between objects (e.g. Person->Student _specialisation_, Person->Arm _composition_, Person->Shoes _weak relation_ );
-3. **Multiple-inheritance is not supported** (yet).
+1. Firstly, in Julia **you do not associate functions to a type**. So, you do not call a function over a method \(`myobj.func(x,y)`\) but rather you pass the object as a parameter \(`func(myobj, x, y)`\);
+2. In order to extend the behaviour of any object, Julia doesn't use _inheritance_ \(**only abstract classes can be inherited**\) but rather _composition_ \(a field of the subtype is of the higher type, allowing access to its fields\). I personally believe that this is a bit a limit in the expressiveness of the language, as the code can not consider directly different concepts of relations between objects \(e.g. Person-&gt;Student _specialisation_, Person-&gt;Arm _composition_, Person-&gt;Shoes _weak relation_ \);
+3. **Multiple-inheritance is not supported** \(yet\).
 
 ## More on types
 
-To know the parent types of a type:  `supertype(MyType)`
+To know the parent types of a type: `supertype(MyType)`
 
-To know all children of a type:  `subtype(MyType)`
+To know all children of a type: `subtype(MyType)`
 
 This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
-![](/imgs/type_hierarchy_for_julia_numbers.png)
-
-
-
+![](../.gitbook/assets/type_hierarchy_for_julia_numbers.png)
 

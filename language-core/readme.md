@@ -1,6 +1,6 @@
 # Introduction
 
-![](.gitbook/assets/julia_hello_world.png)
+![](../.gitbook/assets/julia_hello_world.png)
 
  **Versions from 16 August 2018 are works in progress to Julia 1.0. Use versions before for compatibilities with julia 0.6**   **This version of the tutorial \(from 19 July 2017\) is compatible with Julia 0.6**
 

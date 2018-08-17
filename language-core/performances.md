@@ -1,4 +1,4 @@
-# Performances \(parallelisation, debugging, profiling..\)
+# 10 - Performances \(parallelisation, debugging, profiling..\)
 
 Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type it runs with the same order of magnitude of C.
 
@@ -8,7 +8,7 @@ This mean you can code quite quickly and then, only on the parts that constitute
 
 Take this function \(from the [Performance tips](https://docs.julialang.org/en/stable/manual/performance-tips/) of the Julia documentation\).
 
-```
+```text
 function f(n)
    s = 0
    for i = 1:n
@@ -25,7 +25,7 @@ In this case, if `n` is &lt;=0, the result is an `Int64` \(test it with `typeof(
 
 The simplest way to make type-safe the function is to declare `s` as `0.0` so to force the result to be always a `Float64`:
 
-```
+```text
 function f2(n)
    s = 0.0
    for i = 1:n
@@ -37,7 +37,7 @@ end
 
 The improvements are huge:
 
-```
+```text
     @time f(1000000000) 38.316970 seconds (3.00 G allocations: 44.704 GB, 32.15% gc time)
     @time f2(1000000000) 0.869386 seconds (5 allocations: 176 bytes)
 ```
@@ -48,7 +48,7 @@ For comparison, the same function can be written in C++, Python and Julia,
 
 ### g++
 
-```
+```text
 #include <iostream>
 #include <chrono>
 
@@ -72,7 +72,7 @@ Optimised \(compiled with the -O3 switch\) : 0.83 seconds
 
 ### Python
 
-```
+```text
 from numba import jit
 import time
 
@@ -96,7 +96,7 @@ Optimised \(using the just in time compilation\):0.88 seconds
 
 ### R
 
-```
+```text
 f <- function(n){
   # Start the clock!
   ptm <- proc.time()
@@ -124,7 +124,7 @@ Threads instead \(that are limited to the same CPU but differently than processe
 
 The following notebook shows how to use several functions to facilitate code parallelism:
 
-[http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel computing.ipynb](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel computing.ipynb)
+[http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel computing.ipynb](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb)
 
 ## Debugging
 
@@ -153,6 +153,4 @@ Using this sampling method, at a cost of loosing some precision, profiling can b
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`\)
 * Clear profile data: `Profile.clear()`
-
-
 

@@ -1,8 +1,8 @@
-# Managing run-time errors (exceptions)
+# 7 - Managing run-time errors \(exceptions\)
 
 Run-time errors can be handled with the try/catch block:
 
-```
+```text
 try
   # ..some dangerous code..
 catch
@@ -13,7 +13,7 @@ end
 
 You can also check for a specific type of exception, e.g.:
 
-```
+```text
 function vol_(region=NA, d1=NA, dc=NA, year=NA) 
     try
         return t["vol",region,d1,dc,year]
@@ -25,3 +25,4 @@ function vol_(region=NA, d1=NA, dc=NA, year=NA)
     end
 end
 ```
+

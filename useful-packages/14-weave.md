@@ -1,11 +1,10 @@
-# [Weave](https://github.com/mpastell/Weave.jl)
+# 15 - Weave
 
 Weave allows to produce dynamic documents where the script that produce the output is embedded directly in the document, but optionally only the output is rendered.
 
-e.g. 
+e.g.
 
-
-```
+```text
 ---
 title : Test with citations
 date : 14th March 2017
@@ -31,25 +30,29 @@ println(head(df))
 mycolours = [:green :orange]
 fruits_plot = plot(df, :year, :production, group=:fruit, linestyle = :solid, linewidth=3, label= reshape("Production of " * sort(unique(df[:fruit])),(1,:)), color=mycolours)
 plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label ="Consumption of " .* reshape(sort(unique(df[:fruit])),(1,:)), color=mycolours)
-``````
-
-#### Section 2
-The above references should have been compiled and the plot printed.
-
-### Section 2.1
-
-``````{julia;echo=false}
-a = [1,2]
-println(a)
-``````
-
-![An image](plot.png "Logo Title Text 1")
-
-![An other image](plot.pdf "Logo Title Text 2")
+```
 ```
 
-And then "compile" the document (from Julia) with: 
+### Section 2
+
+The above references should have been compiled and the plot printed.
+
+## Section 2.1
+
+```text
+a = [1,2]
+println(a)
+```
+
+![Logo Title Text 1](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/plot.png)
+
+![Logo Title Text 2](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/plot.pdf)
+
+\`\`\`
+
+And then "compile" the document \(from Julia\) with:
 
 `using Weave; weave("testRef.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 
-Note that citations require, other than pandoc, the ubuntu packages `pandoc-citeproc` and `texlive-xetex` installed (the `pandoc` deb in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) already include `pandoc-citeproc`).
+Note that citations require, other than pandoc, the ubuntu packages `pandoc-citeproc` and `texlive-xetex` installed \(the `pandoc` deb in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) already include `pandoc-citeproc`\).
+

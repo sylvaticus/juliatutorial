@@ -1,12 +1,13 @@
-# Interfacing Julia with other languages
+# 8 - Interfacing Julia with other languages
 
-Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/) and, trough packages, C++ [1](https://github.com/timholy/Cpp.jl) [2](https://github.com/JuliaInterop/CxxWrap.jl), R ([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)) and [Python](https://github.com/JuliaPy/PyCall.jl).  
+Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/) and, trough packages, C++ [1](https://github.com/timholy/Cpp.jl) [2](https://github.com/JuliaInterop/CxxWrap.jl), R \([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)\) and [Python](https://github.com/JuliaPy/PyCall.jl).  
 This allows Julia to use the huge number of libraries of these more established languages.
 
 ## C
 
 mylib.h:
-```
+
+```text
 #ifndef _MYLIB_H_
 #define _MYLIB_H_
 
@@ -15,7 +16,8 @@ extern float getTen ();
 ```
 
 mylib.c:
-```
+
+```text
 float
 iplustwo (float i){
  return i+2;
@@ -23,19 +25,22 @@ iplustwo (float i){
 ```
 
 Compiled with:
- - `gcc -o mylib.o -c mylib.c`
- - `gcc -shared -o libmylib.so mylib.o -lm -fPIC`
+
+* `gcc -o mylib.o -c mylib.c`
+* `gcc -shared -o libmylib.so mylib.o -lm -fPIC`
 
 Use in julia with:
-```
+
+```text
 i = 2
 j = ccall((:iplustwo, "[MY FULL PATH]/libmylib.so"), Float32, (Float32,), i)
 ```
 
 ## Python
-We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this have to be already be available in the local installation of python): 
 
-```
+We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module \(of course this have to be already be available in the local installation of python\):
+
+```text
 using PyCall
 using DataFrames
 
@@ -72,12 +77,10 @@ end
 df = DataFrame(df_dict)
 ```
 
-The first thing, is to declare we are using PyCall and to `@pyimport` the python module we want to work with.
-We can then directly call its functions with the usual Python syntax `module.function()`.
+The first thing, is to declare we are using PyCall and to `@pyimport` the python module we want to work with. We can then directly call its functions with the usual Python syntax `module.function()`.
 
 Type conversions are automatically performed for numeric, boolean, string, IO stream, date/period, and function types, along with tuples, arrays/lists, and dictionaries of these types.
 
 Other types are instead converted to the generic PyObject type, as it is the case for the `doc` object returned by the module function.  
 You can then access its attributes and methods with `myPyObject[:attibute]` and `myPyObject[:method]()` respectively.
-
 

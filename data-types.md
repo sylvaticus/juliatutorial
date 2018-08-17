@@ -106,7 +106,6 @@ A 2x3 matrix can be constructed in one of the following ways:
 Nested arrays can be accessed with double square brackets, e.g. `a[2][3]`.  
 Elements of bidimensional arrays can be accessed instead with the `a[row,col]` syntax, where again the slice syntax can be used, for example, given `a` is a 3x3 Matrix, `a[1:2,:]` would return a 2x3 Matrix with all the column elements of the first and second row.
 
-** ### 16 august: Arrived till here to port the manual to Julia 1.0 ### **
  
 Boolean selection is implemented using a boolean array/matrix for the selection:
 ```

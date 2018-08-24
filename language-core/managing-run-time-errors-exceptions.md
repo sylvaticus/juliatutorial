@@ -2,7 +2,7 @@
 
 Run-time errors can be handled with the try/catch block:
 
-```text
+```julia
 try
   # ..some dangerous code..
 catch
@@ -13,13 +13,13 @@ end
 
 You can also check for a specific type of exception, e.g.:
 
-```text
-function vol_(region=NA, d1=NA, dc=NA, year=NA) 
+```julia
+function volume(region, year) 
     try
-        return t["vol",region,d1,dc,year]
+        return data["volume",region,year]
     catch  e
         if isa(e, KeyError)
-          return NA
+          return missing
         end
         rethrow(e)
     end

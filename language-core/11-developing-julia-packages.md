@@ -1,10 +1,14 @@
 # 11 - Developing Julia packages
 
-[https://docs.julialang.org/en/stable/manual/packages/\#Package-Development-1](https://docs.julialang.org/en/stable/manual/packages/#Package-Development-1)
+[https://docs.julialang.org/en/latest/stdlib/Pkg](https://docs.julialang.org/en/latest/stdlib/Pkg)
 
-* Checkout the master branch of a package: `Pkg.checkout(pkg)`
-* Checkout a specific branch: `Pkg.checkout(pkg,branch)`
-* Checkout a nonregistered pkag: `Pkg.clone("git@github.com:userName/pkgName.jl.git")`
+You can enter "Pkg mode" typing `]` on a terminal,  and then running the desired command.  
+Alternatively in a script you can run `pkg"cmd to run"` \(notice that there is no space between pkg and the command\). 
+
+* Checkout the latest release of a registered package: `add pkgName`
+* Checkout the master branch of a package: `add pkgName#master`
+* Checkout a specific branch: `add pkgName#branchName` \(and `free pkgName` to return to the released version\)
+* Checkout a non registered pkg: `add git@github.com:userName/pkgName.jl.git`
 
 Patching other people packages:
 

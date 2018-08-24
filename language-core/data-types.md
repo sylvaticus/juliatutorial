@@ -142,7 +142,7 @@ You can create an empty \(zero-elements\) dictionary with `mydict = Dict()`, or 
 There are some useful methods to work with dictionaries:
 
 * Add pairs to the dictionary: `mydict[akey] = avalue`
-* Add pairs using maps \(i.e. from vector of keys and verctor of values to dictionary\): `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
+* Add pairs using maps \(i.e. from vector of keys and vector of values to dictionary\): `map((i,j) -> mydict[i]=j, [1,2,3], [10,20,30])`
 * Look up values: `mydict['a']` \(it raises an error if looked-up value doesn't exist\)
 * Look up value with a default value for non-existing key: `get(mydict,'a',0)`
 * Get all keys: `keys(mydict)` \(the result is an iterator, not an Array. Use `collect()` to transform it.\)

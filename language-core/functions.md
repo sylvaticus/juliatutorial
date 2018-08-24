@@ -10,11 +10,13 @@ function f(x)
 end
 ```
 
+\(a third way is to create an anonymous function and assign it to a nameplace, see later\)
+
 ## Arguments
 
 Arguments are normally specified by position, while arguments given after a semicolon are instead specified by name.  
 The call of the function must respect this distinction, calling positional argument by position and keyword arguments by name \(e.g., it is not possible to call positional arguments by name\).  
-The last argument\(s\) \(whtever positional or keyword\) can be specified together with a default value.
+The last argument\(s\) \(whatever positional or keyword\) can be specified together with a default value.
 
 `myfunction(a,b=1;c=2) = (a+b)*3 # definition with 2 position arguments and one keyword argument  
 myfunction(1,c=3) # calling (1+2)*3` 
@@ -91,6 +93,8 @@ x -> x^2 + 2x - 1
 ```
 
 This defines a nameless function that takes an argument, calls it `x`, and produces `x^2 + 2x - 1`. Multiple arguments can be provided using tuples: `(x,y,z) -> x + y + z`
+
+You can still assign an anonymous function to a variable: `f = (x,y) -> x+y`
 
 ## Broadcast
 

@@ -133,6 +133,10 @@ Useful tricks:
 * Convert a tuple in a vector: `a=(1,2,3); v = [a...]` or `v = [i[1] for i in a]`
 * Convert an array in tuple: `a = (v...,)`
 
+## NamedTuples
+
+Todo \(new in Julia 1.0\)
+
 ## Dictionaries
 
 Dictionaries store mappings from keys to values, and they have an apparently random sorting.
@@ -187,7 +191,7 @@ In order to unnecessarily copying large amount of data, Julia by default copy on
 
 * everything is deep copied recursively
 
-You can check if two objects have the same value with `==` and if two objects are actually the same with `===` \(in the sense that immutable objects are checked at the bit level and mutable objects are checked for their memory address\):
+You can check if two objects have the same values with `==` and if two objects are actually the same with `===` \(in the sense that immutable objects are checked at the bit level and mutable objects are checked for their memory address\):
 
 * given `a = [1, 2]; b = [1, 2];`, `a == b` and `a === a` are true, but `a === b` is false;
 * given `a = (1, 2); b = (1, 2);`,  all `a == b, a === a` and`a === b`are true.
@@ -233,7 +237,7 @@ You can obtain an Array or a Matrix of random numbers simply specifying the requ
 
 Julia supports different concepts of missingness:
 
-* **`nothing`** \(type `Nothing`\): is the value returned by code blocks and functions which do not return anything. It is a single instance of the type `Nothing`, and the closer to C style NULL \(sometimes it is referred as to the "software engineer’s null"\). Most operations with `nothing` values will result in a run-type error. In some contexts it is printed as `#NULL`;
+* **`nothing`** \(type `Nothing`\): is the value returned by code blocks and functions which do not return anything. It is a single instance of the singleton type `Nothing`, and the closer to C style NULL \(sometimes it is referred as to the "software engineer’s null"\). Most operations with `nothing` values will result in a run-type error. In some contexts it is printed as `#NULL`;
 * **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when are declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
 * **`NaN`** \(type `Float64`\):  represents when an operation result in a Not-a-Number value \(e.g. 0/0\). It is similar to `missing` in the fact that it propagates silently. Similarly, Julia also offers `Inf` \(e.g. `1/0`\) and `-Inf` \(e.g. `-1/0`\).
 

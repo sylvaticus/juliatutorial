@@ -1,25 +1,14 @@
 # 11 - Developing Julia packages
 
-[https://docs.julialang.org/en/latest/stdlib/Pkg](https://docs.julialang.org/en/latest/stdlib/Pkg)
-
-You can enter "Pkg mode" typing `]` on a terminal,  and then running the desired command.  
-Alternatively in a script you can run `pkg"cmd to run"` \(notice that there is no space between pkg and the command\). 
-
-* Checkout the latest release of a registered package: `add pkgName`
-* Checkout the master branch of a package: `add pkgName#master`
-* Checkout a specific branch: `add pkgName#branchName` \(and `free pkgName` to return to the released version\)
-* Checkout a non registered pkg: `add git@github.com:userName/pkgName.jl.git`
-
 Patching other people packages:
 
+* pkg&gt;  `add pkgName#master`
 * \[patch & commit\]
-* using PkgDev
-* PkgDev.submit\(pkg\)
+* `using PkgDev; PkgDev.submit(pkgName)`
 
-Develp your own project and publish a new version
+Develop your own project and publish a new version
 
-* `Pkg.add(pkg)`
-* `Pkg.checkout(pkg)` to checkout master
+* pkg&gt; `add git@github.com:userName/pkgName.jl.git`to checkout master from GitHub
 * \[...work on the project..\]
 * `PkgDev.tag(pkg, v"0.X.X")`
 * `PkgDev.publish(pkg)`
@@ -29,4 +18,36 @@ or \(much better\) use the package [attobot](https://github.com/attobot/attobot)
 In case of problems: [http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream](http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream)
 
 * Testing a package: `Pkg.test("pkg")`
+
+It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
+For example, this is the documentation string of the `ods_readall` function within the `OdsIO` package:
+
+```text
+"""
+    ods_readall(filename; <keyword arguments>)
+
+Return a dictionary of tables|dictionaries|dataframes indexed by position or name in the original OpenDocument Spreadsheet (.ods) file.
+
+# Arguments
+* `sheetsNames=[]`: the list of sheet names from which to import data.
+* `sheetsPos=[]`: the list of sheet positions (starting from 1) from which to import data.
+* `ranges=[]`: a list of pair of touples defining the ranges in each sheet from which to import data, in the format ((tlr,trc),(brr,brc))
+* `innerType="Matrix"`: the type of the inner container returned. Either "Matrix", "Dict" or "DataFrame"
+
+# Notes
+* sheetsNames and sheetsPos can not be given together
+* ranges is defined using integer positions for both rows and columns
+* individual dictionaries or dataframes are keyed by the values of the cells in the first row specified in the range, or first row if `range` is not given
+* innerType="Matrix", differently from innerType="Dict", preserves original column order, it is faster and require less memory
+* using innerType="DataFrame" also preserves original column order
+
+# Examples
+``julia
+julia> outDic  = ods_readall("spreadsheet.ods";sheetsPos=[1,3],ranges=[((1,1),(3,3)),((2,2),(6,4))], innerType="Dict")
+Dict{Any,Any} with 2 entries:
+  3 => Dict{Any,Any}(Pair{Any,Any}("c",Any[33.0,43.0,53.0,63.0]),Pair{Any,Any}("b",Any[32.0,42.0,52.0,62.0]),Pair{Any,Any}("d",Any[34.0,44.0,54.…
+  1 => Dict{Any,Any}(Pair{Any,Any}("c",Any[23.0,33.0]),Pair{Any,Any}("b",Any[22.0,32.0]),Pair{Any,Any}("a",Any[21.0,31.0]))
+``
+"""
+```
 

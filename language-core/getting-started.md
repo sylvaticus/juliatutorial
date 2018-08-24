@@ -73,7 +73,7 @@ Some useful package commands:
 6. `add pkgName#branchName`Checkout a specific branch
 7. `add git@github.com:userName/pkgName.jl.git` Checkout a non registered pkg
 
-To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`. You can also include other files using `include("MyFile.jl")`: when that line is run, the included file is completely ran \(not only parsed\) and any symbol defined there becomes available in the namespace relative to where include has been called.
+To use the functions provided by a package, just include a `using mypackage` statement in the console or at the beginning of the script. If you prefer to import the package but keep the namespace clean, use `import mypackage`\(you will then need to refer to a package function as `myPkg.myFunction`\). You can also include other files using `include("MyFile.jl")`: when that line is run, the included file is completely ran \(not only parsed\) and any symbol defined there becomes available in the namespace relative to where include has been called.
 
 `Winston` or `Plots` \(plotting\) and `DataFrames` \(R-like tabular data\) are example of packages that you will pretty surely want to consider.
 
@@ -103,45 +103,9 @@ pyplot()
 plot(rand(4,4))
 ```
 
+You can read more about packages  in the [relevant section](https://docs.julialang.org/en/stable/manual/packages) of the Julia documentation, and if you are interested in writing your own package, skip to the ["Developing Julia package" section](11-developing-julia-packages.md).
 
+## Help system \(Julia and package documentation\)
 
-You can read more about packages  in the [relevant section](https://docs.julialang.org/en/stable/manual/packages) of the Julia documentation, and if you are interested in writing your own package, skip to the "Developing Julia package" section
-
-
-
-### Documentation and debugging
-
-Tipyng `?` in the console leads you to the Julia help system where you can search for function's API \(in non-interactive environment you can use `?search_term` instead\). If you don't remember exactly the function name, julia is kind enought to return a list of similar functions.
-
-It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
-For example, this is the documentation string of the `ods_readall` function within the `OdsIO` package:
-
-```text
-"""
-    ods_readall(filename; <keyword arguments>)
-
-Return a dictionary of tables|dictionaries|dataframes indexed by position or name in the original OpenDocument Spreadsheet (.ods) file.
-
-# Arguments
-* `sheetsNames=[]`: the list of sheet names from which to import data.
-* `sheetsPos=[]`: the list of sheet positions (starting from 1) from which to import data.
-* `ranges=[]`: a list of pair of touples defining the ranges in each sheet from which to import data, in the format ((tlr,trc),(brr,brc))
-* `innerType="Matrix"`: the type of the inner container returned. Either "Matrix", "Dict" or "DataFrame"
-
-# Notes
-* sheetsNames and sheetsPos can not be given together
-* ranges is defined using integer positions for both rows and columns
-* individual dictionaries or dataframes are keyed by the values of the cells in the first row specified in the range, or first row if `range` is not given
-* innerType="Matrix", differently from innerType="Dict", preserves original column order, it is faster and require less memory
-* using innerType="DataFrame" also preserves original column order
-
-# Examples
-``julia
-julia> outDic  = ods_readall("spreadsheet.ods";sheetsPos=[1,3],ranges=[((1,1),(3,3)),((2,2),(6,4))], innerType="Dict")
-Dict{Any,Any} with 2 entries:
-  3 => Dict{Any,Any}(Pair{Any,Any}("c",Any[33.0,43.0,53.0,63.0]),Pair{Any,Any}("b",Any[32.0,42.0,52.0,62.0]),Pair{Any,Any}("d",Any[34.0,44.0,54.…
-  1 => Dict{Any,Any}(Pair{Any,Any}("c",Any[23.0,33.0]),Pair{Any,Any}("b",Any[22.0,32.0]),Pair{Any,Any}("a",Any[21.0,31.0]))
-``
-"""
-```
+Typing `?` in the console leads you to the Julia help system where you can search for function's API \(in non-interactive environment you can use `?search_term` instead\). If you don't remember exactly the function name, Julia is kind enough to return a list of similar functions.
 

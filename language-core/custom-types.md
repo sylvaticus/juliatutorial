@@ -2,6 +2,8 @@
 
 Structures \(previously known in Julia as "Types"\) are, for the most \(see later for the difference\), what in other languages are called classes, or "structured data": they define the kind of information that is embedded in the structure, that is a set of fields \(aka "properties" in other languages\), and then individual instances \(or "objects"\) can be produced each with its own specific values for the fields defined by the structure.
 
+They are "composite" types, in the sense that are not made of just a fixed amound of bits as instead "primitive" types.
+
 Some syntax that will be used in the examples:
 
 * `a::B` means "a must be of type B"
@@ -9,7 +11,7 @@ Some syntax that will be used in the examples:
 
 ## Defining a structure
 
-```text
+```julia
 mutable struct MyOwnType
   property1
   property2::String
@@ -20,7 +22,7 @@ For increasing performances in certain circumstances, you can optionally specify
 
 You can use templates also in structure declaration:
 
-```text
+```julia
 mutable struct MyOwnType{T<:Number}
  property1
  property2::String
@@ -28,13 +30,13 @@ mutable struct MyOwnType{T<:Number}
 end
 ```
 
-You can omit the `mutable` keyword in place of `struct` when you want to enforce that once an object of that type has been created, its fields can no longer be changed \(i.e. , structures are immutable by default\). Although obviously less flexible, immutable structures are much faster.
+You can omit the `mutable` keyword in front of `struct` when you want to enforce that once an object of that type has been created, its fields can no longer be changed \(i.e. , structures are immutable by default. Note that mutable objects -as arrays- remain themselves mutable also in a immutable structure\). Although obviously less flexible, immutable structures are much faster.
 
 You can create abstract types using the keyword `abstract type`. Abstract types do not have any field, and objects can not be instantiated from them, although concrete types \(structures\) can be defined as subtypes of them \(an [issue](https://github.com/JuliaLang/julia/issues/4935%20) to allow abstract classes to have fields is currently open and may be implemented in the future\).
 
 Actually you can create a whole hierarchy of abstract types:
 
-```text
+```julia
 abstract type MyOwnGenericAbstractType end
 abstract type MyOwnAbstractType <: MyOwnGenericAbstractType end
 mutable struct AConcreteType <: MyOwnAbstractType
@@ -45,16 +47,18 @@ end
 
 ## Initialising an object and accessing its fields
 
-```text
+```julia
 myObject = MyOwnType("something","something",10)
 a = myObject.property3 # 10
 ```
+
+Note that you initialise the object with the values in the order that has been specified in the structure definition.
 
 ## Implementation of the OO paradigm in Julia
 
 Let's take the following example:
 
-```text
+```julia
 struct Person
   myname::String
   age::Int64
@@ -104,9 +108,13 @@ There are three big elements that distinguish Julia implementation from a pure O
 
 ## More on types
 
-To know the parent types of a type: `supertype(MyType)`
+Some useful type-related functions:
 
-To know all children of a type: `subtype(MyType)`
+1. `supertype(MyType)`Returns the parent types of a type
+2. `subtypes(MyType)` Lists all children of a type
+3. `fieldnames(MyType)` Queries all the fields of a structure
+4. `isa(obj,MyType)` Checks if `obj` is of type `MyType`
+5. `typeof(obj)` Returns the type of `obj`
 
 This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 

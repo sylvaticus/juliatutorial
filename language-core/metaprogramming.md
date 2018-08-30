@@ -35,7 +35,7 @@ An alternative of the `:([...])` operator is to use the `quote [...] end` block.
 Or also, starting from a string \(that is, the original representation of source code for Julia\):
 
 ```text
-expr = parse("1+2") # parses the string "1+2" and saves the `1+2` expression in the `expr` expression, same as expr = :(1+2)
+expr = Meta.parse("1+2") # parses the string "1+2" and saves the `1+2` expression in the `expr` expression, same as expr = :(1+2)
 eval(expr)          # here the expression is evaluated and the code returns 3
 ```
 
@@ -43,11 +43,10 @@ eval(expr)          # here the expression is evaluated and the code returns 3
 
 The expression can be also directly constructed from the tree: `expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
 
-But what there is in an expression? Using `fieldnames(expr)` or `dump(expr)` we can find that `expr` is an `Expr` object made of three fields of type `Symbol`: `:head`, `:args` and `:typ` :
+But what there is in an expression?  Using `fieldnames(typeof(expr))` or `dump(expr)` we can find that `expr` is an `Expr` object made of two fields: `:head` and `:args`:
 
 * `:head` defines the type of Expression, in this case `:call`
 * `:args` is an array of elements that can be symbols, literal values or other expressions. In this case they are `[:+, 1, 1]`
-* `typ`   specify the type of return value of the expression
 
 ## Symbols
 
@@ -65,7 +64,7 @@ eval(ex)                    # returns 4, not 0
 ```
 
 * To convert a string to symbol: `Symbol("mystring")`
-* To conver a Symbol to string: `String(mysymbol) or convert(String, mysymbol)`
+* To convert a Symbol to string: `String(mysymbol)`
 
 ## Macros
 
@@ -99,4 +98,8 @@ end
 ```
 
 Attention that the macro doesn't create a new scope, and variables declared or assigned within the macro may collide with variables in the scope of where the macro is actually called.
+
+You can review the content of this section in the following notebook:
+
+{% embed data="{\"url\":\"http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Metaprogramming.ipynb\",\"type\":\"link\",\"title\":\"Notebook on nbviewer\",\"description\":\"Check out this Jupyter notebook!\",\"icon\":{\"type\":\"icon\",\"url\":\"http://nbviewer.jupyter.org/static/ico/apple-touch-icon-144-precomposed.png?v=5a3c9ede93e2a8b8ea9e3f8f3da1a905\",\"width\":144,\"height\":144,\"aspectRatio\":1},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"http://ipython.org/ipython-doc/dev/\_images/ipynb\_icon\_128x128.png\",\"width\":128,\"height\":128,\"aspectRatio\":1}}" %}
 

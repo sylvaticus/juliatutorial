@@ -1,6 +1,6 @@
 # 8 - Interfacing Julia with other languages
 
-Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/) and, trough packages, C++ [1](https://github.com/timholy/Cpp.jl) [2](https://github.com/JuliaInterop/CxxWrap.jl), R \([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)\) and [Python](https://github.com/JuliaPy/PyCall.jl).  
+Julia can natively call [C and Fortran libraries](http://docs.julialang.org/en/stable/manual/calling-c-and-fortran-code/) and, trough packages, [C++](https://github.com/JuliaInterop/CxxWrap.jl), R \([1](https://github.com/JuliaInterop/RCall.jl),[2](https://github.com/lgautier/Rif.jl)\) and [Python](https://github.com/JuliaPy/PyCall.jl).  
 This allows Julia to use the huge number of libraries of these more established languages.
 
 ## C
@@ -31,7 +31,7 @@ Compiled with:
 
 Use in julia with:
 
-```text
+```julia
 i = 2
 j = ccall((:iplustwo, "[MY FULL PATH]/libmylib.so"), Float32, (Float32,), i)
 ```
@@ -40,7 +40,7 @@ j = ccall((:iplustwo, "[MY FULL PATH]/libmylib.so"), Float32, (Float32,), i)
 
 We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module \(of course this have to be already be available in the local installation of python\):
 
-```text
+```julia
 using PyCall
 using DataFrames
 
@@ -54,7 +54,7 @@ for sheet in doc[:sheets]
     println("Size of Sheet : (rows=$(sheet[:nrows]()), cols=$(sheet[:ncols]()))")
 end
 
-# convert the first sheet to a pandas.DataFrame
+# convert the first sheet to a DataFrame
 sheet = doc[:sheets][1]
 df_dict = Dict()
 col_index = Dict()

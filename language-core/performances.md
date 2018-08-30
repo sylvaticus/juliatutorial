@@ -1,10 +1,12 @@
 # 10 - Performances \(parallelisation, debugging, profiling..\)
 
-Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type it runs with the same order of magnitude of C.
+Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type \(or a Union of a few types\)  it runs with the same order of magnitude of C.
 
 This mean you can code quite quickly and then, only on the parts that constitute a bottleneck, you can concentrate and add specific typing.
 
 ## Type safety
+
+**NOTE: This function in Julia 1.0 works very fast in both the two versions presented here \(with `s=0` or `s=0.0`. I leave this discussion to highlight the improvements made in the compiler subset in Julia 1.0, that allow to optimise also type unsafe functions when the set of possible types is limited, like in this case.**
 
 Take this function \(from the [Performance tips](https://docs.julialang.org/en/stable/manual/performance-tips/) of the Julia documentation\).
 
@@ -119,12 +121,12 @@ Of course the result is just n\*\(n+1\)/4, so the best programming language is t
 
 ## Code parallelisation
 
-Julia provides core funcionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.  
-Threads instead \(that are limited to the same CPU but differently than processes share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
+Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.  
+Threads instead \(that are limited to the same CPU but, contrary to processes, share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
 
 The following notebook shows how to use several functions to facilitate code parallelism:
 
-[http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel computing.ipynb](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb)
+{% embed data="{\"url\":\"http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb\",\"type\":\"link\",\"title\":\"Notebook on nbviewer\",\"description\":\"Check out this Jupyter notebook!\",\"icon\":{\"type\":\"icon\",\"url\":\"http://nbviewer.jupyter.org/static/ico/apple-touch-icon-144-precomposed.png?v=5a3c9ede93e2a8b8ea9e3f8f3da1a905\",\"width\":144,\"height\":144,\"aspectRatio\":1},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"http://ipython.org/ipython-doc/dev/\_images/ipynb\_icon\_128x128.png\",\"width\":128,\"height\":128,\"aspectRatio\":1}}" %}
 
 ## Debugging
 

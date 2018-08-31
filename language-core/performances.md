@@ -130,29 +130,30 @@ The following notebook shows how to use several functions to facilitate code par
 
 ## Debugging
 
-In Juno to activate a graphical debugger just type in the console `Juno.@step myfunc()`. A hover toolbox will appear with buttons to go next line, enter sub-function or leave the current one.
+Unfortunately the availability of debugging capabilities like graphical step-by-step in a function or setting breackpoints depends on the versions of Julia. Julia evolved quickly, so many debugging tools previously available doesn't work \(yet\) in Julia 1.0 \(a promising package is [Rebugger](https://github.com/timholy/Rebugger.jl)\).
+
+Still, this is somehow mitigated by Julia being a interactive environment, so you can still run your code piece-by-piece.
 
 Here you can find some common operations concerning introspection and debugging:
 
 * Retrieve function signatures: `methods(myfunction)`
-* Retrieve object properties: `fieldnames(myobject)`
 * Discover which specific method is used \(within the several available, as Julia supports multiple-dispatch aka polymorfism\): `@which myfunction(myargs)`
+* Discover which fields are part of an object: `fieldnames(myobj`
 * Discover which type \(loosely a "class" in OO languages\) an object instance is: `typeof(a)`
-* Discover which fields are part of an object: `fieldnames(myobj)`
 * Get more information about an object: `dump(myobj)`
 
 ## Profiling
 
-Profiling is the "art" of finding boottlenecks in the code.
+Profiling is the "art" of finding bottlenecks in the code.
 
-A simple way to time a part of the code is to simply type `@time myFunc()` or `@benchmark myFunc()` \(from package `BenchmarkTools`\)
+A simple way to time a part of the code is to simply type `@time myFunc(args)` \(but be sure you ran that function at least once, or you will measure compile time rather than run-time\) or `@benchmark myFunc(args)` \(from package `BenchmarkTools`\)
 
 For more extensive coverage, Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
 
-Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small hoverheads compared to run the code normally.
+Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to run the code normally.
 
-* Profile a function: `@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\). 
+* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\). 
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
-* Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`\)
+* Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`, not yet available to Julia 1 at time of writing\).
 * Clear profile data: `Profile.clear()`
 

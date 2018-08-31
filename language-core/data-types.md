@@ -215,13 +215,13 @@ Variable names have to start with a letter, as if they start by a number there i
 
 You can import data from a file to a matrix using `readdlm()` \(in standard library package  `DelimitedFiles`\). You can skip rows and/or columns using slice operator and then converting to the desidered type, e.g.
 
-* `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t')[2:end,4:end]); # skip the first 1 row and the first 3 columns`
+`myData = convert(Array{Float64,2},readdlm(myinputfile,'\t')[2:end,4:end]); # skip the first 1 row and the first 3 columns`
 
 ### Random numbers
 
 * Random float in \[0,1\]: `rand()`
 * Random integer in \[a,b\]: `rand(a:b)`
-* Random float in \[a,b\] : `rand((a*100000000):(b*100000000))/100000000` 
+* Random float in \[a,b\] with "precision" to the second digit : `rand(a:0.01:b)` 
 
   This last can be executed faster and more elegantly using the `Distribution` package:
 

@@ -7,14 +7,14 @@ For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesM
 
 ## Documentation:
 
-* DataFrames: [https://dataframesjl.readthedocs.io/en/latest/getting\_started.html](https://dataframesjl.readthedocs.io/en/latest/getting_started.html), [http://juliastats.github.io/DataFrames.jl/](http://juliastats.github.io/DataFrames.jl/), [https://juliastats.github.io/DataFrames.jl/stable/man/reshaping\_and\_pivoting/](https://juliastats.github.io/DataFrames.jl/stable/man/reshaping_and_pivoting/), [https://en.wikibooks.org/wiki/Introducing\_Julia/DataFrames](https://en.wikibooks.org/wiki/Introducing_Julia/DataFrames)
+* DataFrames: [http://juliadata.github.io/DataFrames.jl/stable/](http://juliadata.github.io/DataFrames.jl/stable/), [https://en.wikibooks.org/wiki/Introducing\_Julia/DataFrames](https://en.wikibooks.org/wiki/Introducing_Julia/DataFrames)
 * DataFramesMeta: [https://github.com/JuliaStats/DataFramesMeta.jl](https://github.com/JuliaStats/DataFramesMeta.jl)
 * Stats in Julia in general: [http://juliastats.github.io/](http://juliastats.github.io/)
 
 ### Install and import the library
 
 * Install the library: `Pkg.add(DataFrames)`
-* Load the library: `using DataArrays, DataFrames`
+* Load the library: `using DataFrames`
 
 ### Create a df or load data:
 
@@ -30,16 +30,16 @@ Pannels 200 300 300
 """))
 ```
 
-* Read a CSV file: `myData = CSV.read(file; delim=';', null="\N", delim=";", decimal=',')` \(use `CSV.read(file; delim=' ')` for comma separated values\)
+* Read a CSV file: `myData = CSV.read(file; delim=';', missingstring="NA", delim=";", decimal=',')` \(use `CSV.read(file; delim='\t')` for tab delimited files\)
 
-  If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter \(Vector or Dictionary, e.g. `type=Dict("freeDim" => Union{Missing,Int64})`\)
+  If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter \(Vector or Dictionary, e.g. `types=Dict("freeDim" => Union{Missing,Int64})`\)
 
-* From a stream, use the package `Request`:
+* From a stream, use the package `HTTP`:
 
   ```text
-  using DataFrames, Requests
-  resp = get("https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD")
-  df = readtable(IOBuffer(resp.data))
+  using DataFrames, HTTP, CSV 
+  resp = HTTP.request("GET", "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD")
+  df = CSV.read(IOBuffer(String(resp.body)))
   ```
 
 * Crate a df from scratch:
@@ -49,15 +49,12 @@ Pannels 200 300 300
   colour = ["green","blue","white","green","green"],
   shape  = ["circle", "triangle", "square","square","circle"],
   border = ["dotted", "line", "line", "line", "dotted"],
-  area   = [1.1, 2.3, 3.1, 4.2, 5.2])
+  area   = [1.1, 2.3, 3.1, missing, 5.2])
   ```
 
 * Create an empty df: `df = DataFrame(A = Int64[], B = Float64[])`
-
-If a column if found to have all NA values, it will be treated by default as a Int64. In this case use `convert()` if you want to store other type of values: `df[:col] = convert(DataArrays.DataArray{Float64,1}, df[:col])`
-
-* Convert from a Matrix of data and a vector of column names: `convert(DataFrame, Dict(zip(headerstrs,[mat[:,i] for i in 1:size(mat,2)])))`
-* Convert from a Matrix with headers in the first row: `convert(DataFrame,Dict(zip(mat[1,:],[mat[2:end,i] for i in 1:size(mat,2)])))`
+* Convert from a Matrix of data and a vector of column names:  `df = DataFrame([[mat[:,i]...] for i in 1:size(mat,2)], Symbol.(headerstrs))`
+* Convert from a Matrix with headers in the first row:  `df = DataFrame([[mat[2:end,i]...] for i in 1:size(mat,2)], Symbol.(mat[1,:]))`
 
 ### Get insights about your data:
 
@@ -66,36 +63,32 @@ If a column if found to have all NA values, it will be treated by default as a I
 * `tail(df)`
 * `describe(df)`
 * `unique(df[:fieldName])` or `[unique(df[i]) for i in names(df)]`
-* `count(df[:fieldName])`
 * `names(df)` returns array of column names
 * `size(df)` \(r,c\), `size(df)[1]` \(r\), `size(df)[2]` \(c\)
 * `ENV["LINES"] = 60` change the default number of lines before the content is truncated \(default 30\). Also COLUMNS. May not work with terminal.
 * `for r in eachrow(df)` iterates over each row
 
 Column names are Julia symbols. To programmatically compose a column name you need hence to use the Symbol\(String\) constructor, e.g.:  
-`df[Symbol("value_"*string(0))] = "aa"`
+`df[Symbol("value_",0)] = "aa"`
 
 ### Edit data
 
-* Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` \(the original data to replace can be in a different column or a totally different dataframe
+* Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` \(the original data to replace can be in a different column or a totally different DataFrame
 * Concatenate \(string\) values for several columns to create the value a new column: `df[:c] = df[:a] .* " " .* df[:b]`
-
-  \(in julia pre-0.6, due to a bug, use instead `df[:c] = df[:a] * " " .* df[:b]`\)
-
-* To compute the value of a column based of other columns you need to use  elementwise operations using the dot, e.g. `df[:a] = df[:b] .* df[:c]` \(note that the equal sign doesn't have the dot.. but if you have to make a comparation `==` operator wants also the dot, i.e. `.==`\)
+* To compute the value of a column based of other columns you need to use  elementwise operations using the dot,  e.g. `df[:a] = df[:b] .* df[:c]` \(note that the equal sign doesn't have the dot.. but if you have to make a comparison, the `==` operator wants also the dot, i.e. `.==`\)
 * Append a row: `push!(df, [1 2 3])`
-* Delete a given row: use `deleterows!()` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]` 
+* Delete a given row: use `deleterows!(df,rowIdx)` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]` 
 * Empty a dataframe: `df = similar(df,0)`
 
 #### Filter
 
-* Filter by value, based on a field being in a list of values: `df[indexin(df[:colour], ["blue","green"]) .> 0, :]`
-* Alternative using list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
-* Combined boolean selection: `df[(indexin(df[:colour], ["blue","green"]) .> 0) .& (df[:shape] .== "triangle"), :]` \(the dot is needed to vectorize the operation\). Note the usage of the bitwise and \(single ampersand\).
-* Filter using `@where` \(`DataFrameMeta` package\): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`. If the column name is stored in a variable, you need to wrap it using the `_I_()` function, e.g. `col = Symbol("x");  @where(df, _I_(col) .> 2)`
+* Filter by value, based on a field being in a list of values using boolean selection trough list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
+* Combined boolean selection: `df[([i in ["blue","green"] for i in df[:colour]] .> 0) .& (df[:shape] .== "triangle"), :]` \(the dot is needed to vectorize the operation. Note the usage of the bitwise and the single ampersand\).
+* Filter using `@where` \(`DataFrameMeta` package\): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`. If the column name is stored in a variable, you need to wrap it using the `cols()` function, e.g. `col = Symbol("x");  @where(df, cols(col) .> 2)`
 * Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") .& (df[:year] .== 2010) , :consumption] = 200`
 * Filter based on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
 * A benchmark note: using `@with()` or boolean selection is ~ the same, while "querying" an equivalent Dict with categorical variables as tuple keys is around ~20% faster than querying the dataframe.
+* A further \(and perhaps more elegant\) way to query a DataFrame is to use the `Query` package, but at time of writing is not currently available for Julia 1.0
 
 ### Edit structure
 
@@ -103,17 +96,16 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 * Rename columns: `names!(df, [:c1,:c2,:c3])` \(all\) `rename!(df, Dict(:c1 => :neCol))` \(a selection\)
 * Change column order: `df = df[[:b, :a]]`
 * Add an "id" column \(useful for unstacking\): `df[:id] = 1:size(df, 1)`  \# this makes it easier to unstack
-* Add a Float64 column \(all filled with NA by default\): `df[:a] = DataArray(Float64,size(df,1))`
-* Add a column based on values of other columns: `df[:c] =  df[:a]+df[:b]` \(alternative: use map: `df[:c] = map((x,y) -> x + y, df[:a], df[:b])`\)
-* Insert a column at a given position: \(1\) save the name before adding the new column `dfnames = names(df)`; \(2\) add the column; \(3\) `df = df[vcat(dfnames[1:1],:newCol,dfnames[2:end])]`
+* Add a Float64 column \(all filled with NA by default\): `df[:a] = Array{Union{Missing,Float64},1}(missing,size(df,1))`
+* Add a column based on values of other columns: `df[:c] =  df[:a]+df[:b]` \(as alternative use map: `df[:c] = map((x,y) -> x + y, df[:a], df[:b])`\)
+* Insert a column at a position i:  `insert!(df, i, [colContent], :colName)`
 * Convert columns:
-  * from Int to Float: `df[:A] = convert(DataArrays.DataArray{Float64,1},df[:A])`
-  * from Float to Int: `df[:A] = convert(DataArrays.DataArray{Int64,1},df[:A])`
+  * from Int to Float: `df[:A] = convert(Array{Float64,1},df[:A])`
+  * from Float to Int: `df[:A] = convert(Array{Int64,1},df[:A])`
   * from Int \(or Float\) to String: `df[:A] = map(string, df[:A])`
-  * from String to Float: `string_to_float(str) = try parse(Float64, str) catch return(NA) end; df[:A] = map(string_to_float, df[:A])`
-  * from DataArray{T} to Array{T\]: `a = Array(df[:a])`
-  * from Any to T \(including String, if the individual elements are already strings\): `df[:A] = convert(DataArrays.DataArray{T,1},df[:A])`
-* You can "pool" specific columns in order to efficiently store repeated categorical variabels with `pool!(df, [:A, :B])`. Attenction that while the memory decrease, filtering with pooled values is not quicked \(indeed it is a bit slower\)
+  * from String to Float: `string_to_float(str) = try parse(Float64, str) catch; return(missing) end; df[:A] = map(string_to_float, df[:A])`
+  * from Any to T \(including String, if the individual elements are already strings\): `df[:A] = convert(Array{T,1},df[:A])`
+* You can "pool" specific columns in order to efficiently store repeated categorical variables with `categorical!(df, [:A, :B])`. Attention that while the memory decrease, filtering with categorical values is not quicked \(indeed it is a bit slower\)
 
 #### Merge/Join/Copy datasets
 

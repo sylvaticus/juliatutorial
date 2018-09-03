@@ -109,30 +109,21 @@ Column names are Julia symbols. To programmatically compose a column name you ne
 
 #### Merge/Join/Copy datasets
 
-* Concatenate different dataframes \(with same structure\): ```df = vcat(df1,df2,df3)`` or `df = vcat([df1,df2,df3]...)` \(note the three dots at the end\).
-* Join dataframes orizzontally: `fullDf = join(df1, df2, on = :commonCol)`
+* Concatenate different dataframes \(with same structure\): ```df = vcat(df1,df2,df3)`` or `df = vcat([df1,df2,df3]...)` \(note the three dots at the end, i.e. the splat operator\).
+* Join dataframes horizzontally: `fullDf = join(df1, df2, on = :commonCol)`
 * Copy the structure of a DataFrame \(to an empty one\): `df2 = similar(df1, 0)`
 
-### OLD::Manage NA values
+### Manage Missing values
 
-* The NA value is simply `NA`
-* `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values \(you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`\)
-* Within an operation \(e.g. a sum\) you can use `dropna()` in order to skip NA values before the operation take place.
-* `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
-* To use filtering \(either boolean filtering or `@where` macro in `DataFramesMeta`\) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation \(`==`\) with NA values leads to NA values and not the expected boolean ones.
-* Count the `NA` values: `nNA = length(find(x -> isna(x), df[:col]))`
-
-### Manage Missing values \(NEW\)
-
-Starting from DataFrames 0.11.3, NA has been replaced with missing object \(Missing type\) from package Missings.jl In Julia &gt;= 0.7 Missings will be in core \(with some additional functionality still provided by the additional package Missings.jl\). A DataFrame change from being a collection of DataArrays to a colelction of simple Arrays, eventually of type Union{T,Missing} if missing data is present.
+Starting from Julia 1, `Missings` type is defined in core \(with some additional functionality still provided by the additional package `Missings.jl`\). At the same time,  a `DataFrame` changes from being a collection of `DataArrays` to a collection of standard `Arrays`, eventually of type `Union{T,Missing}` if missing data is present.
 
 * The missing value is simply `missing`
-* Remove missing values with: `a = collect(Missings.skipmissings(df[:col1]))` \(returns an Array\) or `b = dropmissing(df[[:col1,:col2]])` \(return a DataFrame even for a single column\) 
-* `complete_cases!(df)` or `complete_cases(df)` select only rows without NA values \(you can specify on which columns you want to apply this filter with `complete_cases!(df[[:col1,:col2]])` or `df2 = df[complete_cases(df[[:col1]]),:]`\)
-* Within an operation \(e.g. a sum\) you can use `dropmissing()` in order to skip NA values before the operation take place.
-* `[df[isna.(df[i]), i] = 0 for i in names(df)]` remove NA values on all columns
-* To use filtering \(either boolean filtering or `@where` macro in `DataFramesMeta`\) where NA values could be present or may be requested esplicitly use `isequal.(a,b)` as otherwise the confrontation \(`==`\) with NA values leads to NA values and not the expected boolean ones.
-* Count the `missing` values: `nMissings = length(find(x -> ismissing(x), df[:col]))`
+* Remove missing values with: `a = collect(skipmissing(df[:col1]))` \(returns an `Array`\) or `b = dropmissing(df[[:col1,:col2]])` \(returns a `DataFrame` even for a single column\) 
+* `dropmissing!(df)`\(in both its version with or without question mark\) and `completecases(df)` select only rows without missing values. The first returns the skimmed `DataFrame`, while the second return a boolean array, and you can also specify on which columns you want to limit the application of this filter `completecases(df[[:col1,:col2]])`. You can then get the df with`df2 = df[completecases(df[[:col1,:col2]]),:]`\)
+* Within an operation \(e.g. a sum\) you can use `dropmissing()` in order to skip `missing` values before the operation take place.
+* Remove missing values on all string and numeric columns: `[df[ismissing.(df[i]), i] = 0 for i in names(df) if Base.nonmissingtype(eltype(df[i])) <: Number]` `[df[ismissing.(df[i]), i] = "" for i in names(df) if Base.nonmissingtype(eltype(df[i])) <: String]` 
+* To make comparation \(e.g. for boolean selection or within the `@where` macro in `DataFramesMeta`\) where missing values could be present you can use `isequal.(a,b)` to NOT propagate the missing \(i.e. `isequal("green",missing)` is true\) or the confrontation operator \(`==`\)to preserve missingness \(i.e. `"green" == missing` is neither `true` nor `false` but `missing`\)
+* Count the `missing` values: `nMissings = length(findall(x -> ismissing(x), df[:col]))`
 
 ### Split-Apply-Combine strategy
 

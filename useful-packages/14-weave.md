@@ -1,58 +1,62 @@
 # 15 - Weave
 
-Weave allows to produce dynamic documents where the script that produce the output is embedded directly in the document, but optionally only the output is rendered.
+Weave allows to produce dynamic documents where the script that produce the output is embedded directly in the document, with optionally only the output rendered.
 
-e.g.
+Save the document below in a file with extension jmd \(e.g. test.jmd\)
 
 ```text
 ---
-title : Test with citations
-date : 14th March 2017
+title : Test of a document with citations
+date : 4th September 2018
 bibliography: biblio.bib
 ---
+​
 
-#### Section 1
+# Section 1 (leave two rows from document headers)
+​
+This is a strong affermation that needs a citation [see @Lecocq:2011, pp. 33-35; also @Caurla:2013b, ch. 1].
+​
+@Lobianco:2016b [p. 8] affirms something else.
 
-Test [see @Allen:2010, pp. 33-35; also @Archer:2009, ch. 1].
+## Subsection 1.1
+​
+This should be a plot. Not that I am not showing the source code in the final PDF:
 
-@Arfini:2005 [p. 33] says blah.
+```{julia;echo=false}
+using Plots
+pyplot()
+plot(sin, -2pi, pi, label="sine function")
+```
+Here instead I will put in the PDF both the script source code and the output:
 
-``````{julia;echo=false}
-using DataFrames, Plots, StatPlots
-
+```{julia;}
+using DataFrames
 df = DataFrame(
-    fruit = ["orange","orange","orange","orange","apple","apple","apple","apple"],
-    year = [2010,2011,2012,2013,2010,2011,2012,2013],
-    production = [120,150,170,160,100,130,165,158],
-    consumption = [70,90,100,95, 80,95,110,120]
-)
-println(head(df))
-mycolours = [:green :orange]
-fruits_plot = plot(df, :year, :production, group=:fruit, linestyle = :solid, linewidth=3, label= reshape("Production of " * sort(unique(df[:fruit])),(1,:)), color=mycolours)
-plot!(df, :year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label ="Consumption of " .* reshape(sort(unique(df[:fruit])),(1,:)), color=mycolours)
-```
+         colour = ["green","blue","white","green","green"],
+         shape  = ["circle", "triangle", "square","square","circle"],
+         border = ["dotted", "line", "line", "line", "dotted"],
+         area   = [1.1, 2.3, 3.1, missing, 5.2]
+    )
+df
 ```
 
-### Section 2
+Note that I can refer to variables defined in previous chunks:
 
-The above references should have been compiled and the plot printed.
-
-## Section 2.1
-
-```text
-a = [1,2]
-println(a)
+```{julia;}
+df[:colour]
 ```
 
-![Logo Title Text 1](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/plot.png)
+### Subsubsection
 
-![Logo Title Text 2](https://github.com/sylvaticus/juliatutorial/tree/84118052ce2e554b89d8b0b74eb4cf11bdab0c9c/plot.pdf)
+For a much more complete example see the [Weave documentation](http://weavejl.mpastell.com/stable/).
+```
 
-\`\`\`
+You can then "compile" the document \(from Julia\) with:
 
-And then "compile" the document \(from Julia\) with:
+`using Weave; weave("test.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 
-`using Weave; weave("testRef.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
+In Ubuntu Linux \(but likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
+The version in the Ubuntu repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .
 
-Note that citations require, other than pandoc, the ubuntu packages `pandoc-citeproc` and `texlive-xetex` installed \(the `pandoc` deb in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) already include `pandoc-citeproc`\).
+
 

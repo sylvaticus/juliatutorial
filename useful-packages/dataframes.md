@@ -27,7 +27,7 @@ prod Epinal Bordeaux Grenoble
 Fuelwood 400 700 800
 Sawnwood 800 1600 1800
 Pannels 200 300 300
-"""))
+"""),delim=" ") # an option to ignore repeated delimiters so to allow a better formatting is coming to CSV.jl
 ```
 
 * Read a CSV file: `myData = CSV.read(file; delim=';', missingstring="NA", delim=";", decimal=',')` \(use `CSV.read(file; delim='\t')` for tab delimited files\)

@@ -130,12 +130,23 @@ Tuples can be easily unpacked to multiple variable: `var1, var2 = (x,y)` \(this 
 
 Useful tricks:
 
-* Convert a tuple in a vector: `a=(1,2,3); v = [a...]` or `v = [i[1] for i in a]`
+* Convert a tuple in a vector: `a=(1,2,3); v = [a...]` or `v = [i[1] for i in a]` or `v=collect(a)`
 * Convert an array in tuple: `a = (v...,)`
 
 ## NamedTuples
 
-Todo \(new in Julia 1.0\)
+NamedTuples are collections of items whose position in the collection \(index\) can be identified not only by the position but also by  name.
+
+* Define a NamedTuple: `aNamedTuple = (a=1, b=2)`
+* Access them with the dot notation: `aNamedTuple.a` .
+* Get a tuple of the keys: `keys(aNamedTuple)`
+* Get a tuple of the values: `values(aNamedTuple)`
+* Get an Array of the values: `collect(aNamedTuple)`
+* Get a iterable of the pairs \(k,v\): `pairs(aNamedTuple)`. Useful for looping: `for (k,v) in pairs(aNamedTuple) [...] end`
+
+As "normal" tuples, NamedTuples can hold any values, but cannot be modified \(i.e. are "immutable"\).
+
+Before Julia 1.0  Named Tuples were implemented in a separate package \([NamedTuple.jl](https://github.com/JuliaData/NamedTuples.jl)\). The idea is that, like for the Missing type, the separate package provides additional functionality to the core `NamedTuple` type, but there is still a bit of confusion over it and, at time of writing, the additional package still provide its own implementation \(and many other external packages require it\), resulting in crossed incompatibilies.
 
 ## Dictionaries
 

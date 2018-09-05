@@ -43,7 +43,7 @@ eval(expr)          # here the expression is evaluated and the code returns 3
 
 The expression can be also directly constructed from the tree: `expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
 
-But what there is in an expression?  Using `fieldnames(typeof(expr))` or `dump(expr)` we can find that `expr` is an `Expr` object made of two fields: `:head` and `:args`:
+But what there is in an expression? Using `fieldnames(typeof(expr))` or `dump(expr)` we can find that `expr` is an `Expr` object made of two fields: `:head` and `:args`:
 
 * `:head` defines the type of Expression, in this case `:call`
 * `:args` is an array of elements that can be symbols, literal values or other expressions. In this case they are `[:+, 1, 1]`
@@ -100,3 +100,4 @@ end
 Attention that the macro doesn't create a new scope, and variables declared or assigned within the macro may collide with variables in the scope of where the macro is actually called.
 
 You can review the content of this section in [this notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Metaprogramming.ipynb).
+

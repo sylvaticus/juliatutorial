@@ -1,12 +1,12 @@
 # 10 - Performances \(parallelisation, debugging, profiling..\)
 
-Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type \(or a Union of a few types\)  it runs with the same order of magnitude of C.
+Julia is relatively fast when working with `Any` data, but when we restrict a variable to a specific type \(or a Union of a few types\) it runs with the same order of magnitude of C.
 
 This mean you can code quite quickly and then, only on the parts that constitute a bottleneck, you can concentrate and add specific typing.
 
 ## Type safety
 
-**NOTE: This function in Julia 1.0 works very fast in both the two versions presented here \(with `s=0` or `s=0.0`. I leave this discussion to highlight the improvements made in the compiler subset in Julia 1.0, that allow to optimise also type unsafe functions when the set of possible types is limited, like in this case.**
+**NOTE: This function in Julia 1.0 works very fast in both the two versions presented here \(with** `s=0` **or** `s=0.0`**. I leave this discussion to highlight the improvements made in the compiler subset in Julia 1.0, that allow to optimise also type unsafe functions when the set of possible types is limited, like in this case.**
 
 Take this function \(from the [Performance tips](https://docs.julialang.org/en/stable/manual/performance-tips/) of the Julia documentation\).
 
@@ -20,10 +20,7 @@ function f(n)
 end
 ```
 
-This is not optimised code, as it is not type-safe.
-A function is said to be type-safe when its return type depends only from the type of the input, not from its values.
-Type-safe functions can be optimised by the compiler.
-In this case, if `n` is &lt;=0, the result is an `Int64` \(test it with `typeof(f(0))`\), while if `n` is &gt; 0, it is a `Float64`.
+This is not optimised code, as it is not type-safe. A function is said to be type-safe when its return type depends only from the type of the input, not from its values. Type-safe functions can be optimised by the compiler. In this case, if `n` is &lt;=0, the result is an `Int64` \(test it with `typeof(f(0))`\), while if `n` is &gt; 0, it is a `Float64`.
 
 The simplest way to make type-safe the function is to declare `s` as `0.0` so to force the result to be always a `Float64`:
 
@@ -69,8 +66,7 @@ int main() {
 }
 ```
 
-Non optimised: 2.48 seconds
-Optimised \(compiled with the -O3 switch\) : 0.83 seconds
+Non optimised: 2.48 seconds Optimised \(compiled with the -O3 switch\) : 0.83 seconds
 
 ### Python
 
@@ -93,8 +89,7 @@ main()
 print("--- %s seconds ---" % (time.time() - start_time))
 ```
 
-Non optimised \(wihtout using numba and the @jit decorator\): 98 seconds
-Optimised \(using the just in time compilation\):0.88 seconds
+Non optimised \(wihtout using numba and the @jit decorator\): 98 seconds Optimised \(using the just in time compilation\):0.88 seconds
 
 ### R
 
@@ -112,8 +107,7 @@ f <- function(n){
 }
 ```
 
-Non optimised: 287 seconds
-Optimised \(vectorised\): the function returns an error \(on my 8GB laptop\), as too much memory is required to build the arrays!
+Non optimised: 287 seconds Optimised \(vectorised\): the function returns an error \(on my 8GB laptop\), as too much memory is required to build the arrays!
 
 ### Human mind
 
@@ -121,8 +115,7 @@ Of course the result is just n\*\(n+1\)/4, so the best programming language is t
 
 ## Code parallelisation
 
-Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.
-Threads instead \(that are limited to the same CPU but, contrary to processes, share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
+Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH. Threads instead \(that are limited to the same CPU but, contrary to processes, share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
 
 [This notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb) shows how to use several functions to facilitate code parallelism:
 
@@ -154,3 +147,4 @@ Using this sampling method, at a cost of loosing some precision, profiling can b
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`, not yet available to Julia 1 at time of writing\).
 * Clear profile data: `Profile.clear()`
+

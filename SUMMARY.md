@@ -4,7 +4,6 @@
 
 ## Language core
 
-* [Introduction](language-core/language-core.md)
 * [1 - Getting started](language-core/getting-started.md)
 * [2 - Data types](language-core/data-types.md)
 * [3 - Control flow](language-core/control-flow.md)
@@ -26,3 +25,4 @@
 * [15 - Weave](useful-packages/14-weave.md)
 * [16 - LAJuliaUtils](useful-packages/16-lajuliautils.md)
 * [17 - IndexedTables](useful-packages/17-indexedtables.md)
+

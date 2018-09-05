@@ -12,7 +12,7 @@ The purposes of this tutorial are \(a\) to store things I learn myself about Jul
 
 This document started as a compendium of several tutorials \(plus the official documentation\), in particular Chris Rackauckas's [A Deep Introduction to Julia](http://ucidatascienceinitiative.github.io/IntroToJulia/), the [Quantecon tutorial](http://lectures.quantecon.org/jl/learning_julia.html), the [WikiBook on Julia](https://en.wikibooks.org/wiki/Introducing_Julia) and [Learn X in Y minutes](https://learnxinyminutes.com/docs/julia/), from which I did borrow several examples.
 
-The focus is on Julia as a generic programming language rather than on domain-specific issues \(but some domain-specific topics are covered in the "Useful packages" section\). The format is in the middle between a classical tutorial and a cheatsheet: the tutorial describes the elements of the language following the typical sections of a programming language tutorial \(_data types, control flows, functions.._\), but the information is given in a pretty concise way, suitable for people that already have some knowledge in other programming languages \(e.g. what a `for` loop does is not explained, but how it is impelemented in Julia is\).
+The focus is on Julia as a generic programming language rather than on domain-specific issues \(but some domain-specific topics are covered in the "Useful packages" section\). The format is in the middle between a classical tutorial and a cheatsheet: the tutorial describes the elements of the language following the typical sections of a programming language tutorial \(_data types, control flows, functions.._\), but the information is given in a pretty concise way, suitable for people that already have some knowledge in other programming languages \(e.g. what a `for` loop does is not explained, but how it is implemented in Julia is\).
 
 English is not my primary language, so please be understanding and report me of any errors, both in the language and in the content.
 
@@ -33,9 +33,7 @@ I am considering migrating to other documentation systems, as the new GitBook is
 
 Please cite this tutorial as:
 
-```text
-A. Lobianco, (2016), “Julia language: a concise tutorial", GitBook, https://www.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial/, retrieved xx/xx/xxxx
-```
+`A. Lobianco, (2018), “Julia language: a concise tutorial", GitBook,` [`https://syl1.gitbook.io/julia-language-a-concise-tutorial`](https://syl1.gitbook.io/julia-language-a-concise-tutorial)`, retrieved xx/xx/xxxx`
 
 ## Acknowledgements
 

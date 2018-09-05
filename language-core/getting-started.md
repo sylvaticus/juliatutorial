@@ -10,15 +10,13 @@ Julia has its roots in the domain of scientific, high performances programming, 
 
 ## Installing Julia
 
-All you need to run the code in this tutorial is a working Julia interpreter console \(aka REPL - Read Eval Print Loop\).  
-In a recent version of Linux you can simply use your package manager to install `julia`.
-
-For more up-to-date version, or for Windows/Mac packages, download the binaries available on the [download section](http://julialang.org/downloads/) of the [Julia web-site](http://julialang.org).
+All you need to run the code in this tutorial is a working Julia interpreter console \(aka REPL - _Read Eval Print Loop_\).  
+In a recent version of Linux you could simply use your package manager to install `julia` but for more up-to-date version, or for Windows/Mac packages, I strongly suggest to download the binaries available on the [download section](http://julialang.org/downloads/) of the [Julia web-site](http://julialang.org).
 
 For Integrated Development Editor, checkout either [Juno](http://junolab.org/) or IJulia, the Julia [Jupiter](http://jupyter.org/) backend.  
 Here you can find their detailed setup instructions:
 
-* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md)\(useful tip: block selection mode: ALT+SHIFT\)
+* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md) \(an useful tip I always forget: the key binding for block selection mode is `ALT+SHIFT`\)
 * [IJulia](https://github.com/JuliaLang/IJulia.jl) \(in a nutshell: if you already have Jupiter installed, just run `using Pkg; Pkg.update();Pkg.add("IJulia")` from the Julia console. That's all! ;-\) \)
 
 You can also choose, at least to start with, _not_ to install Julia at all, and try instead [JuliaBox](https://juliabox.com/), a free online IJulia notebook server that you access from your browser.

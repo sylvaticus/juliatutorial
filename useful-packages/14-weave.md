@@ -51,12 +51,18 @@ df[:colour]
 For a much more complete example see the [Weave documentation](http://weavejl.mpastell.com/stable/).
 ```
 
-You can then "compile" the document \(from Julia\) with:
+You can then "compile" the document \(from within Julia\) with:
 
 `using Weave; weave("test.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 
-In Ubuntu Linux \(but likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
-The version in the Ubuntu repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .
+To obtain the following pdf: [https://github.com/sylvaticus/juliatutorial/raw/master/assets/test.pdf](https://github.com/sylvaticus/juliatutorial/raw/master/assets/test.pdf)
+
+
+
+
+
+In Ubuntu Linux \(but most likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
+If you use Ununtu, the version of pandora in the official repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .
 
 
 

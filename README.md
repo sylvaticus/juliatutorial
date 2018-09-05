@@ -4,7 +4,7 @@
 
 **Compatibilities table of this tutorial with Julia versions:** 
 
-* **Julia 1.0:** Work in progress \(main section completed! Still working on individual packages\)
+* **Julia 1.0:** From 5 September 2018
 * **Julia 0.6:** 19 July 2017 - 15 August 2018 versions
 * **Julia 0.5:** Versions before 19 July 2017
 

@@ -43,3 +43,14 @@ open("afile.txt", "r") do f
 end
 ```
 
+## Other IO
+
+Some packages that deals with IO are:
+
+* CSV: [CSV.jl](https://github.com/JuliaData/CSV.jl)
+* Web stream: [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl)
+* Spreadsheets \(OpenDocument\): [OdsIO.jl](https://github.com/sylvaticus/OdsIO.jl)
+* HDF5: [HDF5.jl](https://github.com/JuliaIO/HDF5.jl)
+
+Some basic examples that use them are available in the [DataFrame](../useful-packages/dataframes.md) section.
+

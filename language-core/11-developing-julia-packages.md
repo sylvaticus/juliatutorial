@@ -2,13 +2,13 @@
 
 Patching other people packages:
 
-* pkg&gt;  `add pkgName#master`
+* pkg&gt;  `develop pkgName`
 * \[patch & commit\]
 * `using PkgDev; PkgDev.submit(pkgName)`
 
 Develop your own project and publish a new version
 
-* pkg&gt; `add git@github.com:userName/pkgName.jl.git`to checkout master from GitHub
+* pkg&gt; `develop git@github.com:userName/pkgName.jl.git`to checkout master from GitHub
 * \[...work on the project..\]
 * `PkgDev.tag(pkg, v"0.X.X")`
 * `PkgDev.publish(pkg)`

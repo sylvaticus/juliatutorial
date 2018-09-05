@@ -2,25 +2,25 @@
 
 Weave allows to produce dynamic documents where the script that produce the output is embedded directly in the document, with optionally only the output rendered.
 
-Save the document below in a file with extension jmd \(e.g. test.jmd\)
+Save the document below in a file with extension jmd \(e.g. testWeave.jmd\)
 
 ```text
 ---
-title : Test of a document with citations
-date : 4th September 2018
+title : Test of a document with embedded Julia code and citations
+date : 5th September 2018
 bibliography: biblio.bib
 ---
 ​
 
 # Section 1 (leave two rows from document headers)
 ​
-This is a strong affermation that needs a citation [see @Lecocq:2011, pp. 33-35; also @Caurla:2013b, ch. 1].
+This is a strong affermation that needs a citation [see @Lecocq:2011, pp. 33-35; @Caurla:2013b, ch. 1].
 ​
-@Lobianco:2016b [p. 8] affirms something else.
+@Lobianco:2016b [pp. 8] affirms something else.
 
 ## Subsection 1.1
 ​
-This should be a plot. Not that I am not showing the source code in the final PDF:
+This should print a plot. Note that I am not showing the source code in the final PDF:
 
 ```{julia;echo=false}
 using Plots
@@ -40,7 +40,7 @@ df = DataFrame(
 df
 ```
 
-Note that I can refer to variables defined in previous chunks:
+Note also that I can refer to variables defined in previous chunks (or "cells", following Jupyter terminology):
 
 ```{julia;}
 df[:colour]
@@ -49,17 +49,20 @@ df[:colour]
 ### Subsubsection
 
 For a much more complete example see the [Weave documentation](http://weavejl.mpastell.com/stable/).
+
+# References
+
 ```
 
 You can then "compile" the document \(from within Julia\) with:
 
-`using Weave; weave("test.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
+`using Weave; weave("testWeave.jmd", out_path = :pwd, doctype = "pandoc2pdf")`
 
-To obtain the following pdf: [https://github.com/sylvaticus/juliatutorial/raw/master/assets/test.pdf](https://github.com/sylvaticus/juliatutorial/raw/master/assets/test.pdf)
+To obtain the [following pdf](https://github.com/sylvaticus/juliatutorial/raw/master/assets/testWeave.pdf): 
 
+!\[Page 1\] \(https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave\_p1.png "Page 1"\)
 
-
-
+!\[Page 2\] \(https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave\_p2.png "Page 2"\)
 
 In Ubuntu Linux \(but most likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
 If you use Ununtu, the version of pandora in the official repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .

@@ -4,7 +4,7 @@
 
 ## Language core
 
-* [Introduction](language-core/readme.md)
+* [Introduction](language-core/language-core.md)
 * [1 - Getting started](language-core/getting-started.md)
 * [2 - Data types](language-core/data-types.md)
 * [3 - Control flow](language-core/control-flow.md)

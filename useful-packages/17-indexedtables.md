@@ -1,6 +1,9 @@
 # 17 - IndexedTables
 
-IndexedTables are DataFrame-like data structure that, working with touples dictionaries, are in my experience much faster to perform select operations.
+IndexedTables are DataFrame-like data structure that, working with tuples dictionaries, are in my experience much faster to perform select operations.
+
+**Unfortunatly, the package is in the process to move from the Named Tuple in NamedTupèles.jl package to the new one in core, and it doesn't yet works in Julia 0.7/1.0.**  
+The following code runs in Julia 0.6.
 
 ## Create an IndexedTable
 

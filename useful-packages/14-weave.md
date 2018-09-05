@@ -4,7 +4,7 @@ Weave allows to produce dynamic documents where the script that produce the outp
 
 Save the document below in a file with extension jmd \(e.g. testWeave.jmd\)
 
-```text
+``````text
 ---
 title : Test of a document with embedded Julia code and citations
 date : 5th September 2018
@@ -52,7 +52,7 @@ For a much more complete example see the [Weave documentation](http://weavejl.mp
 
 # References
 
-```
+``````
 
 You can then "compile" the document \(from within Julia\) with:
 
@@ -60,9 +60,9 @@ You can then "compile" the document \(from within Julia\) with:
 
 To obtain the [following pdf](https://github.com/sylvaticus/juliatutorial/raw/master/assets/testWeave.pdf): 
 
-!\[Page 1\] \(https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave\_p1.png "Page 1"\)
+![Page 1](https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave_p1.png)
 
-!\[Page 2\] \(https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave\_p2.png "Page 2"\)
+![Page 2](https://github.com/sylvaticus/juliatutorial/raw/master/assets/imgs/testWave_p2.png)
 
 In Ubuntu Linux \(but most likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
 If you use Ununtu, the version of pandora in the official repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .

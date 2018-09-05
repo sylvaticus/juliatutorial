@@ -20,9 +20,9 @@ function f(n)
 end
 ```
 
-This is not optimised code, as it is not type-safe.  
-A function is said to be type-safe when its return type depends only from the type of the input, not from its values.  
-Type-safe functions can be optimised by the compiler.  
+This is not optimised code, as it is not type-safe.
+A function is said to be type-safe when its return type depends only from the type of the input, not from its values.
+Type-safe functions can be optimised by the compiler.
 In this case, if `n` is &lt;=0, the result is an `Int64` \(test it with `typeof(f(0))`\), while if `n` is &gt; 0, it is a `Float64`.
 
 The simplest way to make type-safe the function is to declare `s` as `0.0` so to force the result to be always a `Float64`:
@@ -60,7 +60,7 @@ int main() {
     int steps=1000000000;
     double s = 0;
     for (int i=1;i<(steps+1);i++){
-       s +=  (i/2.0) ; 
+       s +=  (i/2.0) ;
     }
     cout << s << endl;
     chrono::steady_clock::time_point end= chrono::steady_clock::now();
@@ -69,7 +69,7 @@ int main() {
 }
 ```
 
-Non optimised: 2.48 seconds  
+Non optimised: 2.48 seconds
 Optimised \(compiled with the -O3 switch\) : 0.83 seconds
 
 ### Python
@@ -93,7 +93,7 @@ main()
 print("--- %s seconds ---" % (time.time() - start_time))
 ```
 
-Non optimised \(wihtout using numba and the @jit decorator\): 98 seconds  
+Non optimised \(wihtout using numba and the @jit decorator\): 98 seconds
 Optimised \(using the just in time compilation\):0.88 seconds
 
 ### R
@@ -112,7 +112,7 @@ f <- function(n){
 }
 ```
 
-Non optimised: 287 seconds  
+Non optimised: 287 seconds
 Optimised \(vectorised\): the function returns an error \(on my 8GB laptop\), as too much memory is required to build the arrays!
 
 ### Human mind
@@ -121,12 +121,10 @@ Of course the result is just n\*\(n+1\)/4, so the best programming language is t
 
 ## Code parallelisation
 
-Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.  
+Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH.
 Threads instead \(that are limited to the same CPU but, contrary to processes, share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
 
-The following notebook shows how to use several functions to facilitate code parallelism:
-
-{% embed data="{\"url\":\"http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb\",\"type\":\"link\",\"title\":\"Notebook on nbviewer\",\"description\":\"Check out this Jupyter notebook!\",\"icon\":{\"type\":\"icon\",\"url\":\"http://nbviewer.jupyter.org/static/ico/apple-touch-icon-144-precomposed.png?v=5a3c9ede93e2a8b8ea9e3f8f3da1a905\",\"width\":144,\"height\":144,\"aspectRatio\":1},\"thumbnail\":{\"type\":\"thumbnail\",\"url\":\"http://ipython.org/ipython-doc/dev/\_images/ipynb\_icon\_128x128.png\",\"width\":128,\"height\":128,\"aspectRatio\":1}}" %}
+[This notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb) shows how to use several functions to facilitate code parallelism:
 
 ## Debugging
 
@@ -152,8 +150,7 @@ For more extensive coverage, Julia comes with a integrated statistical profile, 
 
 Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to run the code normally.
 
-* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\). 
+* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\).
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`, not yet available to Julia 1 at time of writing\).
 * Clear profile data: `Profile.clear()`
-

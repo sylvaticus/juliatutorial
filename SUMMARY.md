@@ -26,4 +26,3 @@
 * [15 - Weave](useful-packages/14-weave.md)
 * [16 - LAJuliaUtils](useful-packages/16-lajuliautils.md)
 * [17 - IndexedTables](useful-packages/17-indexedtables.md)
-

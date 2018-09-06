@@ -14,7 +14,7 @@ using Plots
 pyplot()             # or plotlyjs()
 plot(sin, -2pi, pi, label="sine function")
 ```
-![sine_plot](./assets/imgs/sine_plot.png)
+![sine_plot](../assets/imgs/sine_plot.png)
 
 **Temporary note: as of writing, the `plotlyjs` backend doesn't work. `pyplot` backend works, but require the user to manually add the `PyCall` and `LaTeXStrings` packages.**
 
@@ -42,7 +42,8 @@ mycolours = [:green :orange] # note that the serie is piled up alphabetically
 fruits_plot = @df df plot(:year, :production, group=:fruit, linestyle = :solid, linewidth=3, label= reshape(string.("Production of ", sort(unique(:fruit))),(1,:)), color=mycolours)
 @df df plot!(:year, :consumption, group=:fruit, linestyle = :dot, linewidth=3, label ="Consumption of " .* reshape(sort(unique(:fruit)),(1,:)), color=mycolours)
 ```
-![fruits_plot](./assets/imgs/fruits_plot.png)
+![fruits_plot](../assets/imgs/fruits_plot.png)
+
 The first call to `plot()` create a new plot. Calling `plot!()` modify instead the plot that is passed as first argument \(if none, the latest plot is modified\)
 
 ## Printing area charts

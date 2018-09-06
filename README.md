@@ -1,8 +1,8 @@
 # Introduction
 
-![](.gitbook/assets/julia_hello_world.png)
+![](./assets/imgs/julia_hello_world.png)
 
-**Compatibilities table of this tutorial with Julia versions:** 
+**Compatibilities table of this tutorial with Julia versions:**
 
 * **Julia 1.0:** From 5 September 2018
 * **Julia 0.6:** 19 July 2017 - 15 August 2018 versions
@@ -22,7 +22,7 @@ Antonello Lobianco
 
 ## Latest version
 
-* The latest version of this tutorial can be found online on GitBook, at [https://syl1.gitbook.io/julia-language-a-concise-tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial) 
+* The latest version of this tutorial can be found online on GitBook, at [https://syl1.gitbook.io/julia-language-a-concise-tutorial](https://syl1.gitbook.io/julia-language-a-concise-tutorial)
 * [PDF version](https://legacy.gitbook.com/download/pdf/book/sylvaticus/julia-language-a-concise-tutorial) \(if it works\)
 * [A legacy interface](https://legacy.gitbook.com/book/sylvaticus/julia-language-a-concise-tutorial) \(if it works\)
 * Corresponding [GIT repository](https://github.com/sylvaticus/juliatutorial)
@@ -40,4 +40,3 @@ Please cite this tutorial as:
 Development of this tutorial was supported by:
 
 * the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program \(ANR 11 – LABX-0002-01\).
-

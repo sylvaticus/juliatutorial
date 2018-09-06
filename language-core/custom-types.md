@@ -118,5 +118,4 @@ Some useful type-related functions:
 
 This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
-![](../.gitbook/assets/type_hierarchy_for_julia_numbers.png)
-
+![](../assets/type_hierarchy_for_julia_numbers.png)

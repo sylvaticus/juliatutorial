@@ -1,6 +1,6 @@
 # Introduction
 
-![](./assets/imgs/julia_hello_world.png)
+![](.gitbook/assets/julia_hello_world%20%281%29.png)
 
 **Compatibilities table of this tutorial with Julia versions:**
 
@@ -40,3 +40,4 @@ Please cite this tutorial as:
 Development of this tutorial was supported by:
 
 * the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program \(ANR 11 – LABX-0002-01\).
+

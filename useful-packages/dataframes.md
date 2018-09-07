@@ -65,6 +65,7 @@ Pannels 200 300 300
 * `describe(df)`
 * `unique(df[:fieldName])` or `[unique(df[i]) for i in names(df)]`
 * `names(df)` returns array of column names
+* `colwise(eltype, df)` returns an array of column types
 * `size(df)` \(r,c\), `size(df)[1]` \(r\), `size(df)[2]` \(c\)
 * `ENV["LINES"] = 60` change the default number of lines before the content is truncated \(default 30\). Also COLUMNS. May not work with terminal.
 * `for r in eachrow(df)` iterates over each row

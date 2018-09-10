@@ -173,6 +173,16 @@ for (k,v) in mydict
 end
 ```
 
+While named tuples and dictionaries can look similar, there are some important difference between them:
+
+* NamedTuples are immutable while Dictionaries are mutable
+* Dictionaries are type unstable if different type of values are stored, while NamedTuples remain type-stable:
+  * `d = Dict(:k1=>"v1", :k2=>2)  # Dict{Symbol,Any}` 
+  * `nt = (k1="v1", k2=2,) # NamedTuple{(:k1, :k2),Tuple{String,Int64}}`
+* The syntax is a bit less verbose and readable with NamedTuples: `nt.k1` vs `d[:k1]` 
+
+Overall, NamedTuple are generally more efficient and should be tought more as anonymous `struct` \(see the "Custom structure" section\) than Dictionaries.
+
 ## Sets
 
 Use sets to represent collections of unordered, unique values.

@@ -1,4 +1,4 @@
-# 12 - DataFrames
+# DataFrames
 
 ## Dataframes
 

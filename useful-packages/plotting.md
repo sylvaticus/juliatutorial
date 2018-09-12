@@ -1,4 +1,4 @@
-# 11 - Plotting
+# Plotting
 
 Plotting in julia can be obtained using a specific plotting package \(e.g. [Gadfly](https://github.com/dcjones/Gadfly.jl), [Winston](https://github.com/nolta/Winston.jl)\) or, as I prefer, use the [Plots](https://github.com/JuliaPlots/Plots.jl) package that provide a unified API to several supported backends
 

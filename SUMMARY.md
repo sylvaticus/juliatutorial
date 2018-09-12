@@ -18,11 +18,12 @@
 
 ## Useful packages
 
-* [11 - Plotting](useful-packages/plotting.md)
-* [12 - DataFrames](useful-packages/dataframes.md)
-* [13 - JuMP](useful-packages/13-jump.md)
-* [14 - SymPy](useful-packages/14-sympy.md)
-* [15 - Weave](useful-packages/14-weave.md)
-* [16 - LAJuliaUtils](useful-packages/16-lajuliautils.md)
-* [17 - IndexedTables](useful-packages/17-indexedtables.md)
+* [Plotting](useful-packages/plotting.md)
+* [DataFrames](useful-packages/dataframes.md)
+* [JuMP](useful-packages/13-jump.md)
+* [SymPy](useful-packages/14-sympy.md)
+* [Weave](useful-packages/14-weave.md)
+* [LAJuliaUtils](useful-packages/16-lajuliautils.md)
+* [IndexedTables](useful-packages/17-indexedtables.md)
+* [Pipe](useful-packages/pipe.md)
 

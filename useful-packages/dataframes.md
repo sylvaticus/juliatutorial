@@ -120,7 +120,7 @@ dfOut = @from i in df begin
   * from Int \(or Float\) to String: `df[:A] = map(string, df[:A])`
   * from String to Float: `string_to_float(str) = try parse(Float64, str) catch; return(missing) end; df[:A] = map(string_to_float, df[:A])`
   * from Any to T \(including String, if the individual elements are already strings\): `df[:A] = convert(Array{T,1},df[:A])`
-* You can "pool" specific columns in order to efficiently store repeated categorical variables with `categorical!(df, [:A, :B])`. Attention that while the memory decrease, filtering with categorical values is not quicker \(indeed it is a bit slower\)
+* You can "pool" specific columns in order to efficiently store repeated categorical variables with `categorical!(df, [:A, :B])`. Attention that while the memory decrease, filtering with categorical values is not quicker \(indeed it is a bit slower\). You can go back to normal arrays wih `collect(df[:A])`.
 
 #### Merge/Join/Copy datasets
 

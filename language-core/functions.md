@@ -19,7 +19,7 @@ The call of the function must respect this distinction, calling positional argum
 The last argument\(s\) \(whatever positional or keyword\) can be specified together with a default value.
 
 `myfunction(a,b=1;c=2) = (a+b)*3 # definition with 2 position arguments and one keyword argument  
-myfunction(1,c=3) # calling (1+2)*3` 
+myfunction(10,c=13) # calling (10+1)*3` 
 
 To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union:`function f(par::Union{Float64, Vector{Float64}} = Float64[]) [...] end`
 

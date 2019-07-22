@@ -2,6 +2,8 @@
 
 ![](.gitbook/assets/julia_hello_world%20%281%29.png)
 
+**Update summer 2019: This tutorial (largelly updated, expanded and revised) is becoming a book thanks to Apress :-) Stay tuned!**
+
 **Compatibilities table of this tutorial with Julia versions:**
 
 * **Julia 1.0:** From 5 September 2018

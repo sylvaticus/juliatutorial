@@ -23,7 +23,7 @@ Note: the first method doesn't automatically cast integer and floats to strings.
 
 ## Arrays \(lists\)
 
-Arrays are N-dimensional mutable containers. In this section, we deal with 1-dimensional arrays, in the next one we consider2 or more dimensional arrays.
+Arrays are N-dimensional mutable containers. In this section, we deal with 1-dimensional arrays, in the next one we consider 2 or more dimensional arrays.
 
 There are several ways to create an array:
 
@@ -163,9 +163,9 @@ There are some useful methods to work with dictionaries:
 * Get all keys: `keys(mydict)` \(the result is an iterator, not an Array. Use `collect()` to transform it.\)
 * Get all values: `values(mydict)` \(result is again an iterator\)
 * Check if a key exists: `haskey(mydict, 'a')`
-* Check if a given key/value pair exists \(that it, if the key exists and has that specific value\): `in(('a' => 1), mydict)`
+* Check if a given key/value pair exists \(that is, if the key exists and has that specific value\): `in(('a' => 1), mydict)`
 
-You can iterate trough both the key and the values of a dictionary at the same time:
+You can iterate through both the key and the values of a dictionary at the same time:
 
 ```text
 for (k,v) in mydict
@@ -181,7 +181,7 @@ While named tuples and dictionaries can look similar, there are some important d
   * `nt = (k1="v1", k2=2,) # NamedTuple{(:k1, :k2),Tuple{String,Int64}}`
 * The syntax is a bit less verbose and readable with NamedTuples: `nt.k1` vs `d[:k1]` 
 
-Overall, NamedTuple are generally more efficient and should be tought more as anonymous `struct` \(see the "Custom structure" section\) than Dictionaries.
+Overall, NamedTuple are generally more efficient and should be thought more as anonymous `struct` \(see the "Custom structure" section\) than Dictionaries.
 
 ## Sets
 
@@ -195,7 +195,7 @@ Some methods:
 
 ## Memory and copy issues
 
-In order to unnecessarily copying large amount of data, Julia by default copy only the memory address of large objects, unless the programmer explicitly request a so-called "deep" copy. In detail:
+In order to avoid unnecessarily copying large amounts of data, Julia by default copies only the memory address of large objects, unless the programmer explicitly request a so-called "deep" copy. In detail:
 
 **Equal sign \(a=b\)**
 
@@ -227,14 +227,14 @@ To convert \("cast"\) between types, use `convertedObj = convert(T,x)`. Still, w
 
 To convert strings \(representing numbers\) to integers or floats use `myInt = parse(Int,"2017")`.
 
-The opposite, to convert integers or floats to strings, use `myString = string(123)`.
+For the opposite (to convert integers or floats to strings), use `myString = string(123)`.
 
 You can "broadcast" a function to work over an Array \(instead of a scalar\) using the dot \(`.`\) operator.  
 For example, to broadcast `parse` to work over an array use:`myNewList = parse.(Float64,["1.1","1.2"])` \(see also Broadcast in the "Functions" Section\)
 
-Variable names have to start with a letter, as if they start by a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
+Variable names have to start with a letter, as if they start with a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
-You can import data from a file to a matrix using `readdlm()` \(in standard library package  `DelimitedFiles`\). You can skip rows and/or columns using slice operator and then converting to the desidered type, e.g.
+You can import data from a file to a matrix using `readdlm()` \(in standard library package  `DelimitedFiles`\). You can skip rows and/or columns using the slice operator and then convert to the desidered type, e.g.
 
 `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t')[2:end,4:end]); # skip the first 1 row and the first 3 columns`
 
@@ -259,8 +259,8 @@ You can obtain an Array or a Matrix of random numbers simply specifying the requ
 Julia supports different concepts of missingness:
 
 * **`nothing`** \(type `Nothing`\): is the value returned by code blocks and functions which do not return anything. It is a single instance of the singleton type `Nothing`, and the closer to C style NULL \(sometimes it is referred as to the "software engineer’s null"\). Most operations with `nothing` values will result in a run-type error. In some contexts it is printed as `#NULL`;
-* **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when are declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
-* **`NaN`** \(type `Float64`\):  represents when an operation result in a Not-a-Number value \(e.g. 0/0\). It is similar to `missing` in the fact that it propagates silently. Similarly, Julia also offers `Inf` \(e.g. `1/0`\) and `-Inf` \(e.g. `-1/0`\).
+* **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
+* **`NaN`** \(type `Float64`\):  represents when an operation results in a Not-a-Number value \(e.g. 0/0\). It is similar to `missing` in the fact that it propagates silently. Similarly, Julia also offers `Inf` \(e.g. `1/0`\) and `-Inf` \(e.g. `-1/0`\).
 
 [¹](data-types.md): Technically a `String` is an array in Julia \(try to append a String to an array!\), but for most uses it can be thought as a scalar type.
 

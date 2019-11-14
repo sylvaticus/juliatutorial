@@ -148,3 +148,4 @@ Using this sampling method, at a cost of loosing some precision, profiling can b
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`, not yet available to Julia 1 at time of writing\).
 * Clear profile data: `Profile.clear()`
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 8 - Effectively Write Efficient Code" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

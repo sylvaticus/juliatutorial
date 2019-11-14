@@ -120,3 +120,4 @@ This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
 ![](https://github.com/sylvaticus/juliatutorial/tree/53fb590910bcc61cd119e7784eb4afa99addd8ac/assets/type_hierarchy_for_julia_numbers.png)
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 4 - Custom Types" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

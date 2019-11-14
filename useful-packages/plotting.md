@@ -71,3 +71,4 @@ Only for the `plotlyjs` backend, you need to first install the `Rsvg` package \(
 * pdf: this currently doesn't work in Julia 0.6
 * png: this works
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 9 - Working with Data" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

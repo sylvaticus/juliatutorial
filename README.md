@@ -2,7 +2,7 @@
 
 ![](.gitbook/assets/julia_hello_world%20%281%29.png)
 
-**Update November 2019: This tutorial (largelly updated, expanded and revised) has evolved into a book thanks to Apress :-)**\
+**Update November 2019: This tutorial (largelly updated, expanded and revised) has evolved into a book thanks to Apress :-)**
 
 ➞ _Antonello Lobianco (2019), "Julia Quick Syntax Refererence", Apress_
 

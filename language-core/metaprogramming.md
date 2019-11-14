@@ -101,3 +101,4 @@ Attention that the macro doesn't create a new scope, and variables declared or a
 
 You can review the content of this section in [this notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Metaprogramming.ipynb).
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 6 - Metaprogramming and Macros" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

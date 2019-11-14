@@ -296,5 +296,4 @@ To use hdf5 with the [`HDF5` package](https://github.com/JuliaIO/HDF5.jl), some 
 
 The HDF5 package doesn't yet support directly dataframes, so you need first to export them as Matrix \(a further limitation is that it doesn't accept a matrix of Any type, so you may want to export a DataFrame in two pieces, the string and the numeric columns separatly\). You can read back the data with `data = h5read("out.h5", "mygroup/myDf")`.
 
-\`\`
-
+_While an updated, expanded and revised version of this chapter is available in "Chapter 9 - Working with Data" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

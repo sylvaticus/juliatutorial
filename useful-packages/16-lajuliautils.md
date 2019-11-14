@@ -27,3 +27,4 @@ In particular the pivot\(\) function accepts the following arguments:
 
 Note: I didn't yet released `LAJuliaUtils` for Julia 1.0, as some minor functionalities \(not actually needed for the `pivot()` function\) require [`IndexedTables`](https://github.com/JuliaComputing/IndexedTables.jl) ported to Julia 1.0. But if you need it, [open an issue](https://github.com/sylvaticus/LAJuliaUtils.jl/issues) and I'll release a Julia 1.0 version with the code that doesn't depend to `IndexedTables`.
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 9 - Working with Data" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

@@ -84,3 +84,4 @@ Type conversions are automatically performed for numeric, boolean, string, IO st
 Other types are instead converted to the generic PyObject type, as it is the case for the `doc` object returned by the module function.  
 You can then access its attributes and methods with `myPyObject[:attibute]` and `myPyObject[:method]()` respectively.
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 7 - Interfacing Julia with Other Languages" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

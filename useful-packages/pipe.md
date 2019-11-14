@@ -28,8 +28,7 @@ Conversely,  the `Pipe` package together with the `@pipe` macro hoverrides the \
 
 Note that, as in the basic pipe, functions that require a single argument and this is provided by the piped data, don't need parenthesis.
 
-
-
+_While an updated, expanded and revised version of this chapter is available in "Chapter 11 - Utilities" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._
 
 
 

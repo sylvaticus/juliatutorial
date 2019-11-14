@@ -264,3 +264,4 @@ Julia supports different concepts of missingness:
 
 [¹](data-types.md): Technically a `String` is an array in Julia \(try to append a String to an array!\), but for most uses it can be thought as a scalar type.
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 2 - Data Types and Structures" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

@@ -113,3 +113,5 @@ You can read more about packages  in the [relevant section](https://docs.juliala
 
 Typing `?` in the console leads you to the Julia help system where you can search for function's API \(in non-interactive environment you can use `?search_term` instead\). If you don't remember exactly the function name, Julia is kind enough to return a list of similar functions.
 
+
+_While an updated, expanded and revised version of this chapter is available in "Chapter 1 - Getting Started" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

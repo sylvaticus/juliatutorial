@@ -6,7 +6,7 @@
 
 ➞ _Antonello Lobianco (2019), "Julia Quick Syntax Refererence", Apress_
 
-➞ https://www.julia-book.com/ (includes community forum and link to code repository)
+➞ https://julia-book.com/ (includes community forum and link to code repository)
 
 **Compatibilities table of this tutorial with Julia versions:**
 

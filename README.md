@@ -2,7 +2,9 @@
 
 ![](.gitbook/assets/julia_hello_world%20%281%29.png)
 
-**Update summer 2019: This tutorial (largelly updated, expanded and revised) is becoming a book thanks to Apress :-) Stay tuned!**
+**Update November 2019: This tutorial (largelly updated, expanded and revised) has evolved into a book thanks to Apress :-)**\
+➞ _Antonello Lobianco (2019), "Julia Quick Syntax Refererence", Apress_\
+➞ https://www.julia-book.com/ (includes community forum and link to code repository)
 
 **Compatibilities table of this tutorial with Julia versions:**
 

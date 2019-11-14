@@ -66,3 +66,5 @@ To obtain the [following pdf](https://github.com/sylvaticus/juliatutorial/raw/ma
 In Ubuntu Linux \(but most likely also in other systems\), weave needs pandora and LaTeX \(`texlive-xetex` \) already installed in the system.  
 If you use Ununtu, the version of pandora in the official repositories is too old. Use instead the deb available in [https://github.com/jgm/pandoc/releases/latest](https://github.com/jgm/pandoc/releases/latest) .
 
+
+_While an updated, expanded and revised version of this chapter is available in "Chapter 11 - Utilities" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

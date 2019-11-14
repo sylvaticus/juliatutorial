@@ -54,3 +54,4 @@ Some packages that deals with IO are:
 
 Some basic examples that use them are available in the [DataFrame](../useful-packages/dataframes.md) section.
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 5 - Input/Output" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

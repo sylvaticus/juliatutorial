@@ -19,3 +19,4 @@ Some additional notes to that notebook:
 
 
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 10 - Mathematical Libraries" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

@@ -102,3 +102,4 @@ You can "broadcast" a function to work over each elements of an array \(singleto
 
 While in the past broadcast was available on a limited number of core functions only, the `f.()` syntax is now  automatically available for any function, including the ones you define.
 
+_While an updated, expanded and revised version of this chapter is available in "Chapter 3 - Control Flow and Functions" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

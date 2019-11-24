@@ -2,14 +2,17 @@
 
 ![](.gitbook/assets/julia_hello_world%20%281%29.png)
 
-**Update November 2019: This tutorial (largelly updated, expanded and revised) has evolved into a book thanks to Apress :-)**
+**Update November 2019: This tutorial (largely updated, expanded and revised) has evolved into a book thanks to Apress :-)**
 
 ➞ _Antonello Lobianco (2019), "Julia Quick Syntax Refererence", Apress_
 
 ➞ https://julia-book.com/ (includes community forum and link to code repository)
 
+This tutorial itself is still updated and may include new stuff that will be the base of further editions of the book.
+
 **Compatibilities table of this tutorial with Julia versions:**
 
+* **Julia 1.2/1.3** From 24 November 2019. More than Julia itself (quite stable now), this version accounts for mayor API changes of the various packages, DataFrames, JuMP, PyCall..
 * **Julia 1.0:** From 5 September 2018
 * **Julia 0.6:** 19 July 2017 - 15 August 2018 versions
 * **Julia 0.5:** Versions before 19 July 2017
@@ -46,4 +49,3 @@ Please cite this tutorial as:
 Development of this tutorial was supported by:
 
 * the French National Research Agency through the [Laboratory of Excellence ARBRE](http://mycor.nancy.inra.fr/ARBRE/), a part of the “Investissements d'Avenir” Program \(ANR 11 – LABX-0002-01\).
-

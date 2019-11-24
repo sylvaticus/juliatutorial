@@ -23,21 +23,23 @@ For complex analysis, [DataFramesMeta](https://github.com/JuliaStats/DataFramesM
 ```text
 using CSV
 supplytable = CSV.read(IOBuffer("""
-prod Epinal Bordeaux Grenoble
-Fuelwood 400 700 800
-Sawnwood 800 1600 1800
-Pannels 200 300 300
-"""),delim=" ") # an option to ignore repeated delimiters so to allow a better formatting is coming to CSV.jl
+prod      Epinal Bordeaux Grenoble
+Fuelwood  400    700      800
+Sawnwood  800    1600     1800
+Pannels   200    300      300
+"""), delim=" ", ignorerepeated=true, copycols=true)
 ```
 
-* Read a CSV file: `myData = CSV.read(file; delim=';', missingstring="NA", delim=";", decimal=',')` \(use `CSV.read(file; delim='\t')` for tab delimited files\)
+* Read a CSV file: `myData = CSV.read(file; delim=';', missingstring="NA", delim=";", decimal=',', copycols=true)` \(use `CSV.read(file; delim='\t')` for tab delimited files\)
 
-  If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter \(Vector or Dictionary, e.g. `types=Dict("freeDim" => Union{Missing,Int64})`\)
+If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter \(Vector or Dictionary, e.g. `types=Dict("freeDim" => Union{Missing,Int64})`\)
+
+If you need to edit the values of your imported dataframe, do not forget the `copycols=true` option.
 
 * From a stream, use the package `HTTP`:
 
   ```text
-  using DataFrames, HTTP, CSV 
+  using DataFrames, HTTP, CSV
   resp = HTTP.request("GET", "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD")
   df = CSV.read(IOBuffer(String(resp.body)))
   ```
@@ -59,36 +61,37 @@ Pannels 200 300 300
 
 ### Get insights about your data:
 
-* `head(df)`
-* `showall(df)`
-* `tail(df)`
+* `first(df, 6)`
+* `show(df, allrows=true, allcols=true)`
+* `last(df, 6)`
 * `describe(df)`
-* `unique(df[:fieldName])` or `[unique(df[i]) for i in names(df)]`
+* `unique(df.fieldName)` or `[unique(c) for c in eachcol(df)]`
 * `names(df)` returns array of column names
-* `colwise(eltype, df)` returns an array of column types
+* `[eltype(col) for col = eachcol(df)]` returns an array of column types
 * `size(df)` \(r,c\), `size(df)[1]` \(r\), `size(df)[2]` \(c\)
 * `ENV["LINES"] = 60` change the default number of lines before the content is truncated \(default 30\). Also COLUMNS. May not work with terminal.
+* `for c in eachcol(df)` iterates over each column
 * `for r in eachrow(df)` iterates over each row
 
 Column names are Julia symbols. To programmatically compose a column name you need hence to use the Symbol\(String\) constructor, e.g.:  
-`df[Symbol("value_",0)] = "aa"`
+`Symbol("value_",0)`
 
-### Edit data
 
-* Replace values based to a dictionary : `mydf[:col1] = map(akey->myDict[akey], mydf[:col1])` \(the original data to replace can be in a different column or a totally different DataFrame
-* Concatenate \(string\) values for several columns to create the value a new column: `df[:c] = df[:a] .* " " .* df[:b]`
-* To compute the value of a column based of other columns you need to use  elementwise operations using the dot,  e.g. `df[:a] = df[:b] .* df[:c]` \(note that the equal sign doesn't have the dot.. but if you have to make a comparison, the `==` operator wants also the dot, i.e. `.==`\)
-* Append a row: `push!(df, [1 2 3])`
-* Delete a given row: use `deleterows!(df,rowIdx)` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]` 
-* Empty a dataframe: `df = similar(df,0)`
 
 #### Filter \(aka "selection" or "query"\)
 
-* Filter by value, based on a field being in a list of values using boolean selection trough list comprehension: `df[ [i in ["blue","green"] for i in df[:colour]], :]`
-* Combined boolean selection: `df[([i in ["blue","green"] for i in df[:colour]] .> 0) .& (df[:shape] .== "triangle"), :]` \(the dot is needed to vectorize the operation. Note the usage of the bitwise and the single ampersand\).
+There are two ways to refer to some column(s) in a DataFrame, by referencing the stored values in the new object, or by copying them into the new object.
+
+Referencing is obtained using the exclamation mark for the row position (to emphasize that referenced data could be changed in the new object) or using the dot syntax: `myObjWithReferencedData = df[!,[cNames]]` or `myObjWithReferencedData.cName`.
+
+Copying use instead the old two point syntax: `myobjWithCopyedData = df[:,[cName(s)]]`.
+
+
+* Filter by value, based on a field being in a list of values using boolean selection trough list comprehension: `df[ [i in ["blue","green"] for i in df.colour], :]`
+* Combined boolean selection: `df[([i in ["blue","green"] for i in df.colour] .> 0) .& (df.shape .== "triangle"), :]` \(the dot is needed to vectorize the operation. Note the usage of the bitwise and the single ampersand\).
 * Filter using `@where` \(`DataFrameMeta` package\): `@where(df, :x .> 2, :y .== "a")  # the two expressions are "and-ed"`. If the column name is stored in a variable, you need to wrap it using the `cols()` function, e.g. `col = Symbol("x");  @where(df, cols(col) .> 2)`
-* Change a single value by filtering columns: `df[ (df[:product] .== "hardWSawnW") .& (df[:year] .== 2010) , :consumption] = 200`
-* Filter based on initial pattern: `filteredDf = df[startswith.(df[:field],pattern),:]`
+* Change a single value by filtering columns: `df[ (df.product .== "hardWSawnW") .& (df.year .== 2010) , :consumption] = 200`
+* Filter based on initial pattern: `filteredDf = df[startswith.(df.field,pattern),:]`
 * A benchmark note: using `@with()` or boolean selection is ~ the same, while "querying" an equivalent Dict with categorical variables as tuple keys is around ~20% faster than querying the dataframe.
 * A further \(and perhaps more elegant, although longer\) way to query a DataFrame is to use the [`Query`](https://github.com/queryverse/Query.jl) package. The first example above let you select a subsets of both rows and columns, the second one highlight instead how you can mix multiple selection criteria:
 
@@ -104,41 +107,54 @@ dfOut = @from i in df begin
             @collect DataFrame
         end
 ```
+### Edit data
+
+* Replace values based to a dictionary : `mydf.col1 = map(akey->myDict[akey], mydf.col1)` \(the original data to replace can be in a different column or a totally different DataFrame
+* Concatenate \(string\) values for several columns to create the value a new column: `df.c = df.a .* " " .* df.b`
+* To compute the value of a column based of other columns you need to use  elementwise operations using the dot,  e.g. `df.a = df.b .* df.c` \(note that the equal sign doesn't have the dot.. but if you have to make a comparison, the `==` operator wants also the dot, i.e. `.==`\)
+* Append a row: `push!(df, [1 2 3])`
+* Delete a given row: use `deleterows!(df,rowIdx)` or just copy a df without the rows that are not needed, e.g. `df2 = df[[1:(i-1);(i+1):end],:]`
+* Empty a dataframe: `df = similar(df,0)`
 
 ### Edit structure
 
-* Delete columns by name: `delete!(df, [:col1, :col2])`
-* Rename columns: `names!(df, [:c1,:c2,:c3])` \(all\) `rename!(df, Dict(:c1 => :neCol))` \(a selection\)
-* Change column order: `df = df[[:b, :a]]`
-* Add an "id" column \(useful for unstacking\): `df[:id] = 1:size(df, 1)`  \# this makes it easier to unstack
-* Add a Float64 column \(all filled with NA by default\): `df[:a] = Array{Union{Missing,Float64},1}(missing,size(df,1))`
-* Add a column based on values of other columns: `df[:c] =  df[:a]+df[:b]` \(as alternative use map: `df[:c] = map((x,y) -> x + y, df[:a], df[:b])`\)
+* Delete columns by name: `select!(df, Not([:col1, :col2]))`
+* Rename columns: `names!(df, [:c1,:c2,:c3])` \(all\) `rename!(df, Dict(:c1 => :newCol))` \(a selection\)
+* Change column order: `df = df[:,[:b, :a]]`
+* Add an "id" column \(useful for unstacking\): `df.id = 1:size(df, 1)`  \# this makes it easier to unstack
+* Add a Float64 column \(all filled with missing by default\): `df.a = Array{Union{Missing,Float64},1}(missing,size(df,1))`
+* Add a column based on values of other columns: `df.c =  df.a .+ df.b` \(as alternative use map: `df.c = map((x,y) -> x + y, df.a, df.b)`\)
 * Insert a column at a position i:  `insert!(df, i, [colContent], :colName)`
 * Convert columns:
-  * from Int to Float: `df[:A] = convert(Array{Float64,1},df[:A])`
-  * from Float to Int: `df[:A] = convert(Array{Int64,1},df[:A])`
-  * from Int \(or Float\) to String: `df[:A] = map(string, df[:A])`
-  * from String to Float: `string_to_float(str) = try parse(Float64, str) catch; return(missing) end; df[:A] = map(string_to_float, df[:A])`
-  * from Any to T \(including String, if the individual elements are already strings\): `df[:A] = convert(Array{T,1},df[:A])`
-* You can "pool" specific columns in order to efficiently store repeated categorical variables with `categorical!(df, [:A, :B])`. Attention that while the memory decrease, filtering with categorical values is not quicker \(indeed it is a bit slower\). You can go back to normal arrays wih `collect(df[:A])`.
+  * from Int to Float: `df.A = convert(Array{Float64,1},df.A)`
+  * from Float to Int: `df.A = convert(Array{Int64,1},df.A)`
+  * from Int \(or Float\) to String: `df.A = map(string, df.A)`
+  * from String to Float: `string_to_float(str) = try parse(Float64, str) catch; return(missing) end; df.A = map(string_to_float, df.A)`
+  * from Any to T \(including String, if the individual elements are already strings\): `df.A = convert(Array{T,1},df.A)`
+* You can "pool" specific columns in order to efficiently store repeated categorical variables with `categorical!(df, [:A, :B])`. Attention that while the memory decrease, filtering with categorical values is not quicker \(indeed it is a bit slower\). You can go back to normal arrays wih `collect(df.A)`.
 
 #### Merge/Join/Copy datasets
 
-* Concatenate different dataframes \(with same structure\): ```df = vcat(df1,df2,df3)`` or `df = vcat([df1,df2,df3]...)` \(note the three dots at the end, i.e. the splat operator\).
-* Join dataframes horizontally: `fullDf = join(df1, df2, on = :commonCol)`
+* Concatenate different dataframes \(with same structure\): `df = vcat(df1,df2,df3)` or `df = vcat([df1,df2,df3]...)` \(note the three dots at the end, i.e. the splat operator\).
+* Join dataframes horizontally: `fullDf = join(df1, df2, on = :commonCol)`. The on parameter can also be an array of common columns. There are many possible types of join , the most common ones are:
+  ** `:inner` (default, only rows with keys on both sides are returned),
+  ** `:left` (additionally, rows on the left df with keys not present on the df on the right are also returned),
+  ** `:right` (opposite of :left ),
+  ** `:outer` (rows with elements missing in any of the two df are also returned);
 * Copy the structure of a DataFrame \(to an empty one\): `df2 = similar(df1, 0)`
+
 
 ### Manage Missing values
 
 Starting from Julia 1, `Missings` type is defined in core \(with some additional functionality still provided by the additional package `Missings.jl`\). At the same time,  a `DataFrame` changes from being a collection of `DataArrays` to a collection of standard `Arrays`, eventually of type `Union{T,Missing}` if missing data is present.
 
 * The missing value is simply `missing`
-* Remove missing values with: `a = collect(skipmissing(df[:col1]))` \(returns an `Array`\) or `b = dropmissing(df[[:col1,:col2]])` \(returns a `DataFrame` even for a single column\) 
+* Remove missing values with: `a = collect(skipmissing(df.col1))` \(returns an `Array`\) or `b = dropmissing(df[[:col1,:col2]])` \(returns a `DataFrame` even for a single column\)
 * `dropmissing!(df)`\(in both its version with or without question mark\) and `completecases(df)` select only rows without missing values. The first returns the skimmed `DataFrame`, while the second return a boolean array, and you can also specify on which columns you want to limit the application of this filter `completecases(df[[:col1,:col2]])`. You can then get the df with`df2 = df[completecases(df[[:col1,:col2]]),:]`\)
 * Within an operation \(e.g. a sum\) you can use `dropmissing()` in order to skip `missing` values before the operation take place.
-* Remove missing values on all string and numeric columns: `[df[ismissing.(df[i]), i] = 0 for i in names(df) if Base.nonmissingtype(eltype(df[i])) <: Number]` `[df[ismissing.(df[i]), i] = "" for i in names(df) if Base.nonmissingtype(eltype(df[i])) <: String]` 
+* Remove missing values on all string and numeric columns: `[df[ismissing.(df[!,i]), i] .= 0 for i in names(df) if Base.nonmissingtype(eltype(df[!,i])) <: Number]` and `[df[ismissing.(df[!,i]), i] .= "" for i in names(df) if Base.nonmissingtype(eltype(df[!,i])) <: String]`
 * To make comparison \(e.g. for boolean selection or within the `@where` macro in `DataFramesMeta`\) where missing values could be present you can use `isequal.(a,b)` to NOT propagate the missing \(i.e. `isequal("green",missing)` is true\) or the confrontation operator \(`==`\)to preserve missingness \(i.e. `"green" == missing` is neither `true` nor `false` but `missing`\)
-* Count the `missing` values: `nMissings = length(findall(x -> ismissing(x), df[:col]))`
+* Count the `missing` values: `nMissings = length(findall(x -> ismissing(x), df.col))`
 
 ### Split-Apply-Combine strategy
 
@@ -169,7 +185,7 @@ Aggregate by several fields:
 
   ```text
   by(df, [:catfield1,:catfield2]) do df
-    DataFrame(m = sum(df[:valueField]))
+    DataFrame(m = sum(df.valueField))
   end
   ```
 
@@ -181,21 +197,21 @@ Aggregate by several fields:
   df = DataFrame(region=["US","US","US","US","EU","EU","EU","EU"],
                year = [2010,2011,2012,2013,2010,2011,2012,2013],
                value=[3,3,2,2,2,2,1,1])
-  df[:cumValue] = copy(df[:value])
-  [r[:cumValue] = df[(df[:region] .== r[:region]) .& (df[:year] .== (r[:year]-1)),:cumValue][1] + r[:value]  for r in eachrow(df) if r[:year] != minimum(df[:year])]
+  df.cumValue = copy(df.value)
+  [r.cumValue = df[(df.region .== r.region) .& (df.year .== (r.year-1)),:cumValue][1] + r.value  for r in eachrow(df) if r.year != minimum(df.year)]
   ```
 
 * Using by and the split-apply-combine strategy \(fast\):
 
   ```text
-  using DataFramesMeta, DataArrays, DataFrames
+  using DataFramesMeta, DataFrames
   df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],
                product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
                year    = [2010,2011,2010,2011,2010,2011,2010,2011],
                value   = [3,3,2,2,2,2,1,1])
-  df[:cumValue] = copy(df[:value])
+  df.cumValue = copy(df.value)
   by(df, [:region,:product]) do dd
-    dd[:cumValue] = cumsum(dd[:value])
+    dd.cumValue .= cumsum(dd.value)
        return
   end
   ```
@@ -216,14 +232,14 @@ Aggregate by several fields:
 * Using groupby \(fast\):
 
   ```text
-  using DataFramesMeta, DataArrays, DataFrames
+  using DataFramesMeta, DataFrames
   df = DataFrame(region  = ["US","US","US","US","EU","EU","EU","EU"],
                product = ["apple","apple","banana","banana","apple","apple","banana","banana"],
                year    = [2010,2011,2010,2011,2010,2011,2010,2011],
                value   = [3,3,2,2,2,2,1,1])
-  df[:cumValue] = 0.0
+  df.cumValue .= 0.0
   for subdf in groupby(df,[:region,:product])
-    subdf[:cumValue] = cumsum(subdf[:value])
+    subdf.cumValue .= cumsum(subdf.value)
   end
   ```
 
@@ -260,7 +276,7 @@ Alternatively you can omit the `:id` parameter and all the existing column excep
 
 #### Sorting
 
-`sort!(df, cols = (:col1, :col2), rev = (false, false))` The \(optional\) reverse order parameter \(rev\) must be a turple of the same size as the cols parameter
+`sort!(df, cols = (:col1, :col2), rev = (false, false))` The \(optional\) reverse order parameter \(rev\) must be a tuple of the same size as the cols parameter
 
 #### Use LAJuliaUtils.jl
 
@@ -284,8 +300,8 @@ This export to a dictionary where the keys are the unique elements of a df colum
 
 ```text
 vars = Dict{String,DataFrame}()
-[vars[x] = @where(df, :varName .== x) for x in unique(df[:varName])]
-[delete!(vars[k], [:varName]) for k in keys(vars)]
+[vars[x] = @where(df, :varName .== x) for x in unique(df.varName)]
+[select!(vars[k], Not([:varName])) for k in keys(vars)]
 ```
 
 #### Export to hdf5 format

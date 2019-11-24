@@ -13,9 +13,7 @@ Develop your own project and publish a new version
 * `PkgDev.tag(pkg, v"0.X.X")`
 * `PkgDev.publish(pkg)`
 
-or \(much better\) use the package [attobot](https://github.com/attobot/attobot) that automatise the workflow \(after you installed attobot on your GitHub repository, just create a new GitHub release in order to spread it to the Julia package ecosystem\).
-
-In case of problems: [http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream](http://stackoverflow.com/questions/9646167/clean-up-a-fork-and-restart-it-from-the-upstream)
+or \(much better\) use the package [Registrator](https://github.com/JuliaRegistries/Registrator.jl) that automatise the workflow \(after you installed Registrator on your GitHub repository, just create a new GitHub release in order to spread it to the Julia package ecosystem\).
 
 * Testing a package: `Pkg.test("pkg")`
 
@@ -50,4 +48,3 @@ Dict{Any,Any} with 2 entries:
 ``
 """
 ```
-

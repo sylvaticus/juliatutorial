@@ -17,19 +17,15 @@ println(div4(add6(a)))`
 
 With piping you can write instead:
 
-`a |> add6 |> div4 |> println` 
+`a |> add6 |> div4 |> println`
 
 Pipes in Base are very limited, in the sense that support only functions with one argument and only a single function at a time.
 
 Conversely,  the `Pipe` package together with the `@pipe` macro hoverrides the \|&gt; operator allowing you to use functions with multiple arguments \(and there you can use the underscore character "`_`" as placeholder for the value on the LHS\) and multiple functions, e.g.:
 
 `addX(a,x) = a+x; divY(a,y) = a/y  
-@pipe a |> addX(_6) + divY(4,_) |> println # 10.0`
+@pipe a |> addX(_,6) + divY(4,_) |> println # 10.0`
 
 Note that, as in the basic pipe, functions that require a single argument and this is provided by the piped data, don't need parenthesis.
 
 _While an updated, expanded and revised version of this chapter is available in "Chapter 11 - Utilities" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._
-
-
-
-

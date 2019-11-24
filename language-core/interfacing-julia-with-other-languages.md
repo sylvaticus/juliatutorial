@@ -33,7 +33,8 @@ Use in julia with:
 
 ```julia
 i = 2
-j = ccall((:iplustwo, "[MY FULL PATH]/libmylib.so"), Float32, (Float32,), i)
+const mylib = joinpath(@__DIR__, "libmylib.so")
+j = ccall((:iplustwo, mylib), Float32, (Float32,), i)
 ```
 
 ## Python
@@ -44,44 +45,22 @@ We show here an example with Python. The following code converts an ODS spreadsh
 using PyCall
 using DataFrames
 
-@pyimport ezodf
-doc = ezodf.opendoc("test.ods")
-nsheets = length(doc[:sheets])
-println("Spreadsheet contains $nsheets sheet(s).")
-for sheet in doc[:sheets]
-    println("---------")
-    println("   Sheet name : $(sheet[:name])")
-    println("Size of Sheet : (rows=$(sheet[:nrows]()), cols=$(sheet[:ncols]()))")
-end
-
-# convert the first sheet to a DataFrame
-sheet = doc[:sheets][1]
-df_dict = Dict()
-col_index = Dict()
-for (i, row) in enumerate(sheet[:rows]())
-  # row is a list of cells
-  # assume the header is on the first row
-  if i == 1
-      # columns as lists in a dictionary
-      [df_dict[cell[:value]] = [] for cell in row]
-      # create index for the column headers
-      [col_index[j]=cell[:value]  for (j, cell) in enumerate(row)]
-      continue
-  end
-  for (j, cell) in enumerate(row)
-      # use header instead of column index
-      append!(df_dict[col_index[j]],cell[:value])
-  end
-end
-# and convert to a DataFrame
-df = DataFrame(df_dict)
+const ez = pyimport("ezodf")  # Equiv. of Python `import ezodf as ez`
+destDoc = ez.newdoc(doctype="ods", filename="anOdsSheet.ods")
+sheet = ez.Sheet("Sheet1", size=(10, 10))
+destDoc.sheets.append(sheet)
+dcell1 = get(sheet,(2,3)) # Equiv. of Python `dcell1 = sheet[(2,3)]`. This is cell "D3" !
+dcell1.set_value("Hello")
+get(sheet,"A9").set_value(10.5) # Equiv. of Python `sheet['A9'].set_value(10.5)`
+destDoc.backup = false
+destDoc.save()
 ```
 
 The first thing, is to declare we are using PyCall and to `@pyimport` the python module we want to work with. We can then directly call its functions with the usual Python syntax `module.function()`.
 
 Type conversions are automatically performed for numeric, boolean, string, IO stream, date/period, and function types, along with tuples, arrays/lists, and dictionaries of these types.
 
-Other types are instead converted to the generic PyObject type, as it is the case for the `doc` object returned by the module function.  
-You can then access its attributes and methods with `myPyObject[:attibute]` and `myPyObject[:method]()` respectively.
+Other types are instead converted to the generic PyObject type, as it is the case for the `destDoc` object returned by the module function.  
+You can then access its attributes and methods with `myPyObject.attibute` and `myPyObject.method()` respectively.
 
 _While an updated, expanded and revised version of this chapter is available in "Chapter 7 - Interfacing Julia with Other Languages" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

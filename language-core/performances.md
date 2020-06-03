@@ -100,9 +100,57 @@ Some tips to improve performances are:
 
 ## Code parallelisation
 
-Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH. Threads instead \(that are limited to the same CPU but, contrary to processes, share the same memory\) are not yet implemented \(as it is much more difficult to "guarantee" safe multi-threads than safe multi-processes\).
+Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH. Threads instead are limited to the same CPU but, contrary to processes, share the same memory. An high-level API for multithreadding has been introduces in Julia 1.3
+
+### Paralellisation using multiple processes
 
 [This notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb) shows how to use several functions to facilitate code parallelism:
+
+### Paralellisation using multiple threads
+
+Here is an example on how to use the new @spawn macro in Julia >= 1.3threads on a function that produces something, saving the results to a vector where order doesn't matter and the computational process of any record is independent from those of any other record.
+
+
+```
+import Base.Threads.@spawn
+
+struct myobj
+    o
+end
+
+singleOp(obj,x,y) = (x .+ y) .* obj.o
+
+function multipleOps(obj,xbatch,ybatch)
+    out = Array{Array{Float64,1},1}(undef,size(xbatch,1))
+    for i in 1:size(xbatch,1)
+        out[i] = singleOp(obj,xbatch[i,:],ybatch[i,:])
+    end
+    return out
+end
+
+obj = myobj(2)
+xbatch = [1 2 3; 4 5 6]
+ybatch = [10 20 30; 40 50 60]
+
+results = @spawn multipleOps(obj,xbatch,ybatch)
+finalres = sum(fetch(results))
+```
+
+Consider however the advantage in terms of computational time became interesting only for relatively computationally expensive operations:
+
+```
+using BenchmarkTools
+
+xbatch = rand(32,50)
+ybatch = rand(32,50)
+@benchmark sum(fetch(@spawn multipleOps(obj,xbatch,ybatch))) #60 μs
+@benchmark sum(multipleOps(obj,xbatch,ybatch)) #24 μs
+
+xbatch = rand(32,50000)
+ybatch = rand(32,50000)
+@benchmark sum(fetch(@spawn multipleOps(obj,xbatch,ybatch))) # 58 ms
+@benchmark sum(multipleOps(obj,xbatch,ybatch)) # 66 ms
+```
 
 ## Debugging
 

@@ -1,4 +1,4 @@
-# 10 - Performances \(parallelisation, debugging, profiling..\)
+# 10 - Performance \(parallelisation, debugging, profiling..\)
 
 Julia is relatively fast when working with `Any` data, but when the JIT compiler is able to infer the exact type of an object \(or a Union of a few types\) Julia runs with the same order of magnitude of C.
 
@@ -89,9 +89,9 @@ Of course the result is just n\*\(n+1\)/4, so the best programming language is t
 
 ### Type annotation
 
-In general (see above for exceptions) type annotation is not necessary. Only in the few cases where the compiler can't determine the type it is useful for improving performances.
+In general (see above for exceptions) type annotation is not necessary. Only in the few cases where the compiler can't determine the type it is useful for improving performance.
 
-Some tips to improve performances are:
+Some tips to improve performance are:
 
 - avoid global variables and run your performance-critical code within functions rather than in the global scope;
 - annotate the inner type of a container, so it can be stored in memory contiguously;
@@ -170,11 +170,11 @@ Profiling is the "art" of finding bottlenecks in the code.
 
 A simple way to time a part of the code is to simply type `@time myFunc(args)` \(but be sure you ran that function at least once, or you will measure compile time rather than run-time\) or `@benchmark myFunc(args)` \(from package `BenchmarkTools`\)
 
-For more extensive coverage, Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
+For more extensive coverage, Julia comes with a integrated statistical profiler, that is, it runs every x milliseconds and memorizes in which line of code the program is at that moment.
 
-Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to run the code normally.
+Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to the code being run normally.
 
-* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\).
+* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already run once for JIT-compilation\).
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`\).
 * Clear profile data: `Profile.clear()`

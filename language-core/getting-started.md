@@ -4,9 +4,9 @@
 
 Without going into a long discussion, Julia solves a trade-off \(partially thanks to the recent developments in _just-in-time_ compilers\) that has long existed in programming: _fast coding_ vs. _fast execution_.  
 On the one hand, Julia allows you to code in a dynamic language like Python, R or Matlab, allowing for fast interaction with your program and exceptional expressive power \(see the [Metaprogramming](metaprogramming.md) chapter, for example\).  
-On the other hand, with minimum effort programs written in Julia can run nearly as fast as C \(see [Performances](performances.md)\).  
+On the other hand, with minimum effort programs written in Julia can run nearly as fast as C \(see [Performance](performance.md)\).  
 While it is still young, Julia allows you to easily interface your code with all the major programming languages \(see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)\), hence reusing their huge set of libraries, when these are not already being ported into Julia.  
-Julia has its roots in the domain of scientific, high performances computing, but it is becoming more and more mature as a general purpose programming language.
+Julia has its roots in the domain of scientific, high performance computing, but it is becoming more and more mature as a general purpose programming language.
 
 ## Installing Julia
 
@@ -94,7 +94,7 @@ plot(rand(4,4))
 
 ```text
 import Plots
-const pl = Plots # this create an an alias, equivalent to Python "import Plots as pl". Declaring it constant may improve the performances.
+const pl = Plots # this create an an alias, equivalent to Python "import Plots as pl". Declaring it constant may improve the performance.
 pl.pyplot()
 pl.plot(rand(4,4))
 ```

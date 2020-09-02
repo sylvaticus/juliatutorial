@@ -55,7 +55,7 @@ When calling such functions, Julia will pick up the correct one depending from t
 These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time and very fast.  
 You can inspect the methods of a function with `methods(f)`.
 
-The multiple-dispatch polymorphism is a generalisation of object-oriented run-time polymorphism where the same function name can performs different tasks depending on which is the owner's object's class, i.e. the polymorphism is applied only to a single parameter \(it remains true however that OO languages have usually multiple-parameters polymorphism at compile-time\).
+The multiple-dispatch polymorphism is a generalisation of object-oriented run-time polymorphism where the same function name can perform different tasks depending on which is the owner's object's class, i.e. the polymorphism is applied only to a single parameter \(it remains true however that OO languages have usually multiple-parameters polymorphism at compile-time\).
 
 ## Templates \(type parametrisation\)
 

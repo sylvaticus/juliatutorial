@@ -1,18 +1,18 @@
 # 9 - Metaprogramming
 
-Julia represents its own code as a data structure accessible from the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code, that is to create powerful macros \(the term "metaprogramming" refers to the possibility to write code that write codes that is then evaluated\).
+Julia represents its own code as a data structure accessible from the language itself. Since code is represented by objects that can be created and manipulated from within the language, it is possible for a program to transform and generate its own code, that is to create powerful macros \(the term "metaprogramming" refers to the possibility to write code that writes code that is then evaluated\).
 
-Note the difference with C or C++ macros. There, macros work performing textual manipulation and substitution before any actual parsing or interpretation occurs.
+Note the difference from C or C++ macros. There, macros work performing textual manipulation and substitution before any actual parsing or interpretation occurs.
 
-In Julia, macros works when the code has been already parsed and organised in a syntax tree, and hence the semantic is much richer and allows for much more powerful manipulations.
+In Julia, macros work when the code has already been parsed and organised in a syntax tree, and hence the semantic is much richer and allows for much more powerful manipulations.
 
 ## Expressions
 
-There are really many way to create an expression:
+There are really many ways to create an expression:
 
 ### Colon prefix operator
 
-The colon \`:\` prefix operator refers to an unevaluated expression. Such expression can be saved and then evaluated in a second moment using `eval(myexpression)`:
+The colon \`:\` prefix operator refers to an unevaluated expression. Such expression can be saved and then evaluated later using `eval(myexpression)`:
 
 ```text
 expr = :(1+2) # save the `1+2` expression in the `expr` expression
@@ -43,14 +43,14 @@ eval(expr)          # here the expression is evaluated and the code returns 3
 
 The expression can be also directly constructed from the tree: `expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
 
-But what there is in an expression? Using `fieldnames(typeof(expr))` or `dump(expr)` we can find that `expr` is an `Expr` object made of two fields: `:head` and `:args`:
+But what is there inside an expression? Using `fieldnames(typeof(expr))` or `dump(expr)` we can find that `expr` is an `Expr` object made of two fields: `:head` and `:args`:
 
 * `:head` defines the type of Expression, in this case `:call`
 * `:args` is an array of elements that can be symbols, literal values or other expressions. In this case they are `[:+, 1, 1]`
 
 ## Symbols
 
-The second meaning of the `:` operator is to create symbols, and it is equivalent to the `Symbol()` function that concatenate its arguments to form a symbol:
+The second meaning of the `:` operator is to create symbols, and it is equivalent to the `Symbol()` function that concatenates its arguments to form a symbol:
 
 `a = :foo10` is equal to `a=Symbol("foo",10)`
 

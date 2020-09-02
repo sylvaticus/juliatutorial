@@ -1,6 +1,6 @@
 # LAJuliaUtils
 
-\`\`[`LAJuliaUtils`](https://github.com/sylvaticus/LAJuliaUtils.jl) is my personal repository for utility functions, mainly for dataframes.
+[`LAJuliaUtils`](https://github.com/sylvaticus/LAJuliaUtils.jl) is my personal repository for utility functions, mainly for dataframes.
 
 As it is not a registered Julia package, use it with :`add https://github.com/sylvaticus/LAJuliaUtils.jl.git`
 

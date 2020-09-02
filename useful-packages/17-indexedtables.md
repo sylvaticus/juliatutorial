@@ -1,6 +1,6 @@
 # IndexedTables
 
-\`\`[`IndexedTables`](https://github.com/JuliaComputing/IndexedTables.jl) are DataFrame-like data structure that, working with tuples dictionaries, are in my experience much faster to perform select operations.
+[`IndexedTables`](https://github.com/JuliaComputing/IndexedTables.jl) are DataFrame-like data structure that, working with tuples dictionaries, are in my experience much faster to perform select operations.
 
 There are two types of IndexedTables, `table` and `ndsparse`. The main difference from a user-point of view is that the former is looked up by position, while the later can be looked up by stored values (and hence is, at least for me, more useful):
 

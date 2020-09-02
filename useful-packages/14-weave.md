@@ -1,6 +1,6 @@
 # Weave
 
-\`\`[`Weave`](https://github.com/mpastell/weave.jl) allows to produce dynamic documents where the script that produce the output is embedded directly in the document, with optionally only the output rendered.
+[`Weave`](https://github.com/mpastell/weave.jl) allows to produce dynamic documents where the script that produce the output is embedded directly in the document, with optionally only the output rendered.
 
 Save the document below in a file with extension jmd \(e.g. testWeave.jmd\)
 

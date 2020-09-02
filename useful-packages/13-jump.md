@@ -1,6 +1,6 @@
 # JuMP
 
-\`\`[`JuMP`](https://github.com/JuliaOpt/JuMP.jl) is an algebraic modelling language for mathematical optimisation problems, similar to GAMS, AMPL or Pyomo.
+[`JuMP`](https://github.com/JuliaOpt/JuMP.jl) is an algebraic modelling language for mathematical optimisation problems, similar to GAMS, AMPL or Pyomo.
 
 It is solver-independent. It supports also non-linear solvers, providing them with the Gradient and the Hessian.
 

@@ -170,11 +170,11 @@ Profiling is the "art" of finding bottlenecks in the code.
 
 A simple way to time a part of the code is to simply type `@time myFunc(args)` \(but be sure you ran that function at least once, or you will measure compile time rather than run-time\) or `@benchmark myFunc(args)` \(from package `BenchmarkTools`\)
 
-For more extensive coverage, Julia comes with a integrated statistical profile, that is, it runs every x milliseconds and memorize in which line of code the program is at that moment.
+For more extensive coverage, Julia comes with a integrated statistical profiler, that is, it runs every x milliseconds and memorizes in which line of code the program is at that moment.
 
-Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to run the code normally.
+Using this sampling method, at a cost of loosing some precision, profiling can be very efficient, in terms of very small overheads compared to the code being run normally.
 
-* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already ran once for JIT-compilation\).
+* Profile a function: `Profile.@profile myfunct()` \(best after the function has been already run once for JIT-compilation\).
 * Print the profiling results: `Profile.print()` \(number of samples in corresponding line and all downstream code; file name:line number; function name;\)
 * Explore a chart of the call graph with profiled data: `ProfileView.view()` \(from package `ProfileView`\).
 * Clear profile data: `Profile.clear()`

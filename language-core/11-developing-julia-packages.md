@@ -1,6 +1,6 @@
 # 11 - Developing Julia packages
 
-Patching other people packages:
+Patching other people's packages:
 
 * pkg&gt;  `develop pkgName`
 * \[patch & commit\]
@@ -13,11 +13,11 @@ Develop your own project and publish a new version
 * `PkgDev.tag(pkg, v"0.X.X")`
 * `PkgDev.publish(pkg)`
 
-or \(much better\) use the package [Registrator](https://github.com/JuliaRegistries/Registrator.jl) that automatise the workflow \(after you installed Registrator on your GitHub repository, just create a new GitHub release in order to spread it to the Julia package ecosystem\).
+or \(much better\) use the package [Registrator](https://github.com/JuliaRegistries/Registrator.jl) that automatises the workflow \(after you have installed Registrator on your GitHub repository, just create a new GitHub release in order to spread it to the Julia package ecosystem\).
 
 * Testing a package: `Pkg.test("pkg")`
 
-It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sessions.  
+It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](http://docs.julialang.org/en/stable/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sections.  
 For example, this is the documentation string of the `ods_readall` function within the `OdsIO` package:
 
 ```text

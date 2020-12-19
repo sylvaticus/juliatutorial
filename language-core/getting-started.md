@@ -2,9 +2,13 @@
 
 ## Why Julia
 
-Without going into a long discussion, Julia solves a trade-off \(partially thanks to the recent developments in _just-in-time_ compilers\) that has long existed in programming: _fast coding_ vs. _fast execution_.  
+One of the first (initial) reasons one gives a try to Julia is that Julia helps solving a trade-off \(partially thanks to the recent developments in _just-in-time_ compilers\) that has long existed in programming: _fast coding_ vs. _fast execution_.  
 On the one hand, Julia allows you to code in a dynamic language like Python, R or Matlab, allowing for fast interaction with your program and exceptional expressive power \(see the [Metaprogramming](metaprogramming.md) chapter, for example\).  
-On the other hand, with minimum effort programs written in Julia can run nearly as fast as C \(see [Performance](performance.md)\).  
+On the other hand, with minimum effort programs written in Julia can run nearly as fast as C \(see [Performance](performance.md)\).
+However, if all you need is "just" to use features available in already-developed libraries, you may not need these performances, as computational R/Python libraries are for the most part wrote in a compiled language and the dynamic language is used only to interface them. The performance gain you would have using Julia would be minimal. However if you need to implement some "feature" by yourself, without the possibility to rely to an existing library, there you are, you would _really_ benefit of Julia performances. As further advantages, the fact that Julia libraries can and are written in Julia, make participation on their development much simpler, as potential developers doesn't need to be expert in multiple languages. And this is one of the reasons the Julia ecosystem is already remarkable, despite its youth.
+
+Aside the breakout in runtime performances from traditional high-level dynamic languages, the fact that Julia has been created from scratch has allowed the use of the best, modern technologies, without concerns to maintain compatibility with existing users code or internal architecture. Built-in git-based package manager, full code introspection, multiple dispatch, in-core high-level methods for parallel computing, Unicode characters in variable names (e.g. Greek letters) are some of the features of Julia that you will likely appreciate.
+
 While it is still young, Julia allows you to easily interface your code with all the major programming languages \(see [Interfacing Julia with other languages](interfacing-julia-with-other-languages.md)\), hence reusing their huge set of libraries, when these are not already being ported into Julia.  
 Julia has its roots in the domain of scientific, high performance computing, but it is becoming more and more mature as a general purpose programming language.
 
@@ -13,13 +17,14 @@ Julia has its roots in the domain of scientific, high performance computing, but
 All you need to run the code in this tutorial is a working Julia interpreter \(aka REPL - _Read Eval Print Loop_\).  
 In Linux you can simply use your package manager to install `julia`, but for a more up-to-date version, or for Windows/Mac packages, I strongly suggest to download the binaries available on the [download section](http://julialang.org/downloads/) of the [Julia web-site](http://julialang.org).
 
-For Integrated Development Environment, check out either [Juno](http://junolab.org/) or IJulia, the Julia [Jupiter](http://jupyter.org/) backend.  
-You can find their detailed setup instructions here:
+For a more user-friendly Integrated Development Environment, you have several options:
 
-* [Juno](https://github.com/JunoLab/uber-juno/blob/master/setup.md) \(an useful tip I always forget: the key binding for block selection mode is `ALT+SHIFT`\)
-* [IJulia](https://github.com/JuliaLang/IJulia.jl) \(in a nutshell: if you already have Jupiter installed, just run `using Pkg; Pkg.update();Pkg.add("IJulia")` from the Julia console. That's all! ;-\) \)
+* [Juno](http://junolab.org/) is a plugin for Julia the Atom text editor. Setup instructions are [here](http://docs.junolab.org/latest/man/installation/#Installation-Instructions). While at the moment it is the most feature-rich IDE, development is switching to the VSCode plugin, due to the almost-abandoned nature of Atom. If you have to start, you may want to directly start with the VSCode plugin instead.
+* [Julia for VSCode](https://www.julia-vscode.org/) is a plugin for Julia for the Visual Studio Code IDE. Setup instructions are [here](https://www.julia-vscode.org/docs/dev/gettingstarted/#Installation-and-Configuration-1). As said, this is where all new development of Julia IDE is moving to, although it could still look a bit immature.
+* [IJulia](https://github.com/JuliaLang/IJulia.jl), the Julia Kernel for [Jupyter](http://jupyter.org/). You can either first install Jupyter using Python and then install the Julia kernel by typing `using Pkg; Pkg.update();Pkg.add("IJulia")` from the Julia console, or you can have IJulia create and manage its own Python/Jupyter installation (see the IJulia readme). IJulia/Jupyter is particularly useful if you need to communicate concerning some code, as you can mix code, markdown text and code outputs (like charts or tables)
+* [Pluto](https://github.com/fonsp/Pluto.jl). Install it with `using Pkg; Pkg.update();Pkg.add("Pluto")` and start it with `import Pluto; Pluto.run()`. Like `IJulia`, `Pluto` is a notebook, but it employ a new concept of _reactiviness_: when you change a variable in a cell, Pluto automatically re-runs the cells that refer to it, both above and below the cell where you changed the code. Very impressive !
 
-You can also choose, at least to start with, _not_ to install Julia at all, and try [JuliaBox](https://juliabox.com/), a free online IJulia notebook server that you access from your browser, instead.
+You can also choose, at least to start with, _not_ to install Julia at all, and try one of the various online computational environments that support Julia, like  [CoCalc](https://cocalc.com/doc/software-julia.html), [nextJournal](https://nextjournal.com), [Binder](https://mybinder.org), [Google Colab](https://colab.research.google.com/github/ageron/julia_notebooks/blob/master/Julia_Colab_Notebook_Template.ipynb), [Matrix DS](https://matrixds.com/platform/)...
 
 ## Running Julia
 
@@ -33,11 +38,11 @@ There are several ways to run Julia code:
 
    A Julia script is a text file ending in `.jl`, which you can have Julia parse and run with `julia myscript.jl [arg1, arg2,..]`.
    Script files can also  be run from within the Julia console, just type `include("myscript.jl")`;
-   
+
 4. In addition, on UNIX-based systems Julia can be run using a shebang script.
 
    To make a shebang script, just add the location of the Julia interpreter on your system, preceded by `#!` and followed by an empty row, to the top of the script. You can find the full path of the Julia interpreter by typing `which julia` in a console, for example, `/usr/bin/julia`. Be sure that the file is executable \(e.g. `chmod 755 myscript.jl`\). Then you can run the script with `./myscript.jl`;
-   
+
 5. Use an Integrated Development Environment \(such as \[Juno\]\(include\("test\_script.jl"\) or [Jupiter](http://jupyter.org/)\), open your Julia script and use the run command of the editor.
 
 Julia keeps many things in memory within the same work session, so if this creates problems in the execution of your code, you can restart Julia. You can also use the [Revise.jl](https://github.com/timholy/Revise.jl) package for a finer control over what Julia keeps in memory during a work session.
@@ -65,7 +70,7 @@ Many functions are provided in Julia by external "packages". The "standard libra
 
 To include a Julia package's functionality in your Julia code, you must write `using Pkg` to use `Pkg`'s capabilities \(alternatively, only for the package module, you can type `]` to enter a "special" Pkg mode\).
 
-You can then run the desired command, directly if you are in a terminal, in the Pkg mode, or `pkg"cmd to run"` in a script \(notice that there is no space between `pkg` and the quoted command to run\). 
+You can then run the desired command, directly if you are in a terminal, in the Pkg mode, or `pkg"cmd to run"` in a script \(notice that there is no space between `pkg` and the quoted command to run\).
 
 Some useful package commands:
 

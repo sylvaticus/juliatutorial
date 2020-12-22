@@ -17,10 +17,12 @@ As in the rest of the tutorial, when you read `julia> command` the command has t
 
 We assume that we want to create a package using GitHub as repository host and continuous integration tools. We also assume we are using Julia >= v.1.2.0.
 First we create the repository in GitHub considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
-For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl` (a complete - although "dummy" - version of `MyAwesomePackage.jl` is indeed available on https://github.com/sylvaticus/MyAwesomePackage.jl).
+For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`.
 Don't forget to add a readme (so we can already clone the repository) and choose `Julia` as gitignore template:
 
 ![](../assets/imgs/gitHub_start_repository.png)
+
+**[Are you in a rush? Clone [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs.]**
 
 The repository doesn't yet contain the minimum set of information to allow it to be downloaded as a "Julia package", so we will first generate a basic package structure locally using the Julia tool `generate`, we will commit and link this git repository with the remote github, pull the basic package structre to github and at that point we can download again it as a Julia Package and continue its development.
 

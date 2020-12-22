@@ -3,7 +3,7 @@
 A package is nothing else that a collection of one or more modules logically connected to provide a functionality, enriched  with metadata that make the discovery, usage and interconnection of modules much simpler.
 Hence, before developing a package be sure you fully understand how modules behave in Julia.
 
-As in the rest of the tutorial, when you read `julia> command` the command has to be issue in a Julia session, while with `(@v1.X) pkg> command` the command has to be raised in the special "package" mode of Julia (type `]` in a Julia session to access it).
+As in the rest of the tutorial, when you read `julia> command` the command has to be issued in a Julia session, while with `(@v1.X) pkg> command` the command has to be issued in the special "package" mode of Julia (type `]` in a Julia session to access it).
 
 <!--
 ## Patching other people's packages:
@@ -16,9 +16,8 @@ As in the rest of the tutorial, when you read `julia> command` the command has t
 ## Developing our own package
 
 We assume that we want to create a package using GitHub as repository host and continuous integration tools. We also assume we are using Julia >= v.1.2.0.
-First we create the repository in GitHub considering a package name that follows the Julia's[package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
-
-For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`.
+First we create the repository in GitHub considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
+For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`. A complete (although "dummy") version of `MyAwesomePackage.jl` is indeed available on https://github.com/sylvaticus/MyAwesomePackage.jl.
 Don't forget to add a readme (so we can already clone the repository) and choose `Julia` as gitignore template:
 
 ![](../assets/imgs/gitHub_start_repository.png)

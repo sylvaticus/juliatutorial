@@ -1,6 +1,6 @@
 # 11 - Developing Julia packages
 
-A package is nothing else that a collection of one or more modules logically connected to provide a functionality, enriched  with metadata that make the discovery, usage and interconnection of modules much simpler.
+A package is nothing else that a collection of one or more modules logically connected to provide a given functionality, enriched  with metadata that make the discovery, usage and interconnection of modules much simpler.
 Hence, before developing a package, be sure you fully understand how modules behave in Julia.
 
 As in the rest of the tutorial, when you read `julia> command` the command has to be issued in a Julia session, while with `(@v1.X) pkg> command` the command has to be issued in the special "package" mode of Julia (type `]` in a Julia session to access it).
@@ -16,29 +16,33 @@ As in the rest of the tutorial, when you read `julia> command` the command has t
 ## Developing our own package
 
 We assume that we want to create a package using GitHub as repository host and continuous integration tools. We also assume we are using Julia >= v.1.2.0.
-First we create the repository in GitHub considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
+
+First, we create the repository in GitHub, considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
 For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`.
+
 Don't forget to add a readme (so we can already clone the repository) and choose `Julia` as gitignore template:
 
 ![](../assets/imgs/gitHub_start_repository.png)
 
 **[Are you in a rush? Clone [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs.]**
 
-The repository doesn't yet contain the minimum set of information to allow it to be downloaded as a "Julia package", so we will first generate a basic package structure locally using the Julia tool `generate`, we will commit and link this git repository with the remote github, pull the basic package structre to github and at that point we can download again it as a Julia Package and continue its development.
+The repository doesn't yet contain the minimum set of information that allows it to be downloaded as a "Julia package", hence we will first generate a basic package structure locally, using the Julia tool `generate`. We will then commit and link this git repository with the remote GitHub repository we just made, push the basic package structure to GitHub and, at that point, we can download it again as a Julia Package and continue its development.
 
-So, let's generate our package locally. We CD to a directory where we want the new package to appear as a subfolder, enter the Julia prompt and type `(@v1.X) pkg> generate MyAwesomePackage`.
+So, let's generate our package locally. We cd to a directory where we want the new package to appear as a subfolder, enter the Julia prompt and type `(@v1.X) pkg> generate MyAwesomePackage`.
 
-This will create a new folder `MyAwesomePackage` with a `src` subfolder that include a "Hello world" version of our awesome package and, most importantly, the `Project.toml` file.
-In this file for now there is just the name of the package, the author and the unique id that has been assigned to the new package (this is a code that depends from things like the MAC address, the exact time, the process id, etc...) and the initial version of the package.
+This will create a new folder `MyAwesomePackage` with a `src` subfolder that includes a "Hello world" version of our awesome package and, most importantly, the `Project.toml` file.
+For now, this includes just: (a) the name of the package; (b) the author; (c ) the unique id that has been assigned to the new package (this is a code that depends from stuff like the MAC address, the exact time, the process id, etc...) and (d) the initial version of the package.
 Check that the author and initial version are ok for you (for example I prefer to start a package with version `0.0.1` rather than the default `0.1.0`).
 
-`Project.toml` will also hold the dependencies that our package will require. So for example, let's assume that `MyAwesomePackage` depends from the packages `LinearAlgebra` (a standard lib package) and `DataFrames`(a popular third-party package to work with tabular data, aka "dataframes").
+`Project.toml` will also hold the dependencies that our package will require. So, for example, let's assume that `MyAwesomePackage` depends from the packages `LinearAlgebra` (a standard lib package) and `DataFrames`(a popular third-party package to work with tabular data, aka "dataframes").
 
-We first "activate" the new `MyAwesomePackage` folder with `(@v1.X) pkg> activate(FULL_PATH/MyAwesomePackage)`. We can now add the two packages with `] add LinearAlgebra DataFrames`. From the message in output we take note that the DataFrame version is `v0.22.2`.
-Going back to our new `Project.toml` file, the two packages should have been added to the `[deps]` version. We now want to specific the version of the third-party packages our `MyAwesomePackage` works with, and in particular, if we want to register it in the official Julia registry we need to specify an **upper** version.
-We can do that by adding to `Project.toml` a new `[compat]` section where we write down `DataFrames = "0.21, 0.22"`, that is we allow `MyAwesomePackage` to work with any `DataFrames` in the `v0.21.x` or `v0.22.x` series, that is we assume that the functionality our package depends from has been introduced in `DataFrames` `v0.21.O`, and is still available in the `v0.22.x` serie.
+We first "activate" the new `MyAwesomePackage` folder with `(@v1.X) pkg> activate(FULL_PATH/MyAwesomePackage)`. We can now add the two packages with `(MyAwesomePackage) pkg> add LinearAlgebra DataFrames`. From the message in output, we take note that the DataFrame version is `v0.22.2`.
+Going back to our new `Project.toml` file, the two packages should have been added to the `[deps]` section. We now want to specify the version of the third-party packages our `MyAwesomePackage` works with, and in particular, if we want to register it in the official Julia registry, we need to specify an **upper** version.
+We can do that by adding to `Project.toml` a new `[compat]` section where we write down `DataFrames = "0.21, 0.22"`, that is we allow `MyAwesomePackage` to work with any `DataFrames` in the `v0.21.x` or `v0.22.x` series. In other words, we assume that the functionality our package depends from has been introduced in `DataFrames` `v0.21.O`, and it is still available in the `v0.22.x` serie.
 
-We also add `julia = "1.2.1"` assuming that our package works only with `Julia >= v1.2.1` within the `v1.x` serie (all Julia versions in the v1.X serie are "guaranteed" to be backward compatible with Julia v1.0.0, but the reverse is not true, e.g. new features could still be added in the v1.X serie so that certain packages work only with them).
+We also add `julia = "1.2.1"` assuming that our package works only with `Julia >= v1.2.1` within the `v1.x` serie.
+
+_**NOTE:** All Julia versions in the `v1.x` serie are "guaranteed" to be backward compatible with code wrote for Julia `v1.0.0`, but the reverse is not true, e.g. new features could still be added in the `v1.x` serie so that certain packages work only with them._
 
 On one side this way to manage dependencies brings a considerable burden on the package maintainer, as it is his responsibility to determine which exact versions of the dependent package his package works with, but on the other side it guarantees a smooth usage of his/her package.
 More information on Julia semantic rules can be found [here](https://julialang.github.io/Pkg.jl/dev/toml-files/#The-version-field) and in particular the requirements for automatic merging of the package in the registry are given [here](https://github.com/JuliaRegistries/General#automatic-merging-of-pull-requests).

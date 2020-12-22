@@ -1,7 +1,7 @@
 # 11 - Developing Julia packages
 
 A package is nothing else that a collection of one or more modules logically connected to provide a functionality, enriched  with metadata that make the discovery, usage and interconnection of modules much simpler.
-Hence, before developing a package be sure you fully understand how modules behave in Julia.
+Hence, before developing a package, be sure you fully understand how modules behave in Julia.
 
 As in the rest of the tutorial, when you read `julia> command` the command has to be issued in a Julia session, while with `(@v1.X) pkg> command` the command has to be issued in the special "package" mode of Julia (type `]` in a Julia session to access it).
 
@@ -17,7 +17,7 @@ As in the rest of the tutorial, when you read `julia> command` the command has t
 
 We assume that we want to create a package using GitHub as repository host and continuous integration tools. We also assume we are using Julia >= v.1.2.0.
 First we create the repository in GitHub considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
-For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`. A complete (although "dummy") version of `MyAwesomePackage.jl` is indeed available on https://github.com/sylvaticus/MyAwesomePackage.jl.
+For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl` (a complete - although "dummy" - version of `MyAwesomePackage.jl` is indeed available on https://github.com/sylvaticus/MyAwesomePackage.jl).
 Don't forget to add a readme (so we can already clone the repository) and choose `Julia` as gitignore template:
 
 ![](../assets/imgs/gitHub_start_repository.png)
@@ -27,19 +27,21 @@ The repository doesn't yet contain the minimum set of information to allow it to
 So, let's generate our package locally. We CD to a directory where we want the new package to appear as a subfolder, enter the Julia prompt and type `(@v1.X) pkg> generate MyAwesomePackage`.
 
 This will create a new folder `MyAwesomePackage` with a `src` subfolder that include a "Hello world" version of our awesome package and, most importantly, the `Project.toml` file.
-In this file for now there is just the name of the package, the author and the unique id that has been assigned to the new package (this is a code that depends form things like the mac address, the exact time, process id...) and the initial version of the package.
+In this file for now there is just the name of the package, the author and the unique id that has been assigned to the new package (this is a code that depends from things like the MAC address, the exact time, the process id, etc...) and the initial version of the package.
 Check that the author and initial version are ok for you (for example I prefer to start a package with version `0.0.1` rather than the default `0.1.0`).
 
-`Project.toml` will also host the dependencies that our package will require. So for example, let's assume that `MyAwesomePackage` depends from the packages `LinearAlgebra` (a standard lib package) and `DataFrames`(a popular third-party package to work with tabular data, aka "dataframes").
+`Project.toml` will also hold the dependencies that our package will require. So for example, let's assume that `MyAwesomePackage` depends from the packages `LinearAlgebra` (a standard lib package) and `DataFrames`(a popular third-party package to work with tabular data, aka "dataframes").
 
 We first "activate" the new `MyAwesomePackage` folder with `(@v1.X) pkg> activate(FULL_PATH/MyAwesomePackage)`. We can now add the two packages with `] add LinearAlgebra DataFrames`. From the message in output we take note that the DataFrame version is `v0.22.2`.
 Going back to our new `Project.toml` file, the two packages should have been added to the `[deps]` version. We now want to specific the version of the third-party packages our `MyAwesomePackage` works with, and in particular, if we want to register it in the official Julia registry we need to specify an **upper** version.
-We can do that by adding to `Project.toml` a new `[compat]` section where we write down `DataFrames = "0.21, 0.22"`, that is we allow `MyAwesomePackage` to work with any `DataFrames` in the `v0.21.x` or `v0.22.x` series, that is we assume that the functionality it depends from the `DataFrames` package has been introduced in `v0.21.O`.
+We can do that by adding to `Project.toml` a new `[compat]` section where we write down `DataFrames = "0.21, 0.22"`, that is we allow `MyAwesomePackage` to work with any `DataFrames` in the `v0.21.x` or `v0.22.x` series, that is we assume that the functionality our package depends from has been introduced in `DataFrames` `v0.21.O`, and is still available in the `v0.22.x` serie.
+
 We also add `julia = "1.2.1"` assuming that our package works only with `Julia >= v1.2.1` within the `v1.x` serie (all Julia versions in the v1.X serie are "guaranteed" to be backward compatible with Julia v1.0.0, but the reverse is not true, e.g. new features could still be added in the v1.X serie so that certain packages works only with them).
+
 On one side this way to manage dependencies brings a considerable burden on the package maintainer, as it is his responsibility to determine with which exact versions of the dependent package his package work with, but on the other side it guarantees a smooth usage of his/her package.
 More information on Julia semantic rules can be found [here](https://julialang.github.io/Pkg.jl/dev/toml-files/#The-version-field) and in particular the requirements for automatic merging of the package in the registry are given [here](https://github.com/JuliaRegistries/General#automatic-merging-of-pull-requests).
 
-`Project.toml` will look at the end similar to this :
+`Project.toml` should look at the end similar to this :
 
 ```
 name = "MyAwesomePackage"
@@ -70,7 +72,7 @@ git pull origin main --allow-unrelated-histories # Fetch the Readme and gitignor
 git push --set-upstream origin main # Finally upload everything back to the GitHub repository
 ```
 
-We can now add the package to our Julia local installation with `(@v1.X) pkg> add https://github.com/sylvaticus/MyAwesomePackage.jl.git` and `(@v1.X) pkg> dev MyAwesomePackage`.
+Once we have the package in GitHub, we can add it to our Julia local installation with `(@v1.X) pkg> add https://github.com/sylvaticus/MyAwesomePackage.jl.git` and `(@v1.X) pkg> dev MyAwesomePackage`.
 The package should now resides to `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage`, where `[USER_HOME_FOLDER]` is the home folder for the local user, e.g. `~` in Linux or `%HOMEPATH%` in Windows.
 
 Before we add a test suite let's add a minimum of functionality to our package. I highly advise you to use the [Revise](https://github.com/timholy/Revise.jl) package. When you import `Revise` in a new Julia session before importing a package it lets you account for changes that you make when you save on disk any modification you make on the package without having to restart the Julia session.
@@ -103,14 +105,14 @@ Before we can run the test we still need to tell Julia that when testing the pac
 ```
 (@v1.x) pkg> activate [USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/test/
 add Test
-(test) pkg> activate
+(test) pkg> activate # Without arguments, "activate" brings back to the default environment
 (@v1.x) pkg> test MyAwesomePackage  # This perform the test
 ```
 From now on, to add a dependency:
 - to the package itself --> `activate [USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage` and `(MyAwesomePackage) pkg> add MyDependencyPackage` --> the new package will be listed in the `[deps]` section of `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/Project.toml` (don't forget to add a upper bound if the package is not in the standard library)
 - to the testing system only (i.e. something the package doesn't rely to, but it is needed for testing, like some package to load some datasets) --> `activate [USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/test` and `(test) pkg> add MyDependencyPackage` --> the new package will be listed in the `[deps]` section of `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/test/Project.toml`
 
-Before we `git commit` and `git push` our `MyAwesomePackage`, let's add a functionality that at each time the package is pushed, github performs an operation (github calls these operation "workflow"), and in particular it automatically run the test for us.
+Before we `git commit` and `git push` our `MyAwesomePackage`, let's add a functionality that at each time the package is pushed, github performs an operation (github calls these operation "actions"), and in particular it automatically run the test for us.
 
 Let's add the folder/file `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflow/ci.yml`:
 
@@ -187,19 +189,19 @@ jobs:
 ```
 
 The above script, on top of running the tests, will (1) initialise the service [codecov](https://about.codecov.io/) to highlight the lines of code that are actually covered by the testing (you will need to first authorise codecov with the "Add new repository" on its web interface - after you log in), and (2) will start the building of the package's documentation (see the following section).
-If you need to add some tests that are "allowed" to fail (typically, to test on Julia night builds), you can write a similar workflow file (see )
+If you need to add some tests that are "allowed" to fail (typically, to test on Julia night builds), you can write a similar workflow file (see [an example](https://github.com/sylvaticus/MyAwesomePackage.jl/blob/main/.github/workflows/ci-nightly.yml))
 
 At this point we can add the first "badges" on our package README.md:
 
 ```
-[![Build status (Github Actions)](https://github.com/sylvaticus/BDisposal.jl/workflows/CI/badge.svg)](https://github.com/sylvaticus/BDisposal.jl/actions)
-[![codecov.io](http://codecov.io/github/sylvaticus/BDisposal.jl/coverage.svg?branch=main)](http://codecov.io/github/sylvaticus/BDisposal.jl?branch=main)
+[![Build status (Github Actions)](https://github.com/sylvaticus/MyAwesomePackage.jl/workflows/CI/badge.svg)](https://github.com/sylvaticus/MyAwesomePackage.jl/actions)
+[![codecov.io](http://codecov.io/github/sylvaticus/MyAwesomePackage.jl/coverage.svg?branch=main)](http://codecov.io/github/sylvaticus/MyAwesomePackage.jl?branch=main)
 ```
 The first one concerns the building status and the second one the line coverage.
 
 Having an upper limit of the dependencies means that our package, if installed, would "limit" that dependencies in the user's environment. We hence need to continuously check for new versions of the dependencies or it will ends that our package constrains the users.
 Something that comes in handy is the following action: it checks for us if any of our dependencies has a new version and open for us a pull request to
-account for such version in `Project.toml`. But attention, it is still up to us to chech that indeed the new version work with our package!
+account for such version in `Project.toml`. But attention, it is still up to us to check that indeed the new version works with our package!
 
 `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflow/CompatHelper.yml`:
 
@@ -230,34 +232,34 @@ This conclude the section about developing (and testing) a package. You can read
 
 ## Documenting our package
 
-It is a good practice to document your own functions. You can use triple quoted strings \("""\) just before the function to document and use Markdown syntax in it. The Julia documentation [recommends](https://docs.julialang.org/en/v1/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sections.  
+It is a good practice to document your own functions. You can use triple quoted strings (""") just before the function to document and use Markdown syntax on it. The Julia documentation [recommends](https://docs.julialang.org/en/v1/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sections.  
 For example, this is the documentation string for our `plusTwo` function.
 
-```text
-"""
-    plusTwo(x)
 
-Sum the numeric "2" to whatever it receives as input
+    """
+        plusTwo(x)
 
-A more detailed explanation can goes here, although I guess it is not needed in this case
+    Sum the numeric "2" to whatever it receives as input
 
-# Arguments
-* `x`: The amount to which we want to add 2
+    A more detailed explanation can go here, although I guess it is not needed in this case
 
-# Notes
-* Notes can go here
+    # Arguments
+    * `x`: The amount to which we want to add 2
 
-# Examples
-`` `julia
-julia> five = plusTwo(3)
-5
-`` `
-"""
-```
+    # Notes
+    * Notes can go here
+
+    # Examples
+    ```julia
+    julia> five = plusTwo(3)
+    5
+    ```
+    """
+
 
 The documentation string for a function or a module should be placed exactly on top of the item to document (no empty lines) and it will be rendered when a user type `?<FUNCTION OR MODULE NAME>` or in the documentation pages that we are going to build.
 
-In order for doing so, we produce a skeleton of the documentation configuration files using the following commands:
+In order to process to the building of the documentation pages, we produce a skeleton of the documentation configuration files using the following commands:
 
 ```julia
 (@v1.x) pkg>  activate          # Documenter needs to be added to your general Julia registry, not your package specific one
@@ -305,26 +307,25 @@ deploydocs(
 
 Let's consider  `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/docs/anotherPage.md`:
 
- """
- # The MyAwesomePackage Module
 
- ```@docs
- MyAwesomePackage
- ```
+    # The MyAwesomePackage Module
 
- ## Module Index
+     ```@docs
+     MyAwesomePackage
+     ```
 
- ```@index
- Modules = [MyAwesomePackage]
- Order   = [:constant, :type, :function, :macro]
- ```
- ## Detailed API
+    ## Module Index
 
- ```@autodocs
- Modules = [MyAwesomePackage]
- Order   = [:constant, :type, :function, :macro]
- ```
-"""
+    ```@index
+    Modules = [MyAwesomePackage]
+    Order   = [:constant, :type, :function, :macro]
+    ```
+    ## Detailed API
+
+    ```@autodocs
+    Modules = [MyAwesomePackage]
+    Order   = [:constant, :type, :function, :macro]
+    ```
 
 In `anotherPage.md` we first document the module, we then create an "index" of all the documented items, and we finally detail them.
 
@@ -332,7 +333,8 @@ I also suggests to edit the `index.md` to provide a link back to the github repo
 
 We can check that the documentation compiles as desired by running the make.jl as a script from within the docs folder:
 
-```~/.julia/dev/MyAwesomePackage/docs$ julia make.jl
+```
+~/.julia/dev/MyAwesomePackage/docs$ julia make.jl
 [ Info: SetupBuildDirectory: setting up build directory.
 [ Info: Doctest: running doctests.
 [ Info: ExpandTemplates: expanding markdown templates.
@@ -347,16 +349,17 @@ lobianco@NCY-BETA-ALOBIANCO:~/.julia/dev/MyAwesomePackage/docs$
 ```
 
 This should have produced a static build of the documentation on `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/docs/build`.
-We finally "solve" the warning above and take care of documentation's deployment, whose step is documented in detail [here](https://juliadocs.github.io/Documenter.jl/stable/man/hosting/).
+We finally "solve" the warning above and take care of documentation's deployment, whose steps are documented in detail [here](https://juliadocs.github.io/Documenter.jl/stable/man/hosting/).
 
 ```
 (@v1.x) pkg> activate
 julia> using DocumenterTools
 julia> using MyAwesomePackage
-julia> DocumenterTools.genkeys(user="YourUsername", repo="git@github.com:YourUsername/MyAwesomePackage.jl.git")
+julia> DocumenterTools.genkeys(user="YourUsername",
+       repo="git@github.com:YourUsername/MyAwesomePackage.jl.git")
 ```
 
-Now copy the first key (the public part starting with "ssh-rsa") to https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings/keys -> "Add deploy key" -> key using "documenter" as title of the key and allowing write access to the key.
+Now copy the first key (the public part starting with "ssh-rsa") to https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings/keys -> "Add deploy key" using "documenter" as title of the key and allowing write access to the key.
 
 Finally (almost) in https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings/secrets/actions add a new repository secret with "DOCUMENTER_KEY" as secret name and the second, long key from the output of the command above as its value.
 
@@ -367,7 +370,7 @@ We can add the two badges for the last version and development version of the do
 [![](https://img.shields.io/badge/docs-dev-blue.svg)](https://YOUR_USERNAME.github.io/MyAwesomePackage.jl/dev)
 ```
 
-When you push your commits to GitHub, the CI.yml action that we set earlier (a) build the documentation by running "make.jl" and deploy it to the github pages. The documentation is build on its own branch, `gh-pages`. This branch should have already being added automatically during the process of deploying the documentation the first time. At the same time the "source branch" for the documentation pages in the repository settings (https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings) should have already being set to `gh-pages` (see the [GitHub pages documentation](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) to set it manually if this for any reason didn't happen).
+When we push our commits to GitHub, the CI.yml action that we set earlier (a) build the documentation by running "make.jl" and (b) deploy it to the github pages. The documentation is build on its own branch, `gh-pages`. This branch is added automatically during the process of deploying the documentation the first time. At the same time the "source branch" for the documentation pages in the repository settings (https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings) should already be set to `gh-pages` (see the [GitHub pages documentation](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) to set it manually if this for any reason doesn't happen).
 
 For now, the documentation is available on https://YOUR_USERNAME.github.io/MyAwesomePackage.jl/dev. The first time we will make a release, its documentation will be available under the `stable` directory.
 
@@ -401,12 +404,12 @@ We are now ready to register the package, with the simplest way being to use the
 
 Simply click "Install app" and authorise it to the GitHub repositories you wish (or on all your repositories if you prefer).
 
-Now we can register the package with a simple `@JuliaRegistrator register` "command" to the commit we want to register. Don't forget, for successive versions you want to register, to first change the `version` information in the package `Project.toml`
+Now we can register the package with a simple `@JuliaRegistrator register` "command" in the comment section of the commit we want to register. Don't forget, for successive versions you want to register, to first change the `version` information in the package `Project.toml`
 
 We can also details release notes by adding a `Release notes:` after the `@JuliaRegistrator` command, for example:
 
 ![](../assets/imgs/package_registration.png)
 
-Congratulation ! A "robot" will respond to your command confirming the opening of the pull request in the Julia registry and the package should soon be registered and everyone can simply add and use it with `(@v1.X) pkg> add MyAwesomePackage`.
-If something foes wrong - in our case let's say that we forgot to put the upper bound for Julia itself -
+Congratulation ! A "robot" will respond to your command confirming the opening of the pull request in the Julia registry and, if the package meet all the requirements, it should soon automatically registered (once a 3 days waiting period has elapsed) and everyone will be able to simply add and use it with `(@v1.X) pkg> add MyAwesomePackage`.
+If something goes wrong - in our case let's say that we forgot to put the upper bound for Julia itself -
 you will receive an informative message to what went wrong and we can try the registration again (issuing an other `@JuliaRegistrator register` "command" will update the pull request).

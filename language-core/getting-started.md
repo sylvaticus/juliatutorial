@@ -95,7 +95,6 @@ To use the functions provided by a package, just include a `using mypackage` sta
 `Winston` or `Plots` \(plotting\) and `DataFrames` \(R-like tabular data\) are example of packages that you will pretty surely want to consider.
 
 For example \(see the [Plotting](../useful-packages/plotting.md) section for specific Plotting issues\):  
-\(note: as of writing, the Plot package has not yet be ported to Julia 1.0\)
 
 ```text
 using Plots
@@ -120,7 +119,11 @@ pyplot()
 plot(rand(4,4))
 ```
 
-You can read more about packages  in the [relevant section](https://docs.julialang.org/en/stable/manual/packages) of the Julia documentation, and if you are interested in writing your own package, skip to the ["Developing Julia package" section](11-developing-julia-packages.md).
+Finally, we can also include any Julia source files using `include("MyFile.jl")`: when that line is run, the included file is completely ran (not only parsed) and any symbol defined there becomes available in the scope (the region of code within which a variable is visible) relative to where `include` has been called.
+
+While there is no issues in calling `import x` or `using x` several times in the code, calling `include("x.jl")` more than once should be avoided, as it may end up to duplicated objects.
+
+You can read more about module and packages in the [relevant section](https://docs.julialang.org/en/stable/manual/packages) of the Julia documentation, and if you are interested in writing your own package, skip to the ["Julia Modules and Packages" section](11-developing-julia-packages.md).
 
 ## Help system \(Julia and package documentation\)
 

@@ -1,9 +1,77 @@
-# 11 - Developing Julia packages
+# 11 - Julia Modules and Packages
 
-A package is nothing else that a collection of one or more modules logically connected to provide a given functionality, enriched  with metadata that make the discovery, usage and interconnection of modules much simpler.
-Hence, before developing a package, be sure you fully understand how modules behave in Julia.
+## Understanding modules
 
-As in the rest of the tutorial, when you read `julia> command` the command has to be issued in a Julia session, while with `(@v1.X) pkg> command` the command has to be issued in the special "package" mode of Julia (type `]` in a Julia session to access it).
+The main objective of modules is to provide separate namespaces for global names in Julia.
+
+The basic structure of a module is:
+
+```julia
+module ModuleName
+export myObjects # functions, structs, and other objects that will be directly available once `using ModuleName` is typed
+
+[...module code...]
+
+end
+```
+
+Module names are customary starting with a capital letter and the module content is usually not indented.
+Modules can be entered in the REPL as normal Julia code or in a script that is imported with `import("file.jl")`.
+
+There is no connection between a given file and a given module as in other languages, so the logical structure of a program can be decoupled from its actual division in files. For example, one file could contain multiple modules.
+
+A more common way to use modules is by loading a package that will consists, at least, of a module with the same name of the package.
+
+All modules are children of the module `Main`, the default module for global objects in Julia, and each module defines its own set of global names.
+
+**Note:** _`using` and `import`, when they are followed with either `Main.x` or `.x`, look for a module already loaded and bring it and its exported objects into scope (for `import` only those explicitly specified). Otherwise, they do a completely different job: they expects a **package**, and the package system lookups the correct **version** of the module `x` embedded inside package `x`, it loads it, and it bring it and its exported objects into scope (again, for `import x` only those explicitly specified)._
+
+Modules can include submodules, although there exists a large opinion in the Julia community that this, unless it is really necessary, should be avoided, and use the dot notation to indicate the hierarchy.
+
+The following example uses the [Reexport](https://github.com/simonster/Reexport.jl) package that provides an handy method to re-export automatically all the objects of an imported module.
+
+```julia
+module Foo
+export plusOne, Foo3, Foo4
+plusOne(x) = x + 1
+plusTen(x) = x + 10
+module Foo3
+    export plusThree
+    plusThree(x) = x+3
+end
+module Foo4
+    using Reexport
+    export plusFour
+    @reexport using ..Foo3 # note the two dots in front to go one level up, as these two modules are siblings
+    plusFour(x) = x+4
+end
+end # end Foo
+```
+Assuming we have loaded it into memory (e.g. by typing it directly in the REPL) we can now use the module in several ways:
+
+```julia
+Foo.plusOne(2)        # Ok
+Foo.plusTen(2)        # Ok
+Foo.Foo4.plusThree(2) # OK
+plusOne(2)            # Error, the objects of Foo are not into scope
+using .Foo            # We bring the exported objects into scope
+plusOne(2)            # Now it works
+plusTen(2)            # Error, plusTen is not exported
+import .Foo: plusTen  # We explicitly bring it into scope
+plusTen(2)            # Now it is in scope
+plusThree(2)          # Error, not in scope
+Foo3.plusThree(2)     # Ok
+Foo4.plusThree(2)     # Ok, as Foo4 re-exports the exported objects of Foo3
+```
+You can read more about modules in the [modules section](https://docs.julialang.org/en/v1/manual/modules/#modules) of the official documentation.
+
+
+## Developing Julia packages
+
+A package is nothing else that a collection of one or more hierarchically connected modules (at least one with the same name of the package acting on top of the hierarchy) logically connected to provide a given functionality, enriched with metadata that make the discovery, usage and interconnection of modules much simpler.
+Hence, before developing a package, be sure you fully understand how modules behave in Julia, as described in the previous section.
+
+**Note:** _As in the rest of the tutorial, when you read `julia> command` the command has to be issued in a Julia session, while with `(@v1.X) pkg> command` the command has to be issued in the special "package" mode of Julia (type `]` in a Julia session to access it,`[DEL]` to return to the Julia main prompt)._
 
 <!--
 ## Patching other people's packages:
@@ -13,9 +81,10 @@ As in the rest of the tutorial, when you read `julia> command` the command has t
 * `using PkgDev; PkgDev.submit(pkgName)`
 -->
 
-## Developing our own package
-
 We assume that we want to create a package using GitHub as repository host and continuous integration tools. We also assume we are using Julia >= v.1.2.0.
+We will go trough the process of creating the package from scratch and implement automatic testing ([next section](#pkg_creation)), document our newly created package ([folowing section](#pkg_documentation)) and finally register it within the official Julia Register, so that other people can find and install the package easily ([last section](#pkg_registration)).
+
+### <a name="pkg_creation"></a>Creating the package and implementing tests
 
 First, we create the repository in GitHub, considering a package name that follows the Julia's [package naming guidelines](https://julialang.github.io/Pkg.jl/v1/creating-packages/#package-naming-guidelines) and, by custom, calling the repository by the package name followed by the ".jl" prefix.
 For example, in this tutorial we chose as package name `MyAwesomePackage`, and the corresponding GitHub repository will be `MyAwesomePackage.jl`.
@@ -24,7 +93,7 @@ Don't forget to add a readme (so we can already clone the repository) and choose
 
 ![](../assets/imgs/gitHub_start_repository.png)
 
-**[Are you in a rush? Clone [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs.]**
+**Tip:** _Are you in a rush? Clone [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs._
 
 The repository doesn't yet contain the minimum set of information that allows it to be downloaded as a "Julia package", hence we will first generate a basic package structure locally, using the Julia tool `generate`. We will then commit and link this git repository with the remote GitHub repository we just made, push the basic package structure to GitHub and, at that point, we can download it again as a Julia Package and continue its development.
 
@@ -235,7 +304,7 @@ Also, please note that this action is automatically triggered at any given inter
 This conclude the section about developing (and testing) a package. You can read more details [here](https://julialang.github.io/Pkg.jl/v1/creating-packages/), including how to specify a personalised building workflow.
 
 
-## Documenting our package
+### <a name="pkg_documentation"></a>Documenting our package
 
 It is a good practice to document your own functions. You can use triple quoted strings (""") just before the function to document and use Markdown syntax on it. The Julia documentation [recommends](https://docs.julialang.org/en/v1/manual/documentation/) that you insert a simplified version of the function, together with an `Arguments` and an `Examples` sections.  
 For example, this is the documentation string for our `plusTwo` function.
@@ -380,7 +449,7 @@ When we push our commits to GitHub, the CI.yml action that we set earlier (a) bu
 For now, the documentation is available on https://YOUR_USERNAME.github.io/MyAwesomePackage.jl/dev. The first time we will make a release, its documentation will be available under the `stable` directory.
 
 
-## Registration of our package
+### <a name="pkg_registration"></a>Registration of our package
 
 We can finally register our Package, but before let's add a further action to it, the TagBot Action
 `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflows/TagBot.yml`, documented [here](https://github.com/marketplace/actions/julia-tagbot):

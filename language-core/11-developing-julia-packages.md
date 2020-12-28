@@ -97,7 +97,7 @@ Don't forget to add a readme (so we can already clone the repository) and choose
 
 The repository doesn't yet contain the minimum set of information that allows it to be downloaded as a "Julia package", hence we will first generate a basic package structure locally, using the Julia tool `generate`. We will then commit and link this git repository with the remote GitHub repository we just made, push the basic package structure to GitHub and, at that point, we can download it again as a Julia Package and continue its development.
 
-So, let's generate our package locally. We cd to a directory where we want the new package to appear as a subfolder, enter the Julia prompt and type `(@v1.X) pkg> generate MyAwesomePackage`.
+So, let's generate our package locally. We cd to a directory where we want the new package to appear as a subfolder (for example our Desktop), enter the Julia prompt and type `(@v1.X) pkg> generate MyAwesomePackage`.
 
 This will create a new folder `MyAwesomePackage` with a `src` subfolder that includes a "Hello world" version of our awesome package and, most importantly, the `Project.toml` file.
 For now, this includes just: (a) the name of the package; (b) the author; (c ) the unique id that has been assigned to the new package (this is a code that depends from stuff like the MAC address, the exact time, the process id, etc...) and (d) the initial version of the package.

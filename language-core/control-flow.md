@@ -3,8 +3,8 @@
 All typical control flow \(`for`, `while`, `if`/`else`, `do`\) are supported, and parenthesis around the condition are not necessary. Multiple conditions can be specified in the for loop, e.g.:\`
 
 ```text
-for i=1:2,j=2:4
- println(i*j)
+for i = 1:2, j = 2:4
+    println(i*j)
 end
 ```
 
@@ -12,11 +12,11 @@ end
 
 Julia support list comprehension and maps:
 
-* `[myfunction(i) for i in [1,2,3]]`
-* `[x + 2y for x in [10,20,30], y in [1,2,3]]`
+* `[myfunction(i) for i in [1, 2, 3]]`
+* `[x + 2y for x in [10, 20, 30], y in [1, 2, 3]]`
 * `mydict = Dict(); [mydict[i]=value  for (i, value) in enumerate(mylist)]` \(`enumerate` returns an iterator to tuples with the index and the value of elements in an array\)
 * `[students[name] = sex for (name,sex) in zip(names,sexes)]` \(`zip` returns an iterator of tuples pairing two or multiple lists, e.g. \[\("Marc","M"\),\("Anne","F"\)\] \)
-* `map((n,s) -> students[n] = s, names, sexes)` \(`map` applies a function to a list of arguments\) When mapping a function with a single parameter, the parameter can be omitted: `a = map(f, [1,2,3])` is equal to  `a = map(x->f(x), [1,2,3])`.
+* `map((n,s) -> students[n] = s, names, sexes)` \(`map` applies a function to a list of arguments\) When mapping a function with a single parameter, the parameter can be omitted: `a = map(f, [1, 2, 3])` is equal to  `a = map(x->f(x), [1, 2, 3])`.
 
 Ternary operator is supported as `a ? b : c` \(if `a` is true, then `b`, else `c`\). Put attenction to wrap the `?` and `:` operators with space.
 
@@ -36,7 +36,7 @@ Do blocks allow to define anonymous functions that are passed as first argument 
 
 ```text
 findall(myarray) do x
-       x == value
+    x == value
 end
 ```
 

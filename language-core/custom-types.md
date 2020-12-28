@@ -120,4 +120,8 @@ This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
 ![](https://github.com/sylvaticus/juliatutorial/tree/53fb590910bcc61cd119e7784eb4afa99addd8ac/assets/type_hierarchy_for_julia_numbers.png)
 
+Note that because concrete types are definitive, i.e. that can't have further subtypes, arrays of `ConcreteType` are not subtypes of arrays of `AbstractType`, even when `ConcreteType` is actually a subtype of `AbstractType`, This is true for any parametric type, not just arrays.
+In function signature, when you want to express the concept that you want to accept as argument an array of any subtype of `AbstractType`, you can use a template.
+
+
 _While an updated, expanded and revised version of this chapter is available in "Chapter 4 - Custom Types" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

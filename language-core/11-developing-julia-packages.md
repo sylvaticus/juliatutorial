@@ -148,7 +148,7 @@ git push --set-upstream origin main # Finally upload everything back to the GitH
 ```
 
 Once we have the package in GitHub, we can add it to our Julia local installation with `(@v1.X) pkg> add https://github.com/sylvaticus/MyAwesomePackage.jl.git` and `(@v1.X) pkg> dev MyAwesomePackage`.
-The package should now reside to `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage`, where `[USER_HOME_FOLDER]` is the home folder for the local user, e.g. `~` in Linux or `%HOMEPATH%` in Windows.
+The package should now located in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage`, where `[USER_HOME_FOLDER]` is the home folder for the local user, e.g. `~` in Linux or `%HOMEPATH%` in Windows and we can cancel the original location where we generated it (for example in our Desktop).
 
 Before we add a test suite, let's add a minimum of functionality to our package. I highly advise you to use the [Revise](https://github.com/timholy/Revise.jl) package. When you import `Revise` in a new Julia session before importing a package it lets you account for changes that you make when you save on disk any modification you make on the package without having to restart the Julia session.
 
@@ -300,6 +300,8 @@ jobs:
         run: julia -e 'using CompatHelper; CompatHelper.main()'
 ```
 Also, please note that this action is automatically triggered at any given interval. GitHub stops this kinds of cron-based actions for inactive repositories, sending a warning email to you to prevent it. So, until a more solid solution is found, check your email if your repository is no longer actively developed!
+
+With out package in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/` we can continue to develop it, commit the changes and push them to GitHub (behind the scenes, the `add` and `dev` Julia package commands did actually cloned the GitHub repository to `.julia/dev/MyAwesomePackage/`, so we can use directly git commands on that directory, like `git commit -a -m "Commit message"` or `git push`).
 
 This conclude the section about developing (and testing) a package. You can read more details [here](https://julialang.github.io/Pkg.jl/v1/creating-packages/), including how to specify a personalised building workflow.
 
@@ -478,7 +480,7 @@ We are now ready to register the package, with the simplest way being to use the
 
 Simply click "Install app" and authorise it to the GitHub repositories you wish (or on all your repositories if you prefer).
 
-Now we can register the package with a simple `@JuliaRegistrator register` "command" in the comment section of the commit we want to register. Don't forget, for successive versions you want to register, to first change the `version` information in the package `Project.toml`
+Now we can register the package with a simple `@JuliaRegistrator register` "command" in the comment section of the commit we want to register.
 
 We can also write detailed release notes by adding a `Release notes:` after the `@JuliaRegistrator` command, for example:
 
@@ -487,3 +489,8 @@ We can also write detailed release notes by adding a `Release notes:` after the 
 Congratulation ! A "robot" will respond to your command confirming the opening of the pull request in the Julia registry and, if the package meet all the requirements, it should soon automatically registered (once a 3 days waiting period has elapsed) and everyone will be able to simply add and use it with `(@v1.X) pkg> add MyAwesomePackage`.
 If something goes wrong - in our case let's say that we forgot to put the upper bound for Julia itself -
 you will receive an informative message explaining what went wrong and we can try the registration again (issuing an other `@JuliaRegistrator register` "command", that in turn will update the pull request).
+
+#### Further development of the package
+
+In the most basic situation, we would keep the `main` branch locally, continue our development, and when we consider it is "time" to release a new version we just change the `version` information in the package `Project.toml`, we commit/push the new "version" and we raise the `@JuliaRegistrator register` "command" again in GitHub.
+This will have the effect to register the new version in the Julia official Register, with TagBot creating an equivalent version on the GitHub repository.

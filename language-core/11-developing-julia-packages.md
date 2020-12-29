@@ -213,6 +213,8 @@ jobs:
           - '1' # Leave this line unchanged. '1' will automatically expand to the latest stable 1.x release of Julia.
         os:
           - ubuntu-latest
+          - macOS-latest
+          - windows-latest
         arch:
           - x64
     steps:

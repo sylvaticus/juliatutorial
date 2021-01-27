@@ -27,10 +27,10 @@ prod      Epinal Bordeaux Grenoble
 Fuelwood  400    700      800
 Sawnwood  800    1600     1800
 Pannels   200    300      300
-"""), delim=" ", ignorerepeated=true, copycols=true)
+"""), DataFrame, delim=" ", ignorerepeated=true, copycols=true)
 ```
 
-* Read a CSV file: `myData = CSV.read(file; delim=';', missingstring="NA", delim=";", decimal=',', copycols=true)` \(use `CSV.read(file; delim='\t')` for tab delimited files\)
+* Read a CSV file: `myData = CSV.read(file, Dataframe; delim=';', missingstring="NA", delim=";", decimal=',', copycols=true)` \(use `CSV.read(file, DataFrame; delim='\t')` for tab delimited files\)
 
 If a column has in the first top rows used by type-autorecognition only missing values, but then has non-missing values in subsequent rows, an error may appear. The trick is to manually specify the column value with the `type` parameter \(Vector or Dictionary, e.g. `types=Dict("freeDim" => Union{Missing,Int64})`\)
 
@@ -41,7 +41,7 @@ If you need to edit the values of your imported dataframe, do not forget the `co
   ```text
   using DataFrames, HTTP, CSV
   resp = HTTP.request("GET", "https://data.cityofnewyork.us/api/views/kku6-nxdu/rows.csv?accessType=DOWNLOAD")
-  df = CSV.read(IOBuffer(String(resp.body)))
+  df = CSV.read(IOBuffer(String(resp.body)), DataFrame)
   ```
 
 * From a OpenDocument Spreadsheet file \(OpenOffice, LibreOffice, MS Excel and others\): Use the [`OdsIO` package](https://github.com/sylvaticus/OdsIO.jl) together with the `retType="DataFrame"` argument: `df = ods_read("spreadsheet.ods";sheetName="Sheet2",retType="DataFrame",range=((tl_row,tl_col),(br_row,br_col)))`

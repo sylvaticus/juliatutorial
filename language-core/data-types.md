@@ -138,7 +138,7 @@ Useful tricks:
 NamedTuples are collections of items whose position in the collection \(index\) can be identified not only by the position but also by  name.
 
 * Define a NamedTuple: `aNamedTuple = (a=1, b=2)`
-* Access them with the dot notation: `aNamedTuple.a` .
+* Access them with the dot notation: `aNamedTuple.a` (index notation can be used, too: `aNamedTuple[:a]`).
 * Get a tuple of the keys: `keys(aNamedTuple)`
 * Get a tuple of the values: `values(aNamedTuple)`
 * Get an Array of the values: `collect(aNamedTuple)`

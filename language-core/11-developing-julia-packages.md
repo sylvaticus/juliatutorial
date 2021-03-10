@@ -340,12 +340,12 @@ The documentation string for a function or a module should be placed exactly on 
 In order to process to the building of the documentation pages, we produce a skeleton of the documentation configuration files using the following commands:
 
 ```julia
-(@v1.x) pkg>  activate          # Documenter needs to be added to your general Julia registry, not your package specific one
+(@v1.x) pkg>  activate          # For this step, Documenter and DocumenterTools need to be added to your general Julia registry, not your package specific one
 (@v1.x) pkg>  add Documenter
 (@v1.x) pkg>  add DocumenterTools
 julia> using DocumenterTools
 julia> cd("[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/")
-julia> generate()
+julia> DocumenterTools.generate()
 ```
 This should produce an output similar to the following:
 ```

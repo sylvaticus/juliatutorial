@@ -23,7 +23,7 @@ Note: the first method doesn't automatically cast integer and floats to strings.
 
 ## Arrays \(lists\)
 
-Arrays are N-dimensional mutable containers. In this section, we deal with 1-dimensional arrays, in the next one we consider 2 or more dimensional arrays.
+Arrays are N-dimensional mutable containers, parametrized with the `type` of the object contained and the number of dimensions, e.g. `Array{Float64,3}` (we'll see parametrized types in details later in chapter "Custom Structures"). In this section, we deal with 1-dimensional arrays, in the next one we consider 2 or more dimensional arrays.
 
 There are several ways to create an array:
 
@@ -80,6 +80,10 @@ Attention to this difference:
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements \(each of those is again a vector\);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array \(a matrix with 2 columns\) with three elements \(scalars\).
 
+When outputed or printed, the first dimension of an Array is always interpreted as the _rows_ and the second one (if exists) as the _columns_. So, a unidimensional array is interpreted as a _column_ vector.
+Arrays are stored in memory contiguously by the first dimension, so making a loop over a matrix by column and then by row is significantly faster than doing it by row and by column, as the inner loop would operate on contiguous pieces of memory.
+
+
 Empty matrices can be constructed as:
 
 `m = Array{Float64}(undef, 0, 0)`
@@ -114,7 +118,22 @@ n-D arrays support several methods:
 
 * `size(a)` returns a tuple with the sizes of the _n_ dimensions
 * `ndims(a)` returns the number of dimensions of the array \(e.g. 2 for a Matrix\)
+
+
 * Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `dropdims(a, dims=(dimToDrop1,dimToDrop2))` \(where the dim\(s\) to drop must all have a single element for all the other dimensions, e.r. be of `size`1\)  the transpose `'` operator. These operations perform a shadow copy, returning just a different "view" of the underlying data \(so modifying the original matrix modifies also the reshaped/transposed matrix\). You can use `collect(reshape/dropdims/transpose)` to force a deepcopy.
+
+At the opposite, using the slice operator (e.g. `a[:,1:4]`) performs by default a copy of the data, while if you prefer instead a shadow copy you need to use `view`/`@view`/`@views` (e.g. `@view a[:,1:4]`).
+
+Attention that `transpose(a)`/`a'` is a linear-algebra operation and works only when the content of `a` is numerical. For general `a` (e.g. strings) use instead `permutedims(a)`.
+
+Also, put attention to this difference:
+
+* `a = [1,2,3]`           creates a 1,2,3 column vector
+* `b = collect([1 2 3]')` traspose a 1,2,3 row vector to a 1,2,3 column
+
+While mathematically they are the same concept, in Julia they are two different objects. The first one is a uni-dimensional array, the second one is a two- dimensional array where it happens that the second dimension has size 1, i.e. there is only one column.
+This possible confusion doesn't arise with _row_ vectors, as all row vectors in Julia have 2 dimensions.
+
 
 `AbstractVector{T}` is just an alias to `AbstractArray{T,1}`, as `AbstractMatrix{T}` is just an alias to `AbstractArray{T,2}`.
 
@@ -177,9 +196,9 @@ While named tuples and dictionaries can look similar, there are some important d
 
 * NamedTuples are immutable while Dictionaries are mutable
 * Dictionaries are type unstable if different type of values are stored, while NamedTuples remain type-stable:
-  * `d = Dict(:k1=>"v1", :k2=>2)  # Dict{Symbol,Any}` 
+  * `d = Dict(:k1=>"v1", :k2=>2)  # Dict{Symbol,Any}`
   * `nt = (k1="v1", k2=2,) # NamedTuple{(:k1, :k2),Tuple{String,Int64}}`
-* The syntax is a bit less verbose and readable with NamedTuples: `nt.k1` vs `d[:k1]` 
+* The syntax is a bit less verbose and readable with NamedTuples: `nt.k1` vs `d[:k1]`
 
 Overall, NamedTuple are generally more efficient and should be thought more as anonymous `struct` \(see the "Custom structure" section\) than Dictionaries.
 
@@ -242,13 +261,13 @@ You can import data from a file to a matrix using `readdlm()` \(in standard libr
 
 * Random float in \[0,1\]: `rand()`
 * Random integer in \[a,b\]: `rand(a:b)`
-* Random float in \[a,b\] with "precision" to the second digit : `rand(a:0.01:b)` 
+* Random float in \[a,b\] with "precision" to the second digit : `rand(a:0.01:b)`
 
   This last can be executed faster and more elegantly using the `Distribution` package:
 
   ```text
   using Pkg; Pkg.add("Distributions")
-  import Distributions: Uniform 
+  import Distributions: Uniform
   rand(Uniform(a,b))
   ```
 

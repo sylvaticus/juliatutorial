@@ -57,7 +57,7 @@ The following methods are useful while working with arrays:
 * Checking for existence: `in(1, a)`
 * Getting the length: `length(a)`
 * Get the maximum value: `maximum(a)` or  `max(a...)` \(`max` returns the maximum value between the given arguments\)
-* Get the minimum value: `minimum(a)` or  `min(a...)` \(`min` returns the maximum value between the given arguments\)
+* Get the minimum value: `minimum(a)` or  `min(a...)` \(`min` returns the minimum value between the given arguments\)
 * Empty an array: `empty!(a)` \(only column vector, not row vector\)
 * Transform row vectors in column vectors: `b = vec(a)`
 * Random-shuffling the elements: `shuffle(a)` \(or `shuffle!(a)`. From Julia 1.0 this require `using Random` before\)

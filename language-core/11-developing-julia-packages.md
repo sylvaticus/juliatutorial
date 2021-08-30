@@ -16,7 +16,7 @@ end
 ```
 
 Module names are customary starting with a capital letter and the module content is usually not indented.
-Modules can be entered in the REPL as normal Julia code or in a script that is imported with `import("file.jl")`.
+Modules can be entered in the REPL as normal Julia code or in a script that is imported with `include("file.jl")`.
 
 There is no connection between a given file and a given module as in other languages, so the logical structure of a program can be decoupled from its actual division in files. For example, one file could contain multiple modules.
 

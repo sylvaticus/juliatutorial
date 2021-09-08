@@ -383,7 +383,7 @@ deploydocs(
 )
 ```
 
-Let's consider  `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/docs/anotherPage.md`:
+Let's consider  `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/docs/src/anotherPage.md`:
 
 
     # The MyAwesomePackage Module

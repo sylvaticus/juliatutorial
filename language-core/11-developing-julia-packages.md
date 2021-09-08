@@ -189,7 +189,7 @@ From now on, to add a dependency:
 
 Before we `git commit` and `git push` our `MyAwesomePackage`, let's add a functionality that at each time the package is pushed, github performs an operation (github calls these operation "actions"), and in particular it automatically runs the test for us.
 
-Let's add the folder/file `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflow/ci.yml`:
+Let's add the folder/file `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflows/ci.yml`:
 
 ```
 name: CI
@@ -280,7 +280,7 @@ Having an upper limit of the dependencies means that our package, if installed, 
 Something that comes in handy is the following action: it checks for us if any of our dependencies has a new version and open for us a pull request to
 account for such version in our project's `Project.toml`. But attention, it is still up to us to check that indeed the new version works with our package!
 
-`[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflow/CompatHelper.yml`:
+`[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/.github/workflows/CompatHelper.yml`:
 
 ```
 name: CompatHelper

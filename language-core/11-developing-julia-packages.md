@@ -152,7 +152,7 @@ The package should now located in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackag
 
 Before we add a test suite, let's add a minimum of functionality to our package. I highly advise you to use the [Revise](https://github.com/timholy/Revise.jl) package. When you import `Revise` in a new Julia session before importing a package it lets you account for changes that you make when you save on disk any modification you make on the package without having to restart the Julia session.
 
-So let's add a function `plusTwo` to our package by editing `MyAwesomePackage/src/MyAwesomePackage.jl` as follow:
+From now, we will only add or modify files contained in the folder `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/`, which is itself a clone of the GitHub repository. So let's add a function `plusTwo` to our package by editing `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/src/MyAwesomePackage.jl` as follow:
 
 ```julia
 module MyAwesomePackage

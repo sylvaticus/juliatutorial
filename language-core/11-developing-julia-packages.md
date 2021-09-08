@@ -450,7 +450,7 @@ We can add the two badges for the stable and development versions of the documen
 
 When we push our commits to GitHub, the CI.yml action that we set earlier (a) build the documentation by running "make.jl" and (b) deploy it to the github pages. The documentation is built on its own branch, `gh-pages`. This branch is added automatically during the process of deploying the documentation the first time. At the same time the "source branch" for the documentation pages in the repository settings (https://github.com/YOUR_USERNAME/MyAwesomePackage.jl/settings) should already be set to `gh-pages` (see the [GitHub pages documentation](https://docs.github.com/en/free-pro-team@latest/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) to set it manually if this for any reason doesn't happen).
 
-For now, the documentation is available on https://YOUR_USERNAME.github.io/MyAwesomePackage.jl/dev. The first time we will make a release, its documentation will be available under the `stable` directory.
+For now, the documentation is available on https://YOUR_USERNAME.github.io/MyAwesomePackage.jl/dev, in the branch `gh-pages`. The first time we will make a release, its documentation will be available under the `stable` directory.
 
 
 ### <a name="pkg_registration"></a>Registration of our package

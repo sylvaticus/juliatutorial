@@ -46,36 +46,36 @@ Square brackets are used to access the elements of an array \(e.g. `a[1]`\). The
 The following methods are useful while working with arrays:
 
 * Push an element to the end of a: `push!(a,b)` \(as a single element even if it is an Array. Equivalent to python `append`\)
-* To append all the elements of b to a: `append!(a,b)` \(if b is a scalar obviously push! and append! are the same. Attention that a string is treated as a list!. Equivalent to Python `extend` or `+=`\)
+* To append all the elements of b to a: `append!(a,b)` \(if b is a scalar obviously push! and append! are the same. Note that a string is treated as a list!. Equivalent to Python `extend` or `+=`\)
 * Concatenation of arrays \(new array\): `a = [1,2,3]; b = [4,5]; c = vcat(1,a,b)`
 * Remove an element from the end: `pop!(a)`
-* Removing an element at the beginning \(left\): `popfirst!(a)`
+* Remove an element at the beginning \(left\): `popfirst!(a)`
 * Remove an element at an arbitrary position:  `deleteat!(a, pos)`
 * Add an element \(b\) at the beginning \(left\):  `pushfirst!(a,b)` \(no, `appendfirst!` doesn't exists!\)
 * Sorting: `sort!(a)` or `sort(a)` \(depending on whether we want to modify or not the original array\)
-* Reversing an arry: `a[end:-1:1]`
+* Reversing an array: `a[end:-1:1]`
 * Checking for existence: `in(1, a)`
-* Getting the length: `length(a)`
+* Get the length: `length(a)`
 * Get the maximum value: `maximum(a)` or  `max(a...)` \(`max` returns the maximum value between the given arguments\)
 * Get the minimum value: `minimum(a)` or  `min(a...)` \(`min` returns the minimum value between the given arguments\)
 * Empty an array: `empty!(a)` \(only column vector, not row vector\)
 * Transform row vectors in column vectors: `b = vec(a)`
 * Random-shuffling the elements: `shuffle(a)` \(or `shuffle!(a)`. From Julia 1.0 this require `using Random` before\)
-* Checking if an array is empty: `isempty(a)`
+* Check if an array is empty: `isempty(a)`
 * Find the index of a value in an array: `findall(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position\(s\).
 * Delete a given item from a list: `deleteat!(myarray, findall(x -> x == myunwanteditem, myarray))`
 
 ### Multidimensional and nested arrays
 
 In Julia, an array can have 1 dimension \(a column, also known as `Vector`\), 2 dimensions \(that is, a `Matrix`\) or more. Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
-The main difference between a `Matrix` and an _array of array_ is that in the former the number of elements on each column \(row\) must be the same and rules of linear algebra applies.
+The main difference between a `Matrix` and an _array of arrays_ is that in the former the number of elements on each column \(row\) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
 
 * `a = [[1,2,3] [4,5,6]]`  \[\[elements of the first column\] \[elements of the second column\] ...\] \(note that this is valid only if wrote in a single line. Use `hcat(col1, col2)` to write matrix by each column\)
 * `a = [1 4; 2 5; 3 6]`    \[elements of the first row; elements of the second row; ...\] \(here you can also use `vcat(row1, row2)` to concatenate several rows\)
 
-Attention to this difference:
+Note this difference:
 
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements \(each of those is again a vector\);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array \(a matrix with 2 columns\) with three elements \(scalars\).

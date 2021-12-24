@@ -93,7 +93,7 @@ Don't forget to add a readme (so we can already clone the repository) and choose
 
 ![](../assets/imgs/gitHub_start_repository.png)
 
-**Tip:** _Are you in a rush? Clone [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs._
+**Tip:** _Are you in a rush? Fork [MyAwesomePackage.jl](https://github.com/sylvaticus/MyAwesomePackage.jl) and adapt it to your needs._
 
 The repository doesn't yet contain the minimum set of information that allows it to be downloaded as a "Julia package", hence we will first generate a basic package structure locally, using the Julia tool `generate`. We will then commit and link this git repository with the remote GitHub repository we just made, push the basic package structure to GitHub and, at that point, we can download it again as a Julia Package and continue its development.
 

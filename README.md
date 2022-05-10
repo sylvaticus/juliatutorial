@@ -4,7 +4,7 @@
 
 ### News:
 
-**Update May 2022: This tutorial (and the derived book) has eveolved in a MOOC course thanks to the flexibility of packages the likes of [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl), [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl)**
+**Update May 2022: This tutorial (and the derived book) has evolved into a MOOC course thanks to the flexibility of packages the likes of [Documenter.jl](https://github.com/JuliaDocs/Documenter.jl), [Literate.jl](https://github.com/fredrikekre/Literate.jl) and [QuizQuestions.jl](https://github.com/jverzani/QuizQuestions.jl)**
 
 - [SPMLJ - Introduction to Scientific Programming and Machine Learning with Julia](https://sylvaticus.github.io/SPMLJ)
 

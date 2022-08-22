@@ -39,7 +39,7 @@ expr = Meta.parse("1+2") # parses the string "1+2" and saves the `1+2` expressio
 eval(expr)          # here the expression is evaluated and the code returns 3
 ```
 
-### Use the Exp constructor with a tree
+### Use the Expr constructor with a tree
 
 The expression can be also directly constructed from the tree: `expr = Expr(:call, :+, 1, 2)` is equivalent to `expr = parse("1+2")` or `expr = :(1+2)`.
 

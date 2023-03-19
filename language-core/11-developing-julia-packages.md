@@ -236,7 +236,7 @@ jobs:
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
-      - uses: codecov/codecov-action@v1
+      - uses: codecov/codecov-action@v3
         with:
           file: lcov.info
   docs:
@@ -388,9 +388,9 @@ Let's consider  `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/docs/anotherPage
 
     # The MyAwesomePackage Module
 
-     ```@docs
-     MyAwesomePackage
-     ```
+    ```@docs
+    MyAwesomePackage
+    ```
 
     ## Module Index
 

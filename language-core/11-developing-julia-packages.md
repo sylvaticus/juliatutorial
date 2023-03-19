@@ -142,7 +142,7 @@ git init     # Initialise the git repository
 git add .    # Add all files, including in subfolders
 git commit -a -m "Initial package structure of MyAwasomePackage" # Create a first commit
 git branch -m main # Rename "master" to "main" as of the new GitHub policy
-git remote add origin https://github.com/sylvaticus/MyAwesomePackage.jl.git # Link the remote github repository to the local one
+git remote add origin git@github.com:sylvaticus/MyAwesomePackage.jl.git # Link the remote github repository to the local one
 git pull origin main --allow-unrelated-histories # Fetch the Readme and gitignore we created when we created the repository
 git push --set-upstream origin main # Finally upload everything back to the GitHub repository
 ```

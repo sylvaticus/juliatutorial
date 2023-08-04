@@ -152,7 +152,7 @@ The package should now located in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackag
 
 Before we add a test suite, let's add a minimum of functionality to our package. I highly advise you to use the [Revise](https://github.com/timholy/Revise.jl) package. When you import `Revise` in a new Julia session before importing a package it lets you account for changes that you make when you save on disk any modification you make on the package without having to restart the Julia session.
 
-So let's add a function `plusTwo` to our package by editing `MyAwesomePackage/src/MyAwesomePackage.jl` as follow:
+From now, we will only add or modify files contained in the folder `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/`, which is itself a clone of the GitHub repository. With our package in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/` we can continue to develop it, commit the changes and push them to GitHub (behind the scenes, the `add` and `dev` Julia package commands did actually cloned the GitHub repository to `.julia/dev/MyAwesomePackage/`, so we can use directly git commands on that directory, like `git commit -a -m "Commit message"` or `git push`). So let's add a function `plusTwo` to our package by editing `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/src/MyAwesomePackage.jl` as follow:
 
 ```julia
 module MyAwesomePackage
@@ -302,8 +302,6 @@ jobs:
         run: julia -e 'using CompatHelper; CompatHelper.main()'
 ```
 Also, please note that this action is automatically triggered at any given interval. GitHub stops this kinds of cron-based actions for inactive repositories, sending a warning email to you to prevent it. So, until a more solid solution is found, check your email if your repository is no longer actively developed!
-
-With out package in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage/` we can continue to develop it, commit the changes and push them to GitHub (behind the scenes, the `add` and `dev` Julia package commands did actually cloned the GitHub repository to `.julia/dev/MyAwesomePackage/`, so we can use directly git commands on that directory, like `git commit -a -m "Commit message"` or `git push`).
 
 This conclude the section about developing (and testing) a package. You can read more details [here](https://julialang.github.io/Pkg.jl/v1/creating-packages/), including how to specify a personalised building workflow.
 

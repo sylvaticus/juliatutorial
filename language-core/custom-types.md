@@ -2,7 +2,7 @@
 
 Structures \(previously known in Julia as "Types"\) are, for the most \(see later for the difference\), what in other languages are called classes, or "structured data": they define the kind of information that is embedded in the structure, that is a set of fields \(aka "properties" in other languages\), and then individual instances \(or "objects"\) can be produced each with its own specific values for the fields defined by the structure.
 
-They are "composite" types, in the sense that are not made of just a fixed amound of bits as instead "primitive" types.
+They are "composite" types, in the sense that are not made of just a fixed amount of bits as instead "primitive" types.
 
 Some syntax that will be used in the examples:
 
@@ -30,7 +30,7 @@ mutable struct MyOwnType{T<:Number}
 end
 ```
 
-You can omit the `mutable` keyword in front of `struct` when you want to enforce that once an object of that type has been created, its fields can no longer be changed \(i.e. , structures are immutable by default. Note that mutable objects -as arrays- remain themselves mutable also in a immutable structure\). Although obviously less flexible, immutable structures are much faster.
+You can omit the `mutable` keyword in front of `struct` when you want to enforce that once an object of that type has been created, its fields can no longer be changed \(i.e., structures are immutable by default. Note that mutable objects -as arrays- remain themselves mutable also in a immutable structure\). Although obviously less flexible, immutable structures are much faster.
 
 You can create abstract types using the keyword `abstract type`. Abstract types do not have any field, and objects can not be instantiated from them, although concrete types \(structures\) can be defined as subtypes of them \(an [issue](https://github.com/JuliaLang/julia/issues/4935%20) to allow abstract classes to have fields is currently open and may be implemented in the future\).
 
@@ -118,7 +118,7 @@ Some useful type-related functions:
 
 This is the complete type hierarchy of `Number in Julia (credits to Wikipedia):`
 
-![](https://github.com/sylvaticus/juliatutorial/tree/53fb590910bcc61cd119e7784eb4afa99addd8ac/assets/type_hierarchy_for_julia_numbers.png)
+![Type hierarchy for Julia numbers](https://upload.wikimedia.org/wikipedia/commons/4/40/Type-hierarchy-for-julia-numbers.png)
 
 Note that because concrete types are definitive, i.e. that can't have further subtypes, arrays of `ConcreteType` are not subtypes of arrays of `AbstractType`, even when `ConcreteType` is actually a subtype of `AbstractType`, This is true for any parametric type, not just arrays.
 In function signature, when you want to express the concept that you want to accept as argument an array of any subtype of `AbstractType`, you can use a template.

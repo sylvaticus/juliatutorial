@@ -14,7 +14,7 @@
 
 -  _Antonello Lobianco (2019), "Julia Quick Syntax Refererence", Apress_
 
--  [https://julia-book.com(https://julia-book.com/) (includes community forum and link to code repository)
+-  [https://julia-book.com](https://julia-book.com/) (includes community forum and link to code repository)
 
 - This tutorial itself is still updated and may include new stuff that will be the base of further editions of the book.
 

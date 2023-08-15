@@ -21,9 +21,9 @@ The last argument\(s\) \(whatever positional or keyword\) can be specified toget
 `myfunction(a,b=1;c=2) = (a+b)*3 # definition with 2 position arguments and one keyword argument  
 myfunction(10,c=13) # calling (10+1)*3` 
 
-To declare a function parameter as being either a scalar type `T` or a vector `T` you can use an Union:`function f(par::Union{Float64, Vector{Float64}} = Float64[]) [...] end`
+To declare a function parameter as being either a scalar type `T` or a vector `T` you can use a Union:`function f(par::Union{Float64, Vector{Float64}} = Float64[]) [...] end`
 
-The ellipsis \(splat `...` \) can be uses in order to both specify a variable number of arguments and "splicing" a list or array in the parameters of a function call:
+The ellipsis \(splat `...` \) can be used in order to both specify a variable number of arguments and "splicing" a list or array in the parameters of a function call:
 
 ```text
 values = [1,2,3]
@@ -51,7 +51,7 @@ x,y = myfunction(1,2)
 ## Multiple-dispatch \(aka polymorphism\)
 
 The same function can be defined with different number and type of parameters \(this is useful when the same kind of logical operation must be performed on different types\).  
-When calling such functions, Julia will pick up the correct one depending from the parameters in the call \(by default the stricter version\).  
+When calling such functions, Julia will pick up the correct one depending on the parameters in the call \(by default the stricter version\).  
 These different versions are named "methods" in Julia and, if the function is type-safe, dispatch is implemented at compile time and very fast.  
 You can inspect the methods of a function with `methods(f)`.
 
@@ -64,7 +64,7 @@ Functions can be further specified regarding on which types they work with, usin
 `myfunction(x::T, y::T2, z::T2) where {T <: Number, T2} = 5x + 5y + 5z`
 
 The above function first defines two types, T \(a subset of Number\) and T2, and then specifies each parameter of which of these two types must be.  
-You can call it  with `(1,2,3)` or `(1,2.5,3.5)` as parameter, but not with `(1,2,3.5)` as the definition of `myfunction` constrains that the second and third parameter must be the same type \(whatever it is\).
+You can call it with `(1,2,3)` or `(1,2.5,3.5)` as parameter, but not with `(1,2,3.5)` as the definition of `myfunction` posits that the second and third parameter must be the same type \(whatever it is\).
 
 ## Functions as objects
 
@@ -98,8 +98,8 @@ You can still assign an anonymous function to a variable: `f = (x,y) -> x+y`
 
 ## Broadcast
 
-You can "broadcast" a function to work over each elements of an array \(singleton\): `myArray = broadcast(i -> replace(i, "x" => "y"), myArray)`. This is equivalent to \(note the dot\): `myArray = replace.(myArray, Ref("x" => "y"))` \(`Ref()` is needed to protect the pair \(x,y\) from trying to be broadcasted itself as well\).
+You can "broadcast" a function to work over each element of an array \(singleton\): `myArray = broadcast(i -> replace(i, "x" => "y"), myArray)`. This is equivalent to \(note the dot\): `myArray = replace.(myArray, Ref("x" => "y"))` \(`Ref()` is needed to protect the pair \(x, y\) from trying to be broadcasted itself as well\).
 
-While in the past broadcast was available on a limited number of core functions only, the `f.()` syntax is now  automatically available for any function, including the ones you define.
+While in the past broadcast was available on a limited number of core functions only, the `f.()` syntax is now automatically available for any function, including the ones you define.
 
 _While an updated, expanded and revised version of this chapter is available in "Chapter 3 - Control Flow and Functions" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

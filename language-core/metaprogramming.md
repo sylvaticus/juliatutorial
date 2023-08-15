@@ -68,7 +68,7 @@ eval(ex)                    # returns 4, not 0
 
 ## Macros
 
-The possibility to represent code into expressions is at the heart of the usage of macros. Macros in Julia take one or more input expressions and return a modified expressions \(at parse time\). This contrast with normal functions that, at runtime, take the input values \(arguments\) and return a computed value.
+The possibility to represent code into expressions is at the heart of the usage of macros. Macros in Julia take one or more input expressions and return a modified expressions \(at parse time\). This contrasts with normal functions that, at runtime, take the input values \(arguments\) and return a computed value.
 
 **Macro definition**
 

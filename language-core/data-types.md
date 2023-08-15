@@ -5,18 +5,18 @@
 In Julia, variable names can include a subset of Unicode symbols, allowing a variable to be represented, for example, by a Greek letter.  
 In most Julia development environments \(including the console\), to type the Greek letter you can use a LaTeX-like syntax, typing `\` and then the LaTeX name for the symbol, e.g. `\alpha` for `α`. Using LaTeX syntax, you can also add subscripts, superscripts and decorators.
 
-The main types of scalar are `Int64`, `Float64`, `Char` \(e.g. `x = 'a'`\), `String`[¹](data-types.md#myfootnote1) \(e.g. `x="abc"`\) and `Bool`.
+The main types of scalar are `Int64`, `Float64`, `Char` \(e.g. `x = 'a'`\), `String`[¹](data-types.md#myfootnote1) \(e.g. `x = "abc"`\) and `Bool`.
 
 ## Strings
 
-Julia supports most typical string operations, for example: `split(s)` _\(default on whitespaces\)_, `join([s1,s2], "")`, `replace(s, "toSearch" => "toReplace")` and `strip(s)` _\(remove leading and trailing whitespaces\)_ Attention to use the single quote for chars and double quotes for strings. c
+Julia supports most typical string operations, for example: `split(s)` _\(default on whitespaces\)_, `join([s1, s2], "")`, `replace(s, "toSearch" => "toReplace")` and `strip(s)` _\(remove leading and trailing whitespaces\)_ Attention to use the single quote for chars and double quotes for strings.
 
 ### Concatenation
 
 There are several ways to concatenate strings:
 
 * Concatenation operator: `*`;
-* Function `string(str1,str2,str3)`;
+* Function `string(str1, str2, str3)`;
 * Combine string variables in a bigger one using the dollar symbol: `a = "$str1 is a string and $(myobject.int1) is an integer"` \("interpolation"\)
 
 Note: the first method doesn't automatically cast integer and floats to strings.
@@ -29,7 +29,7 @@ There are several ways to create an array:
 
 * Empty \(zero-elements\) arrays: `a = []`.  Alternative ways:
   * `a = T[]`, e.g. `a = Int64[]`;
-  * using explictitly the contructor `a = Array{T,1}()`;
+  * using explicitly the constructor `a = Array{T,1}()`;
   * using the `Vector` alias: `c = Vector{T}()`;
 * 5-elements zeros array: `a=zeros(5)` \(or a=`zeros(Int64,5)`\) \(same with `ones()`\)
 * Column vector \(_Vector_ container, alias for 1-dimensions array\) : `a = [1;2;3]` or `a=[1,2,3]`
@@ -51,36 +51,36 @@ The following methods are useful while working with arrays:
 * Remove an element from the end: `pop!(a)`
 * Remove an element at the beginning \(left\): `popfirst!(a)`
 * Remove an element at an arbitrary position:  `deleteat!(a, pos)`
-* Add an element \(b\) at the beginning \(left\):  `pushfirst!(a,b)` \(no, `appendfirst!` doesn't exists!\)
+* Add an element \(b\) at the beginning \(left\): `pushfirst!(a,b)` \(no, `appendfirst!` doesn't exist!\)
 * Sorting: `sort!(a)` or `sort(a)` \(depending on whether we want to modify or not the original array\)
 * Reversing an array: `a[end:-1:1]`
 * Checking for existence: `in(1, a)`
 * Get the length: `length(a)`
-* Get the maximum value: `maximum(a)` or  `max(a...)` \(`max` returns the maximum value between the given arguments\)
-* Get the minimum value: `minimum(a)` or  `min(a...)` \(`min` returns the minimum value between the given arguments\)
+* Get the maximum value: `maximum(a)` or `max(a...)` \(`max` returns the maximum value between the given arguments\)
+* Get the minimum value: `minimum(a)` or `min(a...)` \(`min` returns the minimum value between the given arguments\)
 * Empty an array: `empty!(a)` \(only column vector, not row vector\)
 * Transform row vectors in column vectors: `b = vec(a)`
-* Random-shuffling the elements: `shuffle(a)` \(or `shuffle!(a)`. From Julia 1.0 this require `using Random` before\)
+* Random-shuffling the elements: `shuffle(a)` \(or `shuffle!(a)`. From Julia 1.0 this requires `using Random` before\)
 * Check if an array is empty: `isempty(a)`
 * Find the index of a value in an array: `findall(x -> x == value, myarray)`. This is a bit tricky.  The first argument is an anonymous function that returns a boolean value for each value of `myarray`, and then `find()` returns the index position\(s\).
 * Delete a given item from a list: `deleteat!(myarray, findall(x -> x == myunwanteditem, myarray))`
 
 ### Multidimensional and nested arrays
 
-In Julia, an array can have 1 dimension \(a column, also known as `Vector`\), 2 dimensions \(that is, a `Matrix`\) or more. Then each element of the Vector or Matrix can be a scalar, a vector or an other Matrix.  
+In Julia, an array can have 1 dimension \(a column, also known as `Vector`\), 2 dimensions \(that is, a `Matrix`\) or more. Then each element of the Vector or Matrix can be a scalar, a vector or another Matrix.  
 The main difference between a `Matrix` and an _array of arrays_ is that in the former the number of elements on each column \(row\) must be the same and rules of linear algebra applies.
 
 There are two ways to create a Matrix:
 
-* `a = [[1,2,3] [4,5,6]]`  \[\[elements of the first column\] \[elements of the second column\] ...\] \(note that this is valid only if wrote in a single line. Use `hcat(col1, col2)` to write matrix by each column\)
-* `a = [1 4; 2 5; 3 6]`    \[elements of the first row; elements of the second row; ...\] \(here you can also use `vcat(row1, row2)` to concatenate several rows\)
+* `a = [[1,2,3] [4,5,6]]` \[\[elements of the first column\] \[elements of the second column\] ...\] \(note that this is valid only if wrote in a single line. Use `hcat(col1, col2)` to write matrix by each column\)
+* `a = [1 4; 2 5; 3 6]` \[elements of the first row; elements of the second row; ...\] \(here you can also use `vcat(row1, row2)` to concatenate several rows\)
 
 Note this difference:
 
 * `a = [[1,2,3],[4,5,6]]` creates a 1-dimensional array with 2-elements \(each of those is again a vector\);
 * `a = [[1,2,3] [4,5,6]]` creates a 2-dimensional array \(a matrix with 2 columns\) with three elements \(scalars\).
 
-When outputed or printed, the first dimension of an Array is always interpreted as the _rows_ and the second one (if exists) as the _columns_. So, a unidimensional array is interpreted as a _column_ vector.
+When outputted or printed, the first dimension of an Array is always interpreted as the _rows_ and the second one (if exists) as the _columns_. So, a unidimensional array is interpreted as a _column_ vector.
 Arrays are stored in memory contiguously by the first dimension, so making a loop over a matrix by column and then by row is significantly faster than doing it by row and by column, as the inner loop would operate on contiguous pieces of memory.
 
 
@@ -92,12 +92,12 @@ for an _\(0,0\)-size_ 2-D Matrix of type `Float64` and more in general:
 
 `m = Array{T}(undef, a, b, ...,z)`
 
-for an _\(a,b,...,z\)-size_ multidimensional Matrix \(whose content, of type `T,`is garbage\)
+for an _\(a, b,..., z\)-size_ multidimensional Matrix \(whose content, of type `T,`is garbage\)
 
 A 2x3 matrix can be constructed in one of the following ways:
 
 * `a = [[1,2] [3,4] [5,6]]`
-* `a = zeros(2,3)` or `a = ones(2,3)` \(the zeros and ones are strored as `Float64`\)
+* `a = zeros(2,3)` or `a = ones(2,3)` \(the zeros and ones are stored as `Float64`\)
 * `a = fill("abc",2,3)` \(content is "abc"\)
 
 Nested arrays can be accessed with double square brackets, e.g. `a[2][3]`.  
@@ -110,7 +110,7 @@ a = [[1,2,3] [4,5,6]]
 mask = [[true,true,false] [false,true,false]]
 ```
 
-`a[mask]` returns an 1-D array with 1, 2 and 5. Note that boolean selection results always in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
+`a[mask]` returns an 1-D array with 1, 2 and 5. Note that boolean selection results are always returned in a flatted array, even if delete a whole row or a whole column of the original data. It is up to the programmer to then reshape the data accordingly.
 
 Note: for row vectors, both `a[2]` or `a[1,2]` returns the second element.
 
@@ -120,7 +120,7 @@ n-D arrays support several methods:
 * `ndims(a)` returns the number of dimensions of the array \(e.g. 2 for a Matrix\)
 
 
-* Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `dropdims(a, dims=(dimToDrop1,dimToDrop2))` \(where the dim\(s\) to drop must all have a single element for all the other dimensions, e.r. be of `size`1\)  the transpose `'` operator. These operations perform a shadow copy, returning just a different "view" of the underlying data \(so modifying the original matrix modifies also the reshaped/transposed matrix\). You can use `collect(reshape/dropdims/transpose)` to force a deepcopy.
+* Arrays can be changed dimension with either `reshape(a, nElementsDim1, nElementsDim2)` or `dropdims(a, dims=(dimToDrop1,dimToDrop2))` \(where the dim\(s\) to drop must all have a single element for all the other dimensions, e.r. be of `size`1\) the transpose `'` operator. These operations perform a shadow copy, returning just a different "view" of the underlying data \(so modifying the original matrix modifies also the reshaped/transposed matrix\). You can use `collect(reshape/dropdims/transpose)` to force a deepcopy.
 
 At the opposite, using the slice operator (e.g. `a[:,1:4]`) performs by default a copy of the data, while if you prefer instead a shadow copy you need to use `view`/`@view`/`@views` (e.g. `@view a[:,1:4]`).
 
@@ -129,7 +129,7 @@ Attention that `transpose(a)`/`a'` is a linear-algebra operation and works only 
 Also, put attention to this difference:
 
 * `a = [1,2,3]`           creates a 1,2,3 column vector
-* `b = collect([1 2 3]')` traspose a 1,2,3 row vector to a 1,2,3 column
+* `b = collect([1 2 3]')` transposes a 1,2,3 row vector to a 1,2,3 column
 
 While mathematically they are the same concept, in Julia they are two different objects. The first one is a uni-dimensional array, the second one is a two- dimensional array where it happens that the second dimension has size 1, i.e. there is only one column.
 This possible confusion doesn't arise with _row_ vectors, as all row vectors in Julia have 2 dimensions.
@@ -154,14 +154,14 @@ Useful tricks:
 
 ## NamedTuples
 
-NamedTuples are collections of items whose position in the collection \(index\) can be identified not only by the position but also by  name.
+NamedTuples are collections of items whose position in the collection \(index\) can be identified not only by the position but also by name.
 
 * Define a NamedTuple: `aNamedTuple = (a=1, b=2)`
 * Access them with the dot notation: `aNamedTuple.a` (index notation can be used, too: `aNamedTuple[:a]`).
 * Get a tuple of the keys: `keys(aNamedTuple)`
 * Get a tuple of the values: `values(aNamedTuple)`
 * Get an Array of the values: `collect(aNamedTuple)`
-* Get a iterable of the pairs \(k,v\): `pairs(aNamedTuple)`. Useful for looping: `for (k,v) in pairs(aNamedTuple) [...] end`
+* Get an iterable of the pairs \(k, v\): `pairs(aNamedTuple)`. Useful for looping: `for (k,v) in pairs(aNamedTuple) [...] end`
 
 As "normal" tuples, NamedTuples can hold any values, but cannot be modified \(i.e. are "immutable"\).
 
@@ -171,7 +171,7 @@ Before Julia 1.0  Named Tuples were implemented in a separate package \([NamedTu
 
 Dictionaries store mappings from keys to values, and they have an apparently random sorting.
 
-You can create an empty \(zero-elements\) dictionary with `mydict = Dict()`, or initialize a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
+You can create an empty \(zero-elements\) dictionary with `mydict = Dict()`, or initialise a dictionary with values: `mydict = Dict('a'=>1, 'b'=>2, 'c'=>3)`
 
 There are some useful methods to work with dictionaries:
 
@@ -253,15 +253,15 @@ For example, to broadcast `parse` to work over an array use:`myNewList = parse.(
 
 Variable names have to start with a letter, as if they start with a number there is ambiguity if the initial number is a multiplier or not, e.g. in the expression `6ax` the variable `ax` is multiplied by 6, and it is equal to `6 * ax` \(and note that `6 ax` would result in a compile error\). Conversely, `ax6` would be a variable named `ax6` and not `ax * 6`.
 
-You can import data from a file to a matrix using `readdlm()` \(in standard library package  `DelimitedFiles`\). You can skip rows and/or columns using the slice operator and then convert to the desidered type, e.g.
+You can import data from a file to a matrix using `readdlm()` \(in standard library package `DelimitedFiles`\). You can skip rows and/or columns using the slice operator and then convert to the desired type, e.g.
 
 `myData = convert(Array{Float64,2},readdlm(myinputfile,'\t')[2:end,4:end]); # skip the first 1 row and the first 3 columns`
 
 ### Random numbers
 
-* Random float in \[0,1\]: `rand()`
-* Random integer in \[a,b\]: `rand(a:b)`
-* Random float in \[a,b\] with "precision" to the second digit : `rand(a:0.01:b)`
+* Random float in \[0, 1\]: `rand()`
+* Random integer in \[a, b\]: `rand(a:b)`
+* Random float in \[a, b\] with "precision" to the second digit : `rand(a:0.01:b)`
 
   This last can be executed faster and more elegantly using the `Distribution` package:
 
@@ -278,7 +278,7 @@ You can obtain an Array or a Matrix of random numbers simply specifying the requ
 Julia supports different concepts of missingness:
 
 * **`nothing`** \(type `Nothing`\): is the value returned by code blocks and functions which do not return anything. It is a single instance of the singleton type `Nothing`, and the closer to C style NULL \(sometimes it is referred as to the "software engineer’s null"\). Most operations with `nothing` values will result in a run-type error. In some contexts it is printed as `#NULL`;
-* **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
+* **`missing`** \(type `Missing`\): represents a missing value in a statistical sense: there should be a value, but we don't know which is \(so it is sometimes referred to as the "data scientist’s null"\). Most operations with missing values will result in missing propagate \(silently\). Containers can handle missing values efficiently when declared of type `Union{T,Missing}`. The [Missing.jl](https://github.com/JuliaData/Missings.jl) package provides additional methods to handle missing elements;
 * **`NaN`** \(type `Float64`\):  represents when an operation results in a Not-a-Number value \(e.g. 0/0\). It is similar to `missing` in the fact that it propagates silently. Similarly, Julia also offers `Inf` \(e.g. `1/0`\) and `-Inf` \(e.g. `-1/0`\).
 
 [¹](data-types.md): Technically a `String` is an array in Julia \(try to append a String to an array!\), but for most uses it can be thought as a scalar type.

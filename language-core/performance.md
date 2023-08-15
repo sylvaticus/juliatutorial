@@ -39,7 +39,7 @@ int main() {
 }
 ```
 
-Non optimised: 2.48 seconds Optimised \(compiled with the -O3 switch\) : 0.83 seconds
+Non-optimised: 2.48 seconds; Optimised \(compiled with the -O3 switch\) : 0.83 seconds
 
 **Python:**
 
@@ -62,7 +62,7 @@ main()
 print("--- %s seconds ---" % (time.time() - start_time))
 ```
 
-Non optimised \(wihtout using numba and the @jit decorator\): 98 seconds Optimised \(using the just in time compilation\):0.88 seconds
+Non-optimised \(without using numba and the @jit decorator\): 98 seconds Optimised \(using the just in time compilation\):0.88 seconds
 
 **R:**
 
@@ -80,7 +80,7 @@ f <- function(n){
 }
 ```
 
-Non optimised: 287 seconds Optimised \(vectorised\): the function returns an error \(on my 8GB laptop\), as too much memory is required to build the arrays!
+Non-optimised: 287 seconds Optimised \(vectorised\): the function returns an error \(on my 8GB laptop\), as too much memory is required to build the arrays!
 
 **Human mind:**
 
@@ -100,18 +100,18 @@ Some tips to improve performance are:
 
 ## Code parallelisation
 
-Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH. Threads instead are limited to the same CPU but, contrary to processes, share the same memory. An high-level API for multithreadding has been introduces in Julia 1.3
+Julia provides core functionality to parallelise code using processes. These can be even in different machines, where connection is realised trough SSH. Threads instead are limited to the same CPU but, contrary to processes, share the same memory. An high-level API for multi-threading has been introduced in Julia 1.3
 
-### Paralellisation using multiple processes
+### Parallelisation using multiple processes
 
 [This notebook](http://nbviewer.jupyter.org/github/sylvaticus/juliatutorial/blob/master/assets/Parallel%20computing.ipynb) shows how to use several functions to facilitate code parallelism:
 
-### Paralellisation using multiple threads
+### Parallelisation using multiple threads
 
-Here is an example on how to use the new @spawn macro in Julia >= 1.3threads on a function that produces something, saving the results to a vector where order doesn't matter and the computational process of any record is independent from those of any other record.
+Here is an example on how to use multiple threads with the new @spawn macro in Julia >= 1.3 on a function that produces something, saving the results to a vector where order doesn't matter and the computational process of any record is independent from those of any other record.
 
 
-```
+```julia
 import Base.Threads.@spawn
 
 struct myobj

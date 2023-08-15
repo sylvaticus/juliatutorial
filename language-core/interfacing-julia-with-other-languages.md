@@ -41,7 +41,7 @@ j = ccall((:iplustwo, mylib), Float32, (Float32,), i)
 
 ### Use Python in Julia
 
-We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this have to be already be available in the local installation of python):
+We show here an example with Python. The following code converts an ODS spreadsheet in a Julia DataFrame, using the Python [ezodf](https://github.com/T0ha/ezodf) module (of course this has to be already available in the local installation of python):
 
 ```julia
 using PyCall
@@ -64,6 +64,7 @@ Type conversions are automatically performed for numeric, boolean, string, IO st
 
 Other types are instead converted to the generic PyObject type, as it is the case for the `destDoc` object returned by the module function.  
 You can then access its attributes and methods with `myPyObject.attibute` and `myPyObject.method()` respectively.
+
 
 ### Use Julia in Python
 
@@ -225,7 +226,7 @@ We can otherwise embed Julia code directly in R using the `julia_eval()` functio
 
 We can then call the above function in R either as `funnyProdR(2,3)`, `julia_eval("funnyProd(2,3)")` or `julia_call("funnyProd",2,3)`.
 
-While other "convenience" functions are provided by the package, using `julia_eval` and `julia_call` should suffix to accomplish any task we may need in Julia.
+While other "convenience" functions are provided by the package, using `julia_eval` and `julia_call` should suffice to accomplish any task we may need in Julia.
 
 
 _While an updated, expanded and revised version of this chapter is available in "Chapter 7 - Interfacing Julia with Other Languages" of [Antonello Lobianco (2019), "Julia Quick Syntax Reference", Apress](https://julia-book.com), this tutorial remains in active development._

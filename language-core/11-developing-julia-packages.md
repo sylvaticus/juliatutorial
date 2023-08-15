@@ -20,7 +20,7 @@ Modules can be entered in the REPL as normal Julia code or in a script that is i
 
 There is no connection between a given file and a given module as in other languages, so the logical structure of a program can be decoupled from its actual division in files. For example, one file could contain multiple modules.
 
-A more common way to use modules is by loading a package that will consists, at least, of a module with the same name of the package.
+A more common way to use modules is by loading a package that will consist, at least, of a module with the same name of the package.
 
 All modules are children of the module `Main`, the default module for global objects in Julia, and each module defines its own set of global names.
 

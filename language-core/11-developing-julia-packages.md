@@ -110,8 +110,10 @@ Going back to our new `Project.toml` file, the two packages should have been add
 We can do that by adding to `Project.toml` a new `[compat]` section where we write down `DataFrames = "0.21, 0.22"`, that is we allow `MyAwesomePackage` to work with any `DataFrames` in the `v0.21.x` or `v0.22.x` series. In other words, we assume that the functionality our package depends from has been introduced in `DataFrames` `v0.21.O`, and it is still available in the `v0.22.x` serie.
 
 We also add `julia = "1.2.1"` assuming that our package works only with `Julia >= v1.2.1` within the `v1.x` serie.
+Finally, we now need to specify the versions also of the standard lib packages, as they become independent packages that may be in the future updated independently of the Julia core itself. We hance add in this case `LinearAlgebra = "1.2.1"` to the `[compat]` section.
 
 _**NOTE:** All Julia versions in the `v1.x` serie are "guaranteed" to be backward compatible with code wrote for Julia `v1.0.0`, but the reverse is not true, e.g. new features could still be added in the `v1.x` serie so that certain packages work only with them._
+
 
 On one side this way to manage dependencies brings a considerable burden on the package maintainer, as it is his responsibility to determine which exact versions of the dependent package his package works with, but on the other side it guarantees a smooth usage of his/her package.
 More information on Julia semantic rules can be found [here](https://julialang.github.io/Pkg.jl/dev/toml-files/#The-version-field) and in particular the requirements for automatic merging of the package in the registry are given [here](https://github.com/JuliaRegistries/General#automatic-merging-of-pull-requests).
@@ -131,6 +133,7 @@ LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 [compat]
 DataFrames = "0.21, 0.22"
 julia = "1.2.1"
+LinearAlgebra = "1.2.1"
 ```
 
 Our new package is now ready to be linked with the repository we created in GitHub. While in this tutorial we will use a terminal, you can just use the github web interface to copy the files `generate` has produced to your github repository.
@@ -143,11 +146,12 @@ git add .    # Add all files, including in subfolders
 git commit -a -m "Initial package structure of MyAwasomePackage" # Create a first commit
 git branch -m main # Rename "master" to "main" as of the new GitHub policy
 git remote add origin git@github.com:sylvaticus/MyAwesomePackage.jl.git # Link the remote github repository to the local one
+git config pull.rebase false # Allow mering of remote vs local codebase for next step
 git pull origin main --allow-unrelated-histories # Fetch the Readme and gitignore we created when we created the repository
 git push --set-upstream origin main # Finally upload everything back to the GitHub repository
 ```
 
-Once we have the package in GitHub, we can add it to our Julia local installation with `(@v1.X) pkg> add https://github.com/sylvaticus/MyAwesomePackage.jl.git` and `(@v1.X) pkg> dev MyAwesomePackage`.
+Once we have the package in GitHub, we can add it to our Julia local installation with `(@v1.X) pkg> add git@github.com:sylvaticus/MyAwesomePackage.jl.git` and `(@v1.X) pkg> dev MyAwesomePackage`.
 The package should now located in `[USER_HOME_FOLDER]/.julia/dev/MyAwesomePackage`, where `[USER_HOME_FOLDER]` is the home folder for the local user, e.g. `~` in Linux or `%HOMEPATH%` in Windows and we can cancel the original location where we generated it (for example in our Desktop).
 
 Before we add a test suite, let's add a minimum of functionality to our package. I highly advise you to use the [Revise](https://github.com/timholy/Revise.jl) package. When you import `Revise` in a new Julia session before importing a package it lets you account for changes that you make when you save on disk any modification you make on the package without having to restart the Julia session.
